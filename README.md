@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Adverli — Growth, engineered.
 
-## Getting Started
+An enterprise marketing agency website built with **Next.js 16 (App Router)**, **TypeScript**, and **Tailwind CSS v4**.
 
-First, run the development server:
+## Getting started
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # local development at http://localhost:3000
+npm run build    # production build
+npm start        # serve the production build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Site structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Route | Page |
+|---|---|
+| `/` | Home |
+| `/services` | Services overview |
+| `/services/website-development` · `/services/meta-ads` · `/services/google-ads` · `/services/seo` · `/services/content-creation` | Service detail pages (statically generated) |
+| `/work` | Case studies |
+| `/about` | About |
+| `/contact` | Contact + inquiry form |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Where things live
 
-## Learn More
+- **`lib/`** — all site content as typed data: `services.ts`, `case-studies.ts`, `testimonials.ts`, `site.ts` (nav, stats, contact info, process, FAQs). Edit copy here without touching components.
+- **`components/`** — shared UI (header with services dropdown + mobile drawer, footer, cards, FAQ accordion, testimonial slider, scroll-reveal wrapper, contact form).
+- **`app/`** — routes, `sitemap.ts`, `robots.ts`, and the design tokens in `globals.css` (brand palette + fonts).
+- **`app/api/contact/route.ts`** — contact form endpoint. Currently a validated stub; plug in your email/CRM provider (Resend, SendGrid, HubSpot, …) where marked.
 
-To learn more about Next.js, take a look at the following resources:
+## Visuals
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Charts** — `components/charts/LineChart.tsx` (interactive: crosshair tooltip, draw-in animation, accessible data table) and `Sparkline.tsx` (decorative). Chart marks use the `--color-chart` token, a deeper lime validated for contrast on the dark surface.
+- **Photography** — `public/images/` holds photos sourced from Unsplash (Unsplash License: free for commercial use, no attribution required). Replace with your own brand photography before launch if desired.
+- **Motion** — scroll reveals, hero aurora drift, floating stat chips, animated counters, and chart draw-ins; all respect `prefers-reduced-motion`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Brand tokens
 
-## Deploy on Vercel
+Defined in `app/globals.css`: near-black `ink` background, `surface` cards, `cream` text, `muted`/`faint` secondary text, and the `lime` (#c8f542) accent. Headings use Space Grotesk, body text uses Inter (loaded via `next/font`).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Before going live, update the production domain in `lib/site.ts` (`site.url`) — it drives metadata, the sitemap, and robots.txt.
