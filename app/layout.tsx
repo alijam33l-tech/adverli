@@ -40,15 +40,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${spaceGrotesk.variable} h-full antialiased`}
+      className={`${inter.variable} ${spaceGrotesk.variable} js h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-ink text-cream">
-        {/* Enables the JS-only hidden state for scroll reveals before first paint */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: "document.documentElement.classList.add('js')",
-          }}
-        />
+        <noscript>
+          <style>{`.js .reveal { opacity: 1; transform: none; }`}</style>
+        </noscript>
         <Header />
         <main className="flex-1 pt-16">{children}</main>
         <Footer />

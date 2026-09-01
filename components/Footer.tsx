@@ -19,22 +19,27 @@ export default function Footer() {
               Adverli<span className="text-lime">.</span>
             </p>
             <p className="mt-3 max-w-sm text-sm leading-relaxed text-muted">
-              {site.tagline} An enterprise growth agency building revenue
-              engines across web, paid media, search, and content.
+              {site.tagline} Website development, paid media, SEO, and content
+              tied to clear commercial goals.
             </p>
             <p className="mt-6 text-sm text-muted">
               <a
-                href={`mailto:${site.email}`}
+                href={site.emailHref}
                 className="text-cream transition-colors hover:text-lime"
               >
                 {site.email}
               </a>
               <br />
-              {site.phone}
+              <a
+                href={site.phoneHref}
+                className="text-cream transition-colors hover:text-lime"
+              >
+                {site.phone}
+              </a>
             </p>
           </div>
 
-          <div className="lg:col-span-3">
+          <div className="lg:col-span-4">
             <p className="text-xs font-medium uppercase tracking-[0.2em] text-faint">
               Services
             </p>
@@ -52,7 +57,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-3">
             <p className="text-xs font-medium uppercase tracking-[0.2em] text-faint">
               Company
             </p>
@@ -70,18 +75,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div className="lg:col-span-2">
-            <p className="text-xs font-medium uppercase tracking-[0.2em] text-faint">
-              Offices
-            </p>
-            <ul className="mt-4 space-y-3">
-              {site.locations.map((city) => (
-                <li key={city} className="text-sm text-muted">
-                  {city}
-                </li>
-              ))}
-            </ul>
-          </div>
         </div>
 
         <div className="mt-16 flex flex-col gap-4 border-t border-line pt-8 sm:flex-row sm:items-center sm:justify-between">
@@ -89,7 +82,7 @@ export default function Footer() {
             © {new Date().getFullYear()} Adverli. All rights reserved.
           </p>
           <p className="text-xs text-faint">
-            Growth, engineered — New York · London · Singapore
+            Growth, engineered.
           </p>
         </div>
       </div>

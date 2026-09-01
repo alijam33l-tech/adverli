@@ -5,7 +5,7 @@ export default function ServiceCard({ service }: { service: Service }) {
   return (
     <Link
       href={`/services/${service.slug}`}
-      className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-line bg-surface p-8 transition-colors duration-300 hover:border-lime/40"
+      className="group relative flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-line bg-surface p-8 transition-colors duration-300 hover:border-lime/40"
     >
       <div>
         <div className="flex items-start justify-between">

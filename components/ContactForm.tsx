@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { services } from "@/lib/services";
+import { site } from "@/lib/site";
 
 const budgets = [
   "Under $10k / month",
@@ -14,9 +15,6 @@ const inputStyles =
   "w-full rounded-xl border border-line-strong bg-surface px-4 py-3 text-sm text-cream placeholder:text-faint outline-none transition-colors focus:border-lime";
 
 export default function ContactForm() {
-  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
-    "idle"
-  );
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
 
   const toggleService = (title: string) =>
@@ -26,38 +24,31 @@ export default function ContactForm() {
         : [...prev, title]
     );
 
-  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setStatus("sending");
-    const form = e.currentTarget;
-    const data = Object.fromEntries(new FormData(form).entries());
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...data, services: selectedServices }),
-      });
-      if (!res.ok) throw new Error("Request failed");
-      setStatus("sent");
-      form.reset();
-      setSelectedServices([]);
-    } catch {
-      setStatus("error");
-    }
-  }
+    const data = new FormData(e.currentTarget);
+    const name = String(data.get("name") ?? "");
+    const email = String(data.get("email") ?? "");
+    const company = String(data.get("company") ?? "");
+    const budget = String(data.get("budget") ?? "Not provided");
+    const message = String(data.get("message") ?? "");
+    const serviceList = selectedServices.length
+      ? selectedServices.join(", ")
+      : "Not selected";
+    const subject = `Strategy call request — ${company || name}`;
+    const body = [
+      `Name: ${name}`,
+      `Work email: ${email}`,
+      `Company: ${company}`,
+      `Monthly marketing budget: ${budget || "Not provided"}`,
+      `Services: ${serviceList}`,
+      "",
+      "Goals:",
+      message,
+    ].join("\n");
 
-  if (status === "sent") {
-    return (
-      <div className="rounded-2xl border border-lime/30 bg-surface p-10 text-center">
-        <p className="font-display text-3xl font-medium text-lime">
-          Request received.
-        </p>
-        <p className="mx-auto mt-4 max-w-sm text-sm leading-relaxed text-muted">
-          Thank you — a growth lead will review your details and reply within
-          one business day with next steps and available call times.
-        </p>
-      </div>
-    );
+    const mailtoUrl = `mailto:${site.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.assign(mailtoUrl);
   }
 
   return (
@@ -160,18 +151,22 @@ export default function ContactForm() {
 
       <button
         type="submit"
-        disabled={status === "sending"}
-        className="w-full rounded-full bg-lime px-6 py-4 font-display text-sm font-medium text-ink transition-colors hover:bg-lime-dim disabled:opacity-60 sm:w-auto"
+        className="w-full rounded-full bg-lime px-6 py-4 font-display text-sm font-medium text-ink transition-colors hover:bg-lime-dim sm:w-auto"
       >
-        {status === "sending" ? "Sending…" : "Request a strategy call →"}
+        Draft email to Adverli →
       </button>
 
-      {status === "error" && (
-        <p role="alert" className="text-sm text-red-400">
-          Something went wrong sending your request. Please try again, or email
-          us directly at hello@adverli.com.
-        </p>
-      )}
+      <p className="text-sm leading-relaxed text-faint">
+        This opens a prefilled message in your email app. Nothing is sent until
+        you send it. You can also email us directly at{" "}
+        <a
+          href={site.emailHref}
+          className="text-cream transition-colors hover:text-lime"
+        >
+          {site.email}
+        </a>
+        .
+      </p>
     </form>
   );
 }

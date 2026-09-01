@@ -9,7 +9,7 @@ import skyline from "@/public/images/skyline.jpg";
 export const metadata: Metadata = {
   title: "Work",
   description:
-    "Case studies from Adverli engagements — paid media, SEO, web development, and content programs measured in revenue, not impressions.",
+    "Illustrative growth scenarios across paid media, SEO, website development, and content.",
 };
 
 export default function WorkPage() {
@@ -37,14 +37,14 @@ export default function WorkPage() {
               Selected work
             </p>
             <h1 className="mt-6 max-w-3xl font-display text-5xl font-semibold leading-tight tracking-tight text-cream sm:text-6xl">
-              Numbers our clients take
+              See how the work
               <br />
-              to <span className="text-lime">the board.</span>
+              <span className="text-lime">comes together.</span>
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
-              Every engagement below is measured the same way we run it —
-              against revenue, efficiency, and payback. Representative results
-              from recent partnerships.
+              These scenarios show how we approach common growth problems.
+              They are illustrative, not client case studies or performance
+              claims.
             </p>
           </Reveal>
         </div>
@@ -61,8 +61,10 @@ export default function WorkPage() {
       </section>
 
       <CTASection
-        title="Want numbers like these?"
-        lede="Every engagement starts the same way — a strategy call and an honest audit of where your funnel is leaking revenue."
+        title="Want an approach built around your goals?"
+        lede="Start with a focused conversation about the outcome, the current constraint, and the evidence available."
+        secondaryHref="/services"
+        secondaryLabel="Explore services"
       />
     </>
   );

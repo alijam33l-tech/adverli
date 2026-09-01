@@ -20,10 +20,10 @@ export const services: Service[] = [
     title: "Website Development",
     shortTitle: "Web Development",
     tagline:
-      "Conversion-engineered websites built to enterprise standards — fast, secure, and designed to sell.",
+      "Fast, maintainable websites built around clear customer journeys and commercial goals.",
     heroHeadline: "Websites built like revenue infrastructure.",
     heroLede:
-      "Your website is the one channel you own outright. We design and build sites that load in under a second, rank, convert, and scale with your organization — not brochures that need rebuilding in 18 months.",
+      "Your website is the channel you control. We design and build around speed, search visibility, clear conversion paths, and a publishing system your team can maintain.",
     deliverables: [
       {
         title: "Conversion-first UX & design",
@@ -38,7 +38,7 @@ export const services: Service[] = [
       {
         title: "Core Web Vitals performance",
         description:
-          "Sub-second loads and green Vitals as an acceptance criterion, not an afterthought — because speed is a ranking factor and a conversion factor.",
+          "Performance budgets, image strategy, and front-end checks are built into delivery so speed is managed throughout the project.",
       },
       {
         title: "Headless CMS integration",
@@ -53,7 +53,7 @@ export const services: Service[] = [
       {
         title: "Security & compliance",
         description:
-          "SSO, role-based access, WCAG 2.2 AA accessibility, and infrastructure that passes enterprise procurement and security review.",
+          "Accessibility, permissions, privacy, and security requirements are defined early and tested against the needs of the project.",
       },
     ],
     approach: [
@@ -79,27 +79,27 @@ export const services: Service[] = [
         step: "04",
         title: "Launch & optimize",
         description:
-          "Zero-downtime migration with SEO preserved, then a structured experimentation program on the pages that drive pipeline.",
+          "A planned migration with redirect, analytics, and search checks, followed by focused improvement on the pages that matter most.",
       },
     ],
     outcomes: [
-      { value: "<1s", label: "Median page load across launched sites" },
-      { value: "+68%", label: "Average lift in demo/lead conversion" },
-      { value: "100", label: "Lighthouse performance scores at handover" },
+      { value: "Fast", label: "Performance-minded builds" },
+      { value: "Clear", label: "Conversion paths" },
+      { value: "Owned", label: "Maintainable handoff" },
     ],
-    caseStudySlug: "trellis-systems",
+    caseStudySlug: "website-conversion",
     faqs: [
       {
         q: "What platforms do you build on?",
         a: "Primarily Next.js with a headless CMS (Sanity, Contentful, or Storyblok) for marketing sites, and Shopify Plus for commerce. We recommend based on your team's capabilities, not our preferences.",
       },
       {
-        q: "How long does an enterprise site build take?",
-        a: "A typical engagement runs 10–16 weeks from kickoff to launch, depending on page count and integrations. We phase launches so high-impact pages ship early rather than waiting on the full site.",
+        q: "How long does a website build take?",
+        a: "Timing depends on page count, content readiness, integrations, and review cycles. We define the delivery plan during scoping and phase work when earlier releases create useful value.",
       },
       {
         q: "Will a rebuild hurt our SEO?",
-        a: "Handled correctly, a rebuild improves it. We run full URL mapping, redirect strategy, and pre/post-launch crawl comparisons — preserving equity is a launch gate, not a hope.",
+        a: "A poorly managed migration can. We plan URL mapping and redirects, preserve relevant content signals, and compare crawls before and after launch so issues are found quickly.",
       },
       {
         q: "Can our internal team maintain the site afterward?",
@@ -116,7 +116,7 @@ export const services: Service[] = [
       "Full-funnel Facebook and Instagram programs powered by creative testing at volume and clean signal.",
     heroHeadline: "Meta ads that scale on creative, not luck.",
     heroLede:
-      "Since targeting collapsed into the algorithm, creative is the targeting. We run structured creative testing at volume, feed Meta clean conversion signal, and scale winners with discipline — so growth doesn't stall at the first budget increase.",
+      "As Meta automates more targeting, creative quality and conversion signal matter even more. We connect testing, campaign structure, landing pages, and measurement so budget decisions rest on useful evidence.",
     deliverables: [
       {
         title: "Creative strategy & production",
@@ -160,7 +160,7 @@ export const services: Service[] = [
         step: "02",
         title: "Creative engine setup",
         description:
-          "Angle map, testing calendar, and production pipeline established — typically 8–15 new assets entering testing per month.",
+          "An angle map, testing calendar, and production workflow give each creative idea a clear reason to exist and a fair test.",
       },
       {
         step: "03",
@@ -176,15 +176,15 @@ export const services: Service[] = [
       },
     ],
     outcomes: [
-      { value: "3.8x", label: "Average ROAS across managed accounts" },
-      { value: "-34%", label: "Average CAC reduction in first 2 quarters" },
-      { value: "12+", label: "New creatives tested per account per month" },
+      { value: "Test", label: "Structured creative learning" },
+      { value: "Signal", label: "Cleaner conversion data" },
+      { value: "Scale", label: "Budget discipline" },
     ],
-    caseStudySlug: "bluepine-hotels",
+    caseStudySlug: "paid-social-demand",
     faqs: [
       {
         q: "What monthly ad spend do you manage?",
-        a: "Most accounts spend between $50k and $1M+ per month on Meta. Below roughly $30k/month, our testing methodology can't run at full velocity, and we'll tell you honestly if you're not ready for it.",
+        a: "The useful budget depends on audience size, conversion volume, creative capacity, and the cost of a meaningful test. We review those inputs before recommending a scope.",
       },
       {
         q: "Do you produce the ad creative or just run media?",
@@ -196,7 +196,7 @@ export const services: Service[] = [
       },
       {
         q: "How fast can Meta campaigns scale?",
-        a: "With signal and creative in place, accounts typically scale 20–40% month over month without efficiency collapse. Faster is possible — but we scale on evidence, not enthusiasm.",
+        a: "There is no responsible fixed rate. We increase investment when conversion signal, creative durability, and unit economics support it, then watch for efficiency changes before moving again.",
       },
     ],
   },
@@ -206,7 +206,7 @@ export const services: Service[] = [
     title: "Google Ads",
     shortTitle: "Google Ads",
     tagline:
-      "Search, Shopping, PMax, and YouTube programs that capture demand at the moment of intent — profitably.",
+      "Search, Shopping, Performance Max, and YouTube programs built around intent, value, and spend control.",
     heroHeadline: "Own the moment of intent.",
     heroLede:
       "Google is where demand goes to convert. We build full-account architectures across Search, Performance Max, Shopping, and YouTube — engineered around value-based bidding and clean conversion data, so every dollar chases profit rather than clicks.",
@@ -229,7 +229,7 @@ export const services: Service[] = [
       {
         title: "Shopping & feed optimization",
         description:
-          "Feed titles, attributes, and supplemental data optimized continuously — often the highest-leverage work in retail accounts.",
+          "Feed titles, attributes, and supplemental data are reviewed continuously because product data can be one of the most valuable inputs in retail accounts.",
       },
       {
         title: "YouTube & Demand Gen",
@@ -239,7 +239,7 @@ export const services: Service[] = [
       {
         title: "Query & waste elimination",
         description:
-          "Systematic negative-keyword and placement hygiene. On enterprise accounts, cutting waste routinely funds the entire engagement.",
+          "Systematic negative-keyword, placement, and query review keeps spend focused on demand the business can serve.",
       },
     ],
     approach: [
@@ -247,7 +247,7 @@ export const services: Service[] = [
         step: "01",
         title: "Forensic account audit",
         description:
-          "Ninety-point audit across structure, bidding, query paths, and measurement. We quantify wasted spend before we touch anything.",
+          "A structured review of account setup, bidding, query paths, creative, landing pages, and measurement establishes the baseline before changes begin.",
       },
       {
         step: "02",
@@ -269,15 +269,15 @@ export const services: Service[] = [
       },
     ],
     outcomes: [
-      { value: "-41%", label: "Average CPA reduction after restructure" },
-      { value: "+2.6x", label: "Average return on ad spend at target CPA" },
-      { value: "$18M", label: "Wasted spend eliminated for clients to date" },
+      { value: "Intent", label: "Account structure" },
+      { value: "Signal", label: "Conversion quality" },
+      { value: "Control", label: "Spend discipline" },
     ],
-    caseStudySlug: "meridian-freight",
+    caseStudySlug: "paid-search-efficiency",
     faqs: [
       {
         q: "We already run Google Ads. Why bring in an agency?",
-        a: "Most enterprise accounts we audit waste 15–30% of spend on query mismatch, conversion misconfiguration, and legacy structure. An audit pays for itself quickly — and we'll show you the number before asking for the engagement.",
+        a: "An outside review can expose query mismatch, weak conversion definitions, fragmented structure, or reporting gaps. We start by identifying whether the account has a material problem worth solving.",
       },
       {
         q: "What's your position on Performance Max?",
@@ -289,7 +289,7 @@ export const services: Service[] = [
       },
       {
         q: "Will performance dip during a restructure?",
-        a: "We migrate in phases to keep learning-period turbulence contained, typically holding performance within ±10% during transition, with gains landing in weeks 4–8.",
+        a: "Any restructure can affect learning and delivery. We phase changes, preserve useful history where possible, and agree on monitoring and rollback points before migration.",
       },
     ],
   },
@@ -302,12 +302,12 @@ export const services: Service[] = [
       "Technical, content, and authority programs that compound into durable organic revenue — including AI search.",
     heroHeadline: "Organic growth that compounds while you sleep.",
     heroLede:
-      "Paid media stops the day you stop paying. SEO compounds. We run enterprise search programs across technical foundations, content, and authority — built for how people actually search today, including AI answers and LLM-driven discovery.",
+      "Paid media stops when investment stops; useful search visibility can keep working. We connect technical foundations, content, and authority for traditional search and AI-assisted discovery.",
     deliverables: [
       {
         title: "Technical SEO at scale",
         description:
-          "Crawl efficiency, index management, rendering, site speed, and structured data across sites with thousands to millions of URLs.",
+          "Crawl efficiency, index management, rendering, site speed, and structured data sized to the complexity of the site.",
       },
       {
         title: "Search-led content strategy",
@@ -322,7 +322,7 @@ export const services: Service[] = [
       {
         title: "AI search optimization",
         description:
-          "Visibility in AI Overviews, ChatGPT, and Perplexity: structured content, entity clarity, and citation-worthiness for the answers layer replacing ten blue links.",
+          "Structured, well-sourced content and clear entity signals that support visibility across traditional search and AI-assisted discovery.",
       },
       {
         title: "Migration & platform support",
@@ -362,19 +362,19 @@ export const services: Service[] = [
       },
     ],
     outcomes: [
-      { value: "+212%", label: "Average organic revenue growth by month 12" },
-      { value: "68%", label: "Average increase in page-one keywords, year one" },
-      { value: "9:1", label: "Typical organic ROI by end of year two" },
+      { value: "Find", label: "Technical discoverability" },
+      { value: "Earn", label: "Useful search visibility" },
+      { value: "Measure", label: "Pipeline contribution" },
     ],
-    caseStudySlug: "arcadia-health",
+    caseStudySlug: "organic-authority",
     faqs: [
       {
         q: "How long until SEO shows results?",
-        a: "Technical fixes often move metrics within 4–8 weeks. Content and authority programs compound over 3–9 months. We forecast the curve up front and report leading indicators weekly, so progress is visible long before the hockey stick.",
+        a: "Timing depends on the technical starting point, competition, authority, and publishing pace. We define leading indicators early, but do not promise a ranking or revenue date the evidence cannot support.",
       },
       {
         q: "Is SEO still worth it with AI answers taking clicks?",
-        a: "The channel is changing, not dying. Brands cited by AI answers win disproportionate share, and the inputs — authority, structure, entity clarity — are SEO disciplines. We optimize for both classic SERPs and the answers layer.",
+        a: "Search behavior is changing, but people still need reliable information before they choose. Technical access, clear entities, useful content, and credible sourcing support visibility in both traditional and AI-assisted search.",
       },
       {
         q: "Do you write the content or just the strategy?",
@@ -382,7 +382,7 @@ export const services: Service[] = [
       },
       {
         q: "Can you work alongside our in-house SEO team?",
-        a: "Yes. We frequently act as the strategy-and-firepower layer for in-house teams: they own the roadmap governance, we bring specialist depth, digital PR, and production capacity.",
+        a: "Yes. Responsibilities can be divided around your team's strengths, with clear ownership for the roadmap, technical work, content, authority, and reporting.",
       },
     ],
   },
@@ -392,7 +392,7 @@ export const services: Service[] = [
     title: "Content Creation",
     shortTitle: "Content",
     tagline:
-      "Editorial, video, and design production systems that feed every channel — at enterprise quality and volume.",
+      "Editorial, video, and design systems that turn expertise into useful work for every channel.",
     heroHeadline: "Content as a system, not a scramble.",
     heroLede:
       "Every channel you run is fed by content — ads need creative, SEO needs authority, sales needs assets. We build editorial and production systems that turn your expertise into a compounding content engine, at the quality your brand demands and the volume growth requires.",
@@ -410,7 +410,7 @@ export const services: Service[] = [
       {
         title: "Video & motion production",
         description:
-          "Brand films, product explainers, and short-form social cut for each platform's native behavior — one shoot, a quarter of assets.",
+          "Brand films, product explainers, and short-form social content planned for the way each channel is actually used.",
       },
       {
         title: "Performance creative",
@@ -455,27 +455,27 @@ export const services: Service[] = [
       },
     ],
     outcomes: [
-      { value: "40+", label: "Assets shipped per client per month" },
-      { value: "+178%", label: "Average growth in content-sourced pipeline" },
-      { value: "3.2x", label: "Engagement lift vs. clients' prior benchmarks" },
+      { value: "Plan", label: "Clear editorial priorities" },
+      { value: "Create", label: "Consistent production" },
+      { value: "Learn", label: "Measured performance" },
     ],
-    caseStudySlug: "helixon",
+    caseStudySlug: "content-system",
     faqs: [
       {
         q: "How do you keep content in our brand voice?",
-        a: "We build a voice and messaging system up front, train our editorial team on it, and run senior editorial review on every asset. Most clients stop making revisions within the first month.",
+        a: "We document voice and messaging up front, use approved examples, and keep a clear review loop with the people responsible for the brand.",
       },
       {
         q: "Do you use AI in your content production?",
-        a: "As leverage, never as the author. AI accelerates research, variant generation, and atomization; strategy, expertise, and final craft are human. Everything ships through senior editors accountable for accuracy and originality.",
+        a: "AI can be a production aid for research, variants, and repurposing. Strategy, source judgment, subject-matter input, and final editorial accountability remain human.",
       },
       {
         q: "Can you handle regulated industries?",
-        a: "Yes — healthcare, finance, and legal are a significant share of our editorial work. We build compliance review into the workflow and work comfortably with your legal and MLR processes.",
+        a: "The workflow can include legal, compliance, and subject-matter review. Scope and approval paths are defined before production begins.",
       },
       {
         q: "What volume can you sustain?",
-        a: "Pods scale from roughly 15 to 60+ assets per month per client across formats. We'd rather start focused and scale with results than flood your channels with mediocrity.",
+        a: "Volume depends on format, research depth, review capacity, and distribution needs. We start with a cadence the team can sustain, then expand only when the workflow and evidence support it.",
       },
     ],
   },

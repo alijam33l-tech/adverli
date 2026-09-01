@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 
-type Format = "index" | "currency" | "multiple" | "percent";
+type Format = "index" | "currency" | "multiple" | "percent" | "progress";
 
 type LineChartProps = {
   data: number[];
@@ -17,6 +17,11 @@ const PAD = { top: 14, right: 16, bottom: 26, left: 44 };
 
 function fmt(v: number, format: Format): string {
   switch (format) {
+    case "progress":
+      if (v < 1.5) return "Baseline";
+      if (v < 2.25) return "Build";
+      if (v < 3.25) return "Refine";
+      return "Scale";
     case "currency":
       if (v >= 1_000_000) return `$${(v / 1_000_000).toFixed(1)}M`;
       if (v >= 1_000) return `$${Math.round(v / 1_000)}k`;
@@ -195,23 +200,25 @@ export default function LineChart({
       </div>
 
       {/* Accessible data table */}
-      <table className="sr-only">
-        <caption>{title}</caption>
-        <thead>
-          <tr>
-            <th scope="col">Period</th>
-            <th scope="col">Value</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((v, i) => (
-            <tr key={`${labels[i]}-${i}`}>
-              <td>{labels[i]}</td>
-              <td>{fmt(v, format)}</td>
+      <div className="sr-only">
+        <table>
+          <caption>{title}</caption>
+          <thead>
+            <tr>
+              <th scope="col">Stage</th>
+              <th scope="col">Status</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {data.map((v, i) => (
+              <tr key={`${labels[i]}-${i}`}>
+                <td>{labels[i]}</td>
+                <td>{fmt(v, format)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </figure>
   );
 }

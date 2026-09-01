@@ -7,7 +7,6 @@ import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import ServiceCard from "@/components/ServiceCard";
 import StatsBar from "@/components/StatsBar";
-import TestimonialSlider from "@/components/TestimonialSlider";
 import { caseStudies } from "@/lib/case-studies";
 import { services } from "@/lib/services";
 import Image from "next/image";
@@ -38,7 +37,7 @@ export default function HomePage() {
                     aria-hidden
                     className="h-1.5 w-1.5 rounded-full bg-lime"
                   />
-                  Enterprise growth agency · NY — LDN — SG
+                  Integrated growth partner
                 </p>
               </Reveal>
               <Reveal delay={100}>
@@ -50,18 +49,16 @@ export default function HomePage() {
               </Reveal>
               <Reveal delay={200}>
                 <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted">
-                  We design, build, and scale revenue engines for ambitious
-                  organizations — websites that convert, paid media that
-                  scales, and search programs that compound. No vanity
-                  metrics. No junior handoffs. Just growth you can take to
-                  the board.
+                  We connect website development, Meta and Google ads, SEO,
+                  and content around one commercial goal: turning attention
+                  into qualified demand.
                 </p>
               </Reveal>
               <Reveal delay={300}>
                 <div className="mt-10 flex flex-wrap items-center gap-4">
                   <Button href="/contact">Book a strategy call</Button>
                   <Button href="/work" variant="ghost">
-                    See our results
+                    Explore our approach
                   </Button>
                 </div>
               </Reveal>
@@ -95,8 +92,8 @@ export default function HomePage() {
       <section className="mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
         <SectionHeading
           eyebrow="Why Adverli"
-          title="Results that survive due diligence."
-          lede="We report against revenue, pipeline, and payback — the numbers your CFO checks — because that's the only scoreboard that matters."
+          title="Commercial clarity at every step."
+          lede="Strategy, execution, and reporting stay tied to the business outcome, with clear ownership and fewer handoffs between channels."
         />
         <Reveal className="mt-14">
           <StatsBar />
@@ -151,13 +148,13 @@ export default function HomePage() {
       <section className="mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <SectionHeading
-            eyebrow="Selected work"
-            title="Proof, not promises."
-            lede="A sample of recent engagements — every number below is one our clients have taken to their boards."
+            eyebrow="Example approaches"
+            title="How focused growth programs take shape."
+            lede="Illustrative scenarios showing how strategy, execution, and measurement work together. These are not client case studies."
           />
           <Reveal>
             <Button href="/work" variant="ghost" className="mb-1">
-              All case studies
+              View all scenarios
             </Button>
           </Reveal>
         </div>
@@ -176,7 +173,7 @@ export default function HomePage() {
           <SectionHeading
             eyebrow="How we work"
             title="A method, not a mood board."
-            lede="Every engagement runs the same operating system — diagnose, architect, execute, compound — so results are repeatable, not lucky."
+            lede="Every engagement follows the same clear sequence — diagnose, architect, execute, compound — so decisions stay focused and accountable."
           />
           <div className="mt-14">
             <ProcessSteps />
@@ -189,14 +186,14 @@ export default function HomePage() {
         <SectionHeading
           eyebrow="Inside the work"
           title="Where the numbers get made."
-          lede="Strategy rooms, build sprints, and reporting reviews — the unglamorous weekly cadence that compounds into the results above."
+          lede="Focused working sessions, build cycles, and reporting reviews keep priorities visible and turn learning into the next decision."
         />
         <div className="mt-14 grid gap-5 md:grid-cols-3">
           {[
             {
               img: strategySession,
               alt: "Team mapping campaign strategy on a wall of sticky notes",
-              caption: "Quarterly growth planning",
+              caption: "Focused planning sessions",
             },
             {
               img: analyticsLaptop,
@@ -206,7 +203,7 @@ export default function HomePage() {
             {
               img: openOffice,
               alt: "Modern open-plan office with teams at work",
-              caption: "Senior pods, one roof",
+              caption: "Connected delivery workflows",
             },
           ].map((item, i) => (
             <Reveal key={item.caption} delay={i * 100}>
@@ -231,19 +228,6 @@ export default function HomePage() {
               </figure>
             </Reveal>
           ))}
-        </div>
-      </section>
-
-      {/* Testimonials */}
-      <section className="border-t border-line bg-surface/40 px-6 py-24 lg:py-32">
-        <div className="mx-auto max-w-7xl lg:px-2">
-          <SectionHeading
-            eyebrow="Client voices"
-            title="What partners say when the numbers land."
-          />
-          <Reveal className="mt-14">
-            <TestimonialSlider />
-          </Reveal>
         </div>
       </section>
 

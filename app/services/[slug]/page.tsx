@@ -61,7 +61,7 @@ export default async function ServicePage({
             <div className="mt-10 flex flex-wrap gap-4">
               <Button href="/contact">Book a strategy call</Button>
               <Button href="/work" variant="ghost">
-                See the results
+                Explore our approach
               </Button>
             </div>
           </Reveal>
@@ -140,15 +140,15 @@ export default async function ServicePage({
         </div>
       </section>
 
-      {/* Related case study */}
+      {/* Related illustrative scenario */}
       {study && (
         <section className="mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
           <div className="grid items-center gap-12 lg:grid-cols-12">
             <div className="lg:col-span-5">
               <SectionHeading
-                eyebrow="Proof"
-                title="What this looks like in production."
-                lede={`${study.client} — ${study.industry.toLowerCase()}. ${study.headline}.`}
+                eyebrow="Example Growth Scenario"
+                title="A sample engagement approach."
+                lede={`${study.title} — ${study.industry.toLowerCase()}. ${study.headline}`}
               />
               <Reveal className="mt-8">
                 <dl className="grid grid-cols-3 gap-6 border-t border-line pt-8">
@@ -166,7 +166,7 @@ export default async function ServicePage({
               </Reveal>
               <Reveal className="mt-8">
                 <Button href="/work" variant="ghost">
-                  All case studies
+                  View all scenarios
                 </Button>
               </Reveal>
             </div>
@@ -178,8 +178,8 @@ export default async function ServicePage({
                     "M1", "M2", "M3", "M4", "M5", "M6",
                     "M7", "M8", "M9", "M10", "M11", "M12",
                   ]}
-                  title={`${study.client} · ${study.seriesLabel}`}
-                  format="index"
+                  title={`${study.title} · ${study.seriesLabel}`}
+                  format="progress"
                 />
                 <p className="mt-5 border-t border-line pt-5 text-sm leading-relaxed text-muted">
                   {study.summary}

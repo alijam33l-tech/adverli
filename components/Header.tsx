@@ -19,12 +19,8 @@ function Wordmark() {
 
 export default function Header() {
   const pathname = usePathname();
-  const [mobileOpen, setMobileOpen] = useState(false);
-
-  // Close the drawer on navigation
-  useEffect(() => {
-    setMobileOpen(false);
-  }, [pathname]);
+  const [openForPath, setOpenForPath] = useState<string | null>(null);
+  const mobileOpen = openForPath === pathname;
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
@@ -112,7 +108,7 @@ export default function Header() {
 
         <button
           type="button"
-          onClick={() => setMobileOpen((v) => !v)}
+          onClick={() => setOpenForPath(mobileOpen ? null : pathname)}
           aria-expanded={mobileOpen}
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
           className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 lg:hidden"
@@ -144,6 +140,7 @@ export default function Header() {
                 <Link
                   key={s.slug}
                   href={`/services/${s.slug}`}
+                  onClick={() => setOpenForPath(null)}
                   className="flex items-baseline gap-3 py-2"
                 >
                   <span className="font-display text-xs text-lime">
@@ -162,6 +159,7 @@ export default function Header() {
                   <Link
                     key={item.href}
                     href={item.href}
+                    onClick={() => setOpenForPath(null)}
                     className="block py-2 font-display text-2xl text-cream"
                   >
                     {item.label}
@@ -170,6 +168,7 @@ export default function Header() {
             </div>
             <Link
               href="/contact"
+              onClick={() => setOpenForPath(null)}
               className="mt-10 inline-flex rounded-full bg-lime px-6 py-3 font-display text-sm font-medium text-ink"
             >
               Book a strategy call →

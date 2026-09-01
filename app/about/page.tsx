@@ -4,14 +4,13 @@ import CTASection from "@/components/CTASection";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import StatsBar from "@/components/StatsBar";
-import { site } from "@/lib/site";
 import officeHalls from "@/public/images/office-halls.jpg";
 import boardroom from "@/public/images/boardroom.jpg";
 
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Adverli is an enterprise growth agency built on a simple conviction: marketing should be engineered, measured, and accountable to revenue.",
+    "Adverli connects strategy and execution across website development, paid media, SEO, and content.",
 };
 
 const values = [
@@ -23,7 +22,7 @@ const values = [
   {
     title: "Seniority, not headcount",
     description:
-      "The people who pitch you are the people who do the work. Small senior pods outperform large junior teams — and cost less in mistakes.",
+      "The people who scope the work stay close to delivery, keeping decisions faster and context intact.",
   },
   {
     title: "Evidence over opinion",
@@ -36,24 +35,24 @@ const values = [
       "Channels are engineered to feed each other. Creative learnings inform SEO. Search data informs ads. One engine, not five silos.",
   },
   {
-    title: "Radical transparency",
+    title: "Clear reporting",
     description:
-      "You see what we see: live dashboards, full account access, and honest weekly reporting — including what didn't work.",
+      "Reporting should show what changed, what the evidence says, and which decision comes next — including what did not work.",
   },
   {
     title: "No lock-in, ever",
     description:
-      "You own your accounts, your data, and your code. We keep clients by performing, not by holding infrastructure hostage.",
+      "You retain control of your accounts, data, and code. Our job is to strengthen your operating setup, not lock you in.",
   },
 ];
 
-const leadership = [
-  { name: "Adrian Vance", role: "Founder & CEO" },
-  { name: "Maya Castellanos", role: "Chief Strategy Officer" },
-  { name: "James Okonkwo", role: "Head of Paid Media" },
-  { name: "Elin Sørensen", role: "Head of Engineering" },
-  { name: "Rachel Tan", role: "Head of Search" },
-  { name: "Tomas Werner", role: "Executive Creative Director" },
+const engagementTeam = [
+  { name: "Growth Strategy", role: "Priorities, commercial model, and decisions" },
+  { name: "Paid Media", role: "Meta and Google campaign execution" },
+  { name: "Web Development", role: "Experience, engineering, and conversion paths" },
+  { name: "SEO", role: "Technical foundations and search demand" },
+  { name: "Content Creation", role: "Messaging, creative, and production" },
+  { name: "Measurement", role: "Signal quality, reporting, and learning" },
 ];
 
 export default function AboutPage() {
@@ -68,14 +67,12 @@ export default function AboutPage() {
               About Adverli
             </p>
             <h1 className="mt-6 max-w-4xl font-display text-5xl font-semibold leading-tight tracking-tight text-cream sm:text-6xl">
-              We started Adverli because marketing had stopped being
+              Marketing should be
               <span className="text-lime"> accountable.</span>
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">
-              Too many agencies sell activity — decks, dashboards, and
-              deliverables — while revenue stays flat. We built the agency
-              we&apos;d want to hire: senior operators, engineering rigor, and a
-              single obsession with the metrics that fund payroll.
+              Adverli connects strategy and execution around qualified demand,
+              efficient acquisition, and sustainable revenue.
             </p>
           </Reveal>
         </div>
@@ -85,12 +82,15 @@ export default function AboutPage() {
       <section className="mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-5">
-            <SectionHeading eyebrow="Our story" title="Built by operators, not account managers." />
+            <SectionHeading
+              eyebrow="Our approach"
+              title="Strategy stays close to execution."
+            />
             <Reveal delay={150} className="mt-10 hidden lg:block">
               <figure className="overflow-hidden rounded-2xl border border-line">
                 <Image
                   src={officeHalls}
-                  alt="Adverli's dark, modern office corridor"
+                  alt="Modern office corridor"
                   placeholder="blur"
                   sizes="(min-width: 1024px) 38vw, 0px"
                   className="object-cover"
@@ -100,23 +100,19 @@ export default function AboutPage() {
           </div>
           <Reveal className="space-y-6 text-base leading-relaxed text-muted lg:col-span-7 lg:text-lg">
             <p>
-              Adverli was founded by a team that spent a decade inside
-              high-growth companies — running the budgets, owning the targets,
-              and hiring the agencies. We saw the same pattern everywhere:
-              great pitches, junior execution, and reporting engineered to hide
-              the truth.
+              Adverli was built around a simple operating idea: the people
+              setting strategy should stay close to execution, budgets, and
+              results.
             </p>
             <p>
-              So we built the inverse. Small senior pods with full-stack
-              capability — engineering, media, search, and content under one
-              roof — operating on weekly cycles and reporting against the
-              client&apos;s revenue model, not the agency&apos;s slide
-              template.
+              Website development, paid media, search, and content are planned
+              together. That reduces handoffs, keeps channel decisions in
+              context, and makes ownership clear.
             </p>
             <p>
-              Today we run growth programs for mid-market and enterprise
-              organizations from {site.locations.join(", ")} — across SaaS,
-              e-commerce, healthcare, financial services, and hospitality.
+              The work starts with the business goal and the available data.
+              From there, we build a practical plan, define how progress will
+              be judged, and focus effort on the constraint that matters most.
             </p>
           </Reveal>
         </div>
@@ -170,35 +166,35 @@ export default function AboutPage() {
             />
             <figcaption className="absolute bottom-6 left-8 max-w-md">
               <p className="font-display text-2xl font-medium tracking-tight text-cream">
-                Three offices. One operating system.
+                One team. One operating system.
               </p>
               <p className="mt-2 text-sm text-muted">
-                {site.locations.join(" · ")} — every pod runs the same weekly
-                cadence, the same reporting standard, the same bar.
+                Every engagement follows a clear cadence, reporting standard,
+                and decision process.
               </p>
             </figcaption>
           </figure>
         </Reveal>
         <SectionHeading
-          eyebrow="Leadership"
-          title="Senior on day one. Senior in month twelve."
-          lede="The team that scopes your engagement is the team that runs it — a principle, not a slogan."
+          eyebrow="Engagement team"
+          title="The right disciplines around one brief."
+          lede="Scope determines which specialists are involved. Strategy, execution, and measurement stay connected throughout the work."
         />
         <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {leadership.map((person, i) => (
-            <Reveal key={person.name} delay={(i % 3) * 100}>
+          {engagementTeam.map((discipline, i) => (
+            <Reveal key={discipline.name} delay={(i % 3) * 100}>
               <div className="flex items-center gap-5 rounded-2xl border border-line bg-surface p-6">
                 <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-line-strong bg-surface-2 font-display text-base font-medium text-lime">
-                  {person.name
+                  {discipline.name
                     .split(" ")
                     .map((n) => n[0])
                     .join("")}
                 </div>
                 <div>
                   <p className="font-display text-base font-medium tracking-tight text-cream">
-                    {person.name}
+                    {discipline.name}
                   </p>
-                  <p className="mt-1 text-sm text-muted">{person.role}</p>
+                  <p className="mt-1 text-sm text-muted">{discipline.role}</p>
                 </div>
               </div>
             </Reveal>

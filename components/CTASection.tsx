@@ -4,11 +4,15 @@ import Reveal from "./Reveal";
 type CTASectionProps = {
   title?: string;
   lede?: string;
+  secondaryHref?: string;
+  secondaryLabel?: string;
 };
 
 export default function CTASection({
   title = "Ready to engineer your growth?",
-  lede = "Book a strategy call. We'll audit your funnel, show you where the revenue is leaking, and tell you honestly whether we're the right partner to fix it.",
+  lede = "Book a strategy call to discuss the goal, the current constraint, and the most useful next step.",
+  secondaryHref = "/work",
+  secondaryLabel = "Explore our approach",
 }: CTASectionProps) {
   return (
     <section className="mx-auto max-w-7xl px-6 pb-24 lg:px-8 lg:pb-32">
@@ -28,8 +32,8 @@ export default function CTASection({
             </p>
             <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
               <Button href="/contact">Book a strategy call</Button>
-              <Button href="/work" variant="ghost">
-                See our results
+              <Button href={secondaryHref} variant="ghost">
+                {secondaryLabel}
               </Button>
             </div>
           </div>

@@ -6,27 +6,27 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Book a strategy call with Adverli. We'll audit your funnel, show you where revenue is leaking, and map the fastest path to growth.",
+    "Contact Adverli to discuss website development, paid media, SEO, or content priorities.",
 };
 
 const nextSteps = [
   {
     step: "01",
-    title: "Discovery call",
+    title: "Introductory conversation",
     description:
-      "A 30-minute call with a growth lead — your goals, your channels, your numbers. No pitch deck.",
+      "We start with your goals, current channels, constraints, and the commercial outcome that matters.",
   },
   {
     step: "02",
-    title: "Funnel audit",
+    title: "Focused review",
     description:
-      "We audit your accounts, site, and analytics, and quantify the opportunity — including wasted spend we find.",
+      "If there is a fit, we review the relevant accounts, website, and measurement setup before recommending work.",
   },
   {
     step: "03",
-    title: "Growth architecture",
+    title: "Clear recommendation",
     description:
-      "You receive a roadmap with channel mix, forecasts, and targets. Work with us or run it in-house — it's yours.",
+      "You get a plain-English recommendation on priorities, scope, ownership, and the next decision to make.",
   },
 ];
 
@@ -52,21 +52,28 @@ export default function ContactPage() {
                 <span className="text-lime">numbers.</span>
               </h1>
               <p className="mt-6 max-w-md text-lg leading-relaxed text-muted">
-                Tell us where you are and where you need to be. A growth lead —
-                not a salesperson — replies within one business day.
+                Tell us where you are, what needs to change, and which business
+                outcome matters most. We&apos;ll review the details and respond
+                with a useful next step.
               </p>
 
               <div className="mt-10 space-y-2 text-sm">
                 <p>
                   <a
-                    href={`mailto:${site.email}`}
+                    href={site.emailHref}
                     className="text-cream transition-colors hover:text-lime"
                   >
                     {site.email}
                   </a>
                 </p>
-                <p className="text-muted">{site.phone}</p>
-                <p className="text-muted">{site.locations.join(" · ")}</p>
+                <p>
+                  <a
+                    href={site.phoneHref}
+                    className="text-cream transition-colors hover:text-lime"
+                  >
+                    {site.phone}
+                  </a>
+                </p>
               </div>
 
               <div className="mt-12 space-y-6 border-t border-line pt-10">

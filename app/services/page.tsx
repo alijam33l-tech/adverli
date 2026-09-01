@@ -13,7 +13,7 @@ import { generalFaqs } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Website development, Meta ads, Google ads, SEO, and content creation — five disciplines engineered into one growth engine for enterprise brands.",
+    "Website development, Meta ads, Google ads, SEO, and content creation connected around clear commercial goals.",
 };
 
 export default function ServicesPage() {
