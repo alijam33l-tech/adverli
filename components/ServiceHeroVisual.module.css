@@ -1,0 +1,227 @@
+.visual {
+  position: relative;
+  isolation: isolate;
+  min-height: 21rem;
+}
+
+.glow {
+  position: absolute;
+  inset: 16% -8% 4% 18%;
+  z-index: -1;
+  pointer-events: none;
+  border-radius: 50%;
+  background: rgba(200, 245, 66, 0.085);
+  filter: blur(60px);
+}
+
+.frame {
+  position: absolute;
+  overflow: hidden;
+  background: #101012;
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.38);
+}
+
+.image {
+  object-fit: cover;
+  filter: brightness(0.55) saturate(0.72) contrast(1.12);
+  transform: scale(1.025);
+  transition: filter 700ms ease, transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.visual:hover .image {
+  filter: brightness(0.62) saturate(0.78) contrast(1.1);
+  transform: scale(1.055);
+}
+
+.imageWash {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(10, 10, 11, 0.8), transparent 38%),
+    linear-gradient(180deg, rgba(10, 10, 11, 0.04) 45%, rgba(10, 10, 11, 0.7));
+}
+
+.frameLabel {
+  position: absolute;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: rgba(245, 245, 242, 0.72);
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.frameLabel::before {
+  content: "";
+  width: 1.5rem;
+  height: 1px;
+  background: #c8f542;
+  box-shadow: 0 0 10px rgba(200, 245, 66, 0.28);
+}
+
+.frameLabel span:first-child {
+  color: #c8f542;
+}
+
+.signalRail {
+  position: absolute;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.signalRail::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  left: 0;
+  height: 1px;
+  background: rgba(200, 245, 66, 0.24);
+}
+
+.signalRail span {
+  position: relative;
+  width: 0.38rem;
+  height: 0.38rem;
+  border: 1px solid rgba(200, 245, 66, 0.58);
+  border-radius: 50%;
+  background: #101012;
+}
+
+.signalRail span:last-child {
+  background: #c8f542;
+  box-shadow: 0 0 10px rgba(200, 245, 66, 0.38);
+}
+
+.visual[data-service="website-development"] .frame {
+  inset: -0.5rem -3rem -1.5rem 9%;
+  clip-path: polygon(8% 0, 100% 0, 100% 88%, 91% 100%, 0 100%, 0 12%);
+}
+
+.visual[data-service="website-development"] .frameLabel {
+  bottom: 1.2rem;
+  left: 0;
+}
+
+.visual[data-service="website-development"] .signalRail {
+  top: 1.2rem;
+  right: -1rem;
+}
+
+.visual[data-service="meta-ads"] .frame {
+  inset: 2rem -4rem 1.5rem 0;
+  clip-path: polygon(0 0, 92% 0, 100% 18%, 100% 100%, 7% 100%, 0 86%);
+}
+
+.visual[data-service="meta-ads"] .frameLabel {
+  top: 0.65rem;
+  left: 1.2rem;
+}
+
+.visual[data-service="meta-ads"] .signalRail {
+  right: -1.25rem;
+  bottom: 0.35rem;
+}
+
+.visual[data-service="google-ads"] .frame {
+  inset: -0.5rem -3.5rem 3rem 4%;
+  clip-path: polygon(0 0, 88% 0, 100% 20%, 100% 100%, 0 100%);
+}
+
+.visual[data-service="google-ads"] .frameLabel {
+  right: -0.5rem;
+  bottom: 1.45rem;
+}
+
+.visual[data-service="google-ads"] .signalRail {
+  bottom: 0.2rem;
+  left: -0.5rem;
+}
+
+.visual[data-service="seo"] .frame {
+  inset: 2.5rem -4.5rem -0.5rem -3%;
+  clip-path: polygon(10% 0, 100% 0, 100% 100%, 0 100%, 0 17%);
+}
+
+.visual[data-service="seo"] .frameLabel {
+  top: 0.95rem;
+  right: 0;
+}
+
+.visual[data-service="seo"] .signalRail {
+  bottom: 0.5rem;
+  left: -1.2rem;
+}
+
+.visual[data-service="content-creation"] .frame {
+  inset: -1rem 1rem -2rem 15%;
+  clip-path: polygon(10% 0, 100% 0, 100% 90%, 90% 100%, 0 100%, 0 14%);
+}
+
+.visual[data-service="content-creation"] .frameLabel {
+  bottom: 1rem;
+  left: 2rem;
+}
+
+.visual[data-service="content-creation"] .signalRail {
+  top: 1rem;
+  right: 0;
+}
+
+@media (min-width: 1024px) {
+  .visual {
+    min-height: 29rem;
+  }
+}
+
+@media (max-width: 1023px) {
+  .visual {
+    max-width: 44rem;
+    min-height: 20rem;
+  }
+
+  .visual[data-service] .frame {
+    inset: 1rem -2rem 0 5%;
+  }
+
+  .visual[data-service] .frameLabel {
+    right: auto;
+    bottom: 1rem;
+    left: 0;
+    top: auto;
+  }
+
+  .visual[data-service] .signalRail {
+    top: 0.45rem;
+    right: 0;
+    bottom: auto;
+    left: auto;
+  }
+}
+
+@media (max-width: 639px) {
+  .visual {
+    min-height: 17rem;
+  }
+
+  .frameLabel span:last-child {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .image {
+    transform: none;
+    transition: none;
+  }
+
+  .visual:hover .image {
+    transform: none;
+  }
+}

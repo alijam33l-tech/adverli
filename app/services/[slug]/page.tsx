@@ -6,6 +6,7 @@ import CTASection from "@/components/CTASection";
 import LineChart from "@/components/charts/LineChart";
 import FAQ from "@/components/FAQ";
 import Reveal from "@/components/Reveal";
+import ServiceHeroVisual from "@/components/ServiceHeroVisual";
 import SectionHeading from "@/components/SectionHeading";
 import { getCaseStudy } from "@/lib/case-studies";
 import { getService, services } from "@/lib/services";
@@ -45,26 +46,35 @@ export default async function ServicePage({
           aria-hidden
           className="pointer-events-none absolute right-0 top-0 h-80 w-80 translate-x-1/3 -translate-y-1/3 rounded-full bg-lime/10 blur-3xl"
         />
-        <div className="relative mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
-          <Reveal>
-            <p className="flex items-center gap-2 text-xs font-medium uppercase tracking-[0.2em] text-muted">
-              <span className="font-display text-lime">{service.index}</span>
-              <span aria-hidden>/</span>
-              {service.title}
-            </p>
-            <h1 className="mt-6 max-w-3xl font-display text-5xl font-semibold leading-tight tracking-tight text-cream sm:text-6xl">
-              {service.heroHeadline}
-            </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">
-              {service.heroLede}
-            </p>
-            <div className="mt-10 flex flex-wrap gap-4">
-              <Button href="/contact">Book a strategy call</Button>
-              <Button href="/work" variant="ghost">
-                Explore our approach
-              </Button>
-            </div>
-          </Reveal>
+        <div className="relative mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-28">
+          <div className="grid items-center gap-14 lg:grid-cols-12 lg:gap-10 xl:gap-16">
+            <Reveal className="lg:col-span-7">
+              <p className="flex items-center gap-2 text-xs font-medium uppercase tracking-[0.2em] text-muted">
+                <span className="font-display text-lime">{service.index}</span>
+                <span aria-hidden>/</span>
+                {service.title}
+              </p>
+              <h1 className="mt-6 max-w-3xl font-display text-5xl font-semibold leading-tight tracking-tight text-cream sm:text-6xl">
+                {service.heroHeadline}
+              </h1>
+              <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">
+                {service.heroLede}
+              </p>
+              <div className="mt-10 flex flex-wrap gap-4">
+                <Button href="/contact">Book a strategy call</Button>
+                <Button href="/work" variant="ghost">
+                  Explore our approach
+                </Button>
+              </div>
+            </Reveal>
+            <Reveal delay={160} className="min-w-0 lg:col-span-5">
+              <ServiceHeroVisual
+                slug={service.slug}
+                index={service.index}
+                title={service.title}
+              />
+            </Reveal>
+          </div>
         </div>
       </section>
 

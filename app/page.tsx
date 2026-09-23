@@ -5,7 +5,7 @@ import LogoMarquee from "@/components/LogoMarquee";
 import ProcessSteps from "@/components/ProcessSteps";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
-import ServiceCard from "@/components/ServiceCard";
+import ServicesGrowthSystem from "@/components/ServicesGrowthSystem";
 import StatsBar from "@/components/StatsBar";
 import { caseStudies } from "@/lib/case-studies";
 import { services } from "@/lib/services";
@@ -92,7 +92,10 @@ export default function HomePage() {
       </section>
 
       {/* Services */}
-      <section className="border-t border-line bg-surface/40">
+      <section
+        id="services-system"
+        className="scroll-mt-16 border-t border-line bg-surface/40"
+      >
         <div className="mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
           <div className="flex flex-wrap items-end justify-between gap-6">
             <SectionHeading
@@ -106,32 +109,16 @@ export default function HomePage() {
               </Button>
             </Reveal>
           </div>
-          <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {services.map((s, i) => (
-              <Reveal key={s.slug} delay={(i % 3) * 100}>
-                <ServiceCard service={s} />
-              </Reveal>
-            ))}
-            <Reveal delay={200}>
-              <Link
-                href="/contact"
-                className="group flex h-full min-h-56 flex-col justify-between rounded-2xl border border-lime/40 bg-lime/5 p-8 transition-colors hover:bg-lime/10"
-              >
-                <span aria-hidden className="font-display text-sm text-lime">
-                  ↗
-                </span>
-                <div>
-                  <h3 className="font-display text-2xl font-medium tracking-tight text-lime">
-                    Not sure where to start?
-                  </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-muted">
-                    Book a strategy call. We&apos;ll review the growth system and
-                    identify the priorities most likely to move it forward.
-                  </p>
-                </div>
-              </Link>
-            </Reveal>
-          </div>
+          <Reveal className="mt-14">
+            <ServicesGrowthSystem
+              services={services.map(({ slug, index, title, tagline }) => ({
+                slug,
+                index,
+                title,
+                tagline,
+              }))}
+            />
+          </Reveal>
         </div>
       </section>
 
