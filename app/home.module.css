@@ -1,0 +1,248 @@
+.hero {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 74% 39%, rgba(200, 245, 66, 0.075), transparent 29%),
+    radial-gradient(circle at 18% 21%, rgba(255, 255, 255, 0.025), transparent 24%),
+    #0a0a0b;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 58px 58px;
+  mask-image: radial-gradient(ellipse 78% 65% at 69% 43%, #000 20%, transparent 78%);
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.18;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.2'/%3E%3C/svg%3E");
+  mix-blend-mode: soft-light;
+}
+
+.ambientGlow {
+  position: absolute;
+  top: 18%;
+  left: 44%;
+  width: min(62rem, 80vw);
+  height: 32rem;
+  pointer-events: none;
+  border-radius: 50%;
+  background: rgba(200, 245, 66, 0.055);
+  filter: blur(90px);
+  animation: ambient-drift 14s ease-in-out infinite alternate;
+}
+
+.heroInner {
+  position: relative;
+  z-index: 1;
+}
+
+.eyebrow,
+.headlineLead,
+.headlineAccent,
+.positioning,
+.actions,
+.capabilities {
+  animation: hero-in 760ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.eyebrow {
+  animation-delay: 80ms;
+}
+
+.headlineLead {
+  display: block;
+  animation-delay: 160ms;
+}
+
+.headlineAccent {
+  display: block;
+  animation-delay: 280ms;
+}
+
+.positioning {
+  animation-delay: 390ms;
+}
+
+.actions {
+  animation-delay: 490ms;
+}
+
+.capabilities {
+  animation-delay: 760ms;
+}
+
+.heroPrimary,
+.heroSecondary {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition: color 240ms ease, border-color 240ms ease, box-shadow 240ms ease, transform 240ms cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+.heroPrimary::before,
+.heroSecondary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  transform: translateX(-105%);
+  transition: transform 360ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.heroPrimary::before {
+  background: #f5f5f2;
+}
+
+.heroSecondary::before {
+  background: rgba(200, 245, 66, 0.08);
+}
+
+.heroPrimary:hover,
+.heroSecondary:hover {
+  transform: translateY(-2px);
+}
+
+.heroPrimary:hover {
+  color: #0a0a0b;
+  box-shadow: 0 12px 34px rgba(200, 245, 66, 0.16);
+}
+
+.heroSecondary:hover {
+  border-color: rgba(200, 245, 66, 0.65);
+  box-shadow: inset 0 0 0 1px rgba(200, 245, 66, 0.08);
+}
+
+.heroPrimary:hover::before,
+.heroSecondary:hover::before {
+  transform: translateX(0);
+}
+
+.heroPrimary > span,
+.heroSecondary > span {
+  transition: transform 240ms cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+.heroPrimary:hover > span,
+.heroSecondary:hover > span {
+  transform: translateX(0.28rem);
+}
+
+.capabilityLink {
+  position: relative;
+}
+
+.capabilityLink::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -0.32rem;
+  left: 0;
+  height: 1px;
+  background: #c8f542;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.capabilityLink:hover::after,
+.capabilityLink:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.transitionLayer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  height: 6rem;
+  pointer-events: none;
+  background: linear-gradient(to bottom, transparent, rgba(10, 10, 11, 0.82) 70%, #0a0a0b);
+}
+
+.transitionLayer::after {
+  content: "";
+  position: absolute;
+  right: 8%;
+  bottom: 0;
+  left: 8%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(200, 245, 66, 0.22), transparent);
+  transform: scaleX(0.6);
+  animation: transition-line 1.2s cubic-bezier(0.22, 1, 0.36, 1) 1.05s both;
+}
+
+@media (max-width: 1023px) {
+  .hero::before {
+    mask-image: radial-gradient(ellipse 90% 55% at 50% 68%, #000 20%, transparent 80%);
+  }
+
+  .ambientGlow {
+    top: 47%;
+    left: 8%;
+    width: 84vw;
+    height: 28rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ambientGlow,
+  .eyebrow,
+  .headlineLead,
+  .headlineAccent,
+  .positioning,
+  .actions,
+  .capabilities,
+  .transitionLayer::after {
+    animation: none;
+  }
+
+  .heroPrimary,
+  .heroSecondary,
+  .heroPrimary::before,
+  .heroSecondary::before,
+  .heroPrimary > span,
+  .heroSecondary > span {
+    transition: none !important;
+  }
+}
+
+@keyframes hero-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ambient-drift {
+  to {
+    transform: translate3d(3rem, -1.2rem, 0) scale(1.08);
+  }
+}
+
+@keyframes transition-line {
+  from {
+    opacity: 0;
+    transform: scaleX(0.1);
+  }
+  to {
+    opacity: 1;
+    transform: scaleX(0.6);
+  }
+}

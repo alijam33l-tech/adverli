@@ -1,0 +1,580 @@
+.root {
+  --pointer-x: 50%;
+  --pointer-y: 42%;
+  --shift-x: 0px;
+  --shift-y: 0px;
+  --shift-x-inverse: 0px;
+  --shift-y-inverse: 0px;
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  perspective: 1200px;
+  animation: visual-in 900ms cubic-bezier(0.22, 1, 0.36, 1) 540ms both;
+}
+
+.cursorGlow {
+  position: absolute;
+  inset: -18%;
+  z-index: -2;
+  pointer-events: none;
+  background: radial-gradient(circle at var(--pointer-x) var(--pointer-y), rgba(200, 245, 66, 0.16), rgba(200, 245, 66, 0.035) 30%, transparent 61%);
+  filter: blur(12px);
+}
+
+.orbit {
+  position: absolute;
+  inset: 5% -8% -8% 7%;
+  z-index: -1;
+  border: 1px solid rgba(200, 245, 66, 0.09);
+  border-radius: 46% 54% 48% 52%;
+  transform: rotate(-8deg);
+  animation: orbit-drift 12s ease-in-out infinite alternate;
+}
+
+.panel {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 1.25rem;
+  padding: 1.35rem;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.035), transparent 36%), rgba(17, 17, 19, 0.92);
+  box-shadow: 0 32px 90px rgba(0, 0, 0, 0.46), inset 0 1px rgba(255, 255, 255, 0.045);
+  transform: perspective(1100px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
+  transform-style: preserve-3d;
+  transition: transform 240ms cubic-bezier(0.22, 1, 0.36, 1), border-color 240ms ease;
+  will-change: transform;
+}
+
+.root:hover .panel,
+.root:focus-within .panel {
+  border-color: rgba(200, 245, 66, 0.19);
+}
+
+.panelSheen {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at var(--pointer-x) var(--pointer-y), rgba(255, 255, 255, 0.055), transparent 31%);
+}
+
+.header,
+.chartHeader,
+.insightRow {
+  display: flex;
+  align-items: center;
+}
+
+.header {
+  position: relative;
+}
+
+.eyebrow {
+  color: #d8d8d4;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.155em;
+  text-transform: uppercase;
+}
+
+.kpiGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.3rem;
+  margin-top: 1.15rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.075);
+}
+
+.kpi {
+  position: relative;
+  min-width: 0;
+  border-radius: 0.75rem;
+  padding: 0.78rem 0.65rem 0.68rem;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 200ms ease;
+}
+
+.kpi:hover {
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.kpi:focus-visible {
+  outline: 2px solid #c8f542;
+  outline-offset: 2px;
+}
+
+.kpi[aria-pressed="true"] {
+  background: rgba(200, 245, 66, 0.055);
+}
+
+.kpiTrack {
+  position: absolute;
+  top: 0;
+  left: 0.65rem;
+  right: 0.65rem;
+  height: 1px;
+  background: #c8f542;
+  opacity: 0;
+  transform: scaleX(0.2);
+  transform-origin: left;
+  transition: opacity 200ms ease, transform 380ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.kpi[aria-pressed="true"] .kpiTrack {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+.kpiValue,
+.kpiLabel {
+  display: block;
+}
+
+.kpiValue {
+  overflow: hidden;
+  color: #f5f5f2;
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: clamp(0.9rem, 2.6vw, 1.25rem);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: color 200ms ease;
+}
+
+.kpi[aria-pressed="true"] .kpiValue {
+  color: #c8f542;
+}
+
+.kpiLabel {
+  margin-top: 0.24rem;
+  color: #6b6b72;
+  font-size: 0.6rem;
+  line-height: 1.25;
+}
+
+.chart {
+  position: relative;
+  margin-top: 1rem;
+}
+
+.chartHeader {
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.chartTitle {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 0.45rem;
+  color: #a7a7ad;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.105em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.chartKey {
+  width: 1rem;
+  height: 1px;
+  background: #c8f542;
+  box-shadow: 0 0 8px rgba(200, 245, 66, 0.45);
+}
+
+.chartMode {
+  color: #5f5f66;
+  font-size: 0.56rem;
+  line-height: 1.35;
+  text-align: right;
+}
+
+.chartSvg {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: 0.35rem;
+  overflow: visible;
+}
+
+.grid line {
+  stroke: rgba(255, 255, 255, 0.055);
+  stroke-width: 1;
+}
+
+.grid line:nth-child(n + 5) {
+  stroke-dasharray: 2 7;
+  opacity: 0.62;
+}
+
+.focusBand {
+  fill: rgba(200, 245, 66, 0.04);
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+
+.root[data-active="revenue"] .revenueBand,
+.root[data-active="qualified"] .qualifiedBand {
+  opacity: 1;
+}
+
+.area {
+  transform: scaleY(0);
+  transform-origin: 50% 198px;
+  animation: area-rise 900ms cubic-bezier(0.22, 1, 0.36, 1) 980ms forwards;
+}
+
+.lineGhost,
+.line,
+.segment {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.lineGhost {
+  stroke: rgba(200, 245, 66, 0.13);
+  stroke-width: 8;
+  filter: blur(3px);
+}
+
+.line {
+  stroke: #97bc32;
+  stroke-width: 2;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: line-draw 1.45s cubic-bezier(0.22, 1, 0.36, 1) 770ms forwards;
+}
+
+.segment {
+  stroke: #c8f542;
+  stroke-width: 2.7;
+  opacity: 0;
+  filter: url(#hero-chart-glow);
+  transition: opacity 300ms ease;
+}
+
+.root[data-active="revenue"] .revenueSegment,
+.root[data-active="qualified"] .qualifiedSegment {
+  opacity: 1;
+}
+
+.root[data-active="regular"] .line {
+  stroke: #c8f542;
+}
+
+.point {
+  opacity: 0;
+  animation: point-in 380ms cubic-bezier(0.22, 1, 0.36, 1) var(--point-delay) forwards;
+}
+
+.pointHalo {
+  fill: rgba(200, 245, 66, 0.08);
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: opacity 200ms ease, transform 250ms ease;
+}
+
+.pointCore {
+  fill: #111113;
+  stroke: #829f33;
+  stroke-width: 1.7;
+  transition: fill 200ms ease, stroke 200ms ease;
+}
+
+.pointActive .pointHalo {
+  opacity: 1;
+  transform: scale(1.18);
+}
+
+.pointActive .pointCore {
+  fill: #c8f542;
+  stroke: #c8f542;
+}
+
+.stageLabel {
+  fill: #76767d;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.02em;
+}
+
+.insightRow {
+  min-height: 2.7rem;
+  gap: 0.68rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.065);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.065);
+  padding: 0.64rem 0;
+}
+
+.insightIndex {
+  flex: 0 0 auto;
+  color: #c8f542;
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: 0.66rem;
+}
+
+.insightRow p {
+  color: #96969d;
+  font-size: 0.65rem;
+  line-height: 1.45;
+}
+
+.floatingWrap {
+  position: absolute;
+  z-index: 3;
+  display: none;
+  transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.floatTop {
+  top: -0.75rem;
+  right: -0.45rem;
+  transform: translate3d(var(--shift-x), var(--shift-y), 0);
+}
+
+.floatBottom {
+  bottom: -0.75rem;
+  left: -0.45rem;
+  transform: translate3d(var(--shift-x-inverse), var(--shift-y-inverse), 0);
+}
+
+.floatTop::after,
+.floatBottom::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 1px;
+  height: 0.7rem;
+  background: linear-gradient(rgba(200, 245, 66, 0.28), rgba(200, 245, 66, 0.04));
+}
+
+.floatTop::after {
+  bottom: -0.55rem;
+  left: 1.2rem;
+}
+
+.floatBottom::after {
+  top: -0.55rem;
+  right: 1.2rem;
+  transform: rotate(180deg);
+}
+
+.insightCard {
+  display: flex;
+  align-items: center;
+  gap: 0.52rem;
+  min-width: 10.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 0.75rem;
+  padding: 0.58rem 0.7rem;
+  background: rgba(20, 20, 23, 0.94);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.34), 0 0 20px rgba(200, 245, 66, 0.018);
+  text-align: left;
+  backdrop-filter: blur(12px);
+  animation: card-float 7s ease-in-out infinite;
+  cursor: pointer;
+  transition: border-color 200ms ease, background-color 200ms ease;
+}
+
+.floatBottom .insightCard {
+  animation-delay: -3.2s;
+}
+
+.insightCard:hover,
+.insightCard:focus-visible {
+  border-color: rgba(200, 245, 66, 0.34);
+  background: rgba(27, 28, 27, 0.96);
+}
+
+.insightCard:focus-visible {
+  outline: 2px solid #c8f542;
+  outline-offset: 3px;
+}
+
+.cardIcon {
+  display: grid;
+  flex: 0 0 auto;
+  width: 1.45rem;
+  height: 1.45rem;
+  place-items: center;
+  border: 1px solid rgba(200, 245, 66, 0.18);
+  border-radius: 50%;
+  color: #c8f542;
+  font-size: 0.64rem;
+  transition: transform 220ms ease, background-color 220ms ease;
+}
+
+.insightCard:hover .cardIcon,
+.insightCard:focus-visible .cardIcon {
+  transform: translate(1px, -1px);
+  background: rgba(200, 245, 66, 0.07);
+}
+
+.insightCard strong,
+.insightCard small {
+  display: block;
+}
+
+.insightCard strong {
+  color: #c8f542;
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.insightCard small {
+  margin-top: 0.1rem;
+  color: #8b8b92;
+  font-size: 0.52rem;
+}
+
+.mobileInsights {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+  margin-top: 0.65rem;
+}
+
+.mobileInsights button {
+  min-width: 0;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 0.75rem;
+  padding: 0.72rem;
+  background: rgba(17, 17, 19, 0.84);
+  text-align: left;
+}
+
+.mobileInsights button:focus-visible {
+  outline: 2px solid #c8f542;
+  outline-offset: 2px;
+}
+
+.mobileInsights span,
+.mobileInsights small {
+  display: block;
+}
+
+.mobileInsights span {
+  color: #c8f542;
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: 0.76rem;
+  font-weight: 600;
+}
+
+.mobileInsights small {
+  margin-top: 0.18rem;
+  color: #797980;
+  font-size: 0.52rem;
+  line-height: 1.35;
+}
+
+@media (min-width: 640px) {
+  .panel {
+    padding: 1.7rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .floatingWrap {
+    display: block;
+  }
+
+  .mobileInsights {
+    display: none;
+  }
+}
+
+@media (max-width: 639px) {
+  .root {
+    perspective: none;
+  }
+
+  .panel {
+    transform: none;
+    will-change: auto;
+  }
+
+  .kpi {
+    padding-inline: 0.45rem;
+  }
+
+  .kpiTrack {
+    left: 0.45rem;
+    right: 0.45rem;
+  }
+
+  .chartMode {
+    display: none;
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .root,
+  .orbit,
+  .area,
+  .line,
+  .point,
+  .insightCard {
+    animation: none;
+  }
+
+  .root {
+    opacity: 1;
+    transform: none;
+  }
+
+  .panel,
+  .floatingWrap {
+    transform: none;
+    transition: none;
+    will-change: auto;
+  }
+
+  .area {
+    transform: none;
+  }
+
+  .line {
+    stroke-dashoffset: 0;
+  }
+
+  .point {
+    opacity: 1;
+  }
+}
+
+@keyframes visual-in {
+  from { opacity: 0; transform: translateY(22px) scale(0.975); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes orbit-drift {
+  to { transform: rotate(-3deg) translate3d(0.5rem, -0.35rem, 0); }
+}
+
+@keyframes line-draw {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes area-rise {
+  to { transform: scaleY(1); }
+}
+
+@keyframes point-in {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes card-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}

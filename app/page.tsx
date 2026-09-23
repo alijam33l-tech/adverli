@@ -16,6 +16,7 @@ import HeroVisual from "@/components/HeroVisual";
 import strategySession from "@/public/images/strategy-session.jpg";
 import analyticsLaptop from "@/public/images/analytics-laptop.jpg";
 import openOffice from "@/public/images/open-office.jpg";
+import styles from "./home.module.css";
 
 export default function HomePage() {
   const featured = caseStudies.filter((c) => c.featured);
@@ -23,56 +24,46 @@ export default function HomePage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden">
-        <div className="dot-grid absolute inset-0 opacity-40" aria-hidden />
-        <div
-          aria-hidden
-          className="animate-aurora pointer-events-none absolute left-1/3 top-1/3 h-[30rem] w-[50rem] -translate-x-1/2 rounded-full bg-lime/8 blur-3xl"
-        />
-        <div className="relative mx-auto flex min-h-[calc(100vh-4rem)] max-w-7xl flex-col justify-center px-6 py-24 lg:px-8">
-          <div className="grid items-center gap-16 lg:grid-cols-12">
-            <div className="lg:col-span-7">
-              <Reveal>
-                <p className="flex items-center gap-2 text-xs font-medium uppercase tracking-[0.2em] text-muted">
-                  <span
-                    aria-hidden
-                    className="h-1.5 w-1.5 rounded-full bg-lime"
-                  />
-                  Integrated growth partner
-                </p>
-              </Reveal>
-              <Reveal delay={100}>
-                <h1 className="mt-6 font-display text-6xl font-semibold leading-[0.95] tracking-tight text-cream sm:text-7xl lg:text-8xl">
+      <section className={styles.hero}>
+        <div className={styles.ambientGlow} aria-hidden="true" />
+        <div className={`${styles.heroInner} mx-auto flex min-h-[calc(100svh-4rem)] max-w-7xl flex-col justify-center px-6 py-20 sm:py-24 lg:px-8`}>
+          <div className="grid min-w-0 items-center gap-16 lg:grid-cols-12 lg:gap-12 xl:gap-16">
+            <div className="min-w-0 lg:col-span-7">
+              <p className={`${styles.eyebrow} flex items-center gap-2 text-xs font-medium uppercase tracking-[0.2em] text-muted`}>
+                <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-lime shadow-[0_0_12px_rgba(200,245,66,0.5)]" />
+                Integrated growth partner
+              </p>
+              <h1 className="mt-6 font-display text-6xl font-semibold leading-[0.92] tracking-[-0.055em] text-cream sm:text-7xl lg:text-8xl">
+                <span className={styles.headlineLead}>
                   {site.taglineParts.lead}
-                  <br />
-                  <span className="text-lime">{site.taglineParts.accent}</span>
-                </h1>
-              </Reveal>
-              <Reveal delay={200}>
-                <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted">
-                  {site.positioning}
-                </p>
-              </Reveal>
-              <Reveal delay={300}>
-                <div className="mt-10 flex flex-wrap items-center gap-4">
-                  <Button href="/contact">Book a strategy call</Button>
-                  <Button href="/work" variant="ghost">
-                    Explore our approach
-                  </Button>
-                </div>
-              </Reveal>
+                </span>
+                <span className={`${styles.headlineAccent} text-lime`}>
+                  {site.taglineParts.accent}
+                </span>
+              </h1>
+              <p className={`${styles.positioning} mt-8 max-w-xl text-lg leading-relaxed text-muted`}>
+                {site.positioning}
+              </p>
+              <div className={`${styles.actions} mt-10 flex flex-wrap items-center gap-4`}>
+                <Button href="/contact" className={styles.heroPrimary}>
+                  Book a strategy call
+                </Button>
+                <Button href="/work" variant="ghost" className={styles.heroSecondary}>
+                  Explore our approach
+                </Button>
+              </div>
             </div>
-            <Reveal delay={350} className="lg:col-span-5">
+            <div className="min-w-0 lg:col-span-5">
               <HeroVisual />
-            </Reveal>
+            </div>
           </div>
-          <Reveal delay={450} className="mt-20">
-            <div className="flex flex-wrap gap-x-8 gap-y-3 border-t border-line pt-8">
+          <div className={`${styles.capabilities} mt-20 border-t border-line pt-7`}>
+            <div className="flex flex-wrap gap-x-8 gap-y-3">
               {services.map((s) => (
                 <Link
                   key={s.slug}
                   href={`/services/${s.slug}`}
-                  className="flex items-baseline gap-2 text-sm text-muted transition-colors hover:text-lime"
+                  className={`${styles.capabilityLink} flex items-baseline gap-2 text-sm text-muted transition-colors hover:text-lime focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-lime`}
                 >
                   <span className="font-display text-xs text-lime">
                     {s.index}
@@ -81,8 +72,9 @@ export default function HomePage() {
                 </Link>
               ))}
             </div>
-          </Reveal>
+          </div>
         </div>
+        <div className={styles.transitionLayer} aria-hidden="true" />
       </section>
 
       <LogoMarquee />
