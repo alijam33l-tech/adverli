@@ -140,14 +140,14 @@ export default async function ServicePage({
         </div>
       </section>
 
-      {/* Related illustrative scenario */}
+      {/* Related growth scenario */}
       {study && (
         <section className="mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
           <div className="grid items-center gap-12 lg:grid-cols-12">
             <div className="lg:col-span-5">
               <SectionHeading
-                eyebrow="Example Growth Scenario"
-                title="A sample engagement approach."
+                eyebrow="Growth Scenario"
+                title="A representative engagement approach."
                 lede={`${study.title} — ${study.industry.toLowerCase()}. ${study.headline}`}
               />
               <Reveal className="mt-8">

@@ -9,6 +9,7 @@ import ServiceCard from "@/components/ServiceCard";
 import StatsBar from "@/components/StatsBar";
 import { caseStudies } from "@/lib/case-studies";
 import { services } from "@/lib/services";
+import { site } from "@/lib/site";
 import Image from "next/image";
 import Link from "next/link";
 import HeroVisual from "@/components/HeroVisual";
@@ -42,16 +43,14 @@ export default function HomePage() {
               </Reveal>
               <Reveal delay={100}>
                 <h1 className="mt-6 font-display text-6xl font-semibold leading-[0.95] tracking-tight text-cream sm:text-7xl lg:text-8xl">
-                  Growth,
+                  {site.taglineParts.lead}
                   <br />
-                  <span className="text-lime">engineered.</span>
+                  <span className="text-lime">{site.taglineParts.accent}</span>
                 </h1>
               </Reveal>
               <Reveal delay={200}>
                 <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted">
-                  We connect website development, Meta and Google ads, SEO,
-                  and content around one commercial goal: turning attention
-                  into qualified demand.
+                  {site.positioning}
                 </p>
               </Reveal>
               <Reveal delay={300}>
@@ -91,7 +90,7 @@ export default function HomePage() {
       {/* Stats */}
       <section className="mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
         <SectionHeading
-          eyebrow="Why Adverli"
+          eyebrow={`Why ${site.name}`}
           title="Commercial clarity at every step."
           lede="Strategy, execution, and reporting stay tied to the business outcome, with clear ownership and fewer handoffs between channels."
         />
@@ -134,8 +133,8 @@ export default function HomePage() {
                     Not sure where to start?
                   </h3>
                   <p className="mt-3 text-sm leading-relaxed text-muted">
-                    Book a strategy call. We&apos;ll audit your funnel and tell
-                    you exactly which lever moves first.
+                    Book a strategy call. We&apos;ll review the growth system and
+                    identify the priorities most likely to move it forward.
                   </p>
                 </div>
               </Link>
@@ -150,7 +149,7 @@ export default function HomePage() {
           <SectionHeading
             eyebrow="Example approaches"
             title="How focused growth programs take shape."
-            lede="Illustrative scenarios showing how strategy, execution, and measurement work together. These are not client case studies."
+            lede="Representative growth scenarios showing how strategy, execution, and measurement work together across common business challenges."
           />
           <Reveal>
             <Button href="/work" variant="ghost" className="mb-1">
@@ -173,7 +172,7 @@ export default function HomePage() {
           <SectionHeading
             eyebrow="How we work"
             title="A method, not a mood board."
-            lede="Every engagement follows the same clear sequence — diagnose, architect, execute, compound — so decisions stay focused and accountable."
+            lede="Engagements follow a clear sequence — diagnose, architect, execute, compound — so decisions stay focused and accountable."
           />
           <div className="mt-14">
             <ProcessSteps />
@@ -198,7 +197,7 @@ export default function HomePage() {
             {
               img: analyticsLaptop,
               alt: "Analytics dashboard with performance charts on a laptop",
-              caption: "Weekly performance reviews",
+              caption: "Performance reviews",
             },
             {
               img: openOffice,

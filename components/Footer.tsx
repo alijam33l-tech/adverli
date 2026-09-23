@@ -16,11 +16,10 @@ export default function Footer() {
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <p className="font-display text-2xl font-semibold tracking-tight text-cream">
-              Adverli<span className="text-lime">.</span>
+              {site.name}<span className="text-lime">.</span>
             </p>
             <p className="mt-3 max-w-sm text-sm leading-relaxed text-muted">
-              {site.tagline} Website development, paid media, SEO, and content
-              tied to clear commercial goals.
+              {site.positioning}
             </p>
             <p className="mt-6 text-sm text-muted">
               <a
@@ -79,10 +78,10 @@ export default function Footer() {
 
         <div className="mt-16 flex flex-col gap-4 border-t border-line pt-8 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-xs text-faint">
-            © {new Date().getFullYear()} Adverli. All rights reserved.
+            © {new Date().getFullYear()} {site.name}. All rights reserved.
           </p>
           <p className="text-xs text-faint">
-            Growth, engineered.
+            {site.tagline}
           </p>
         </div>
       </div>

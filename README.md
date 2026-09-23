@@ -18,7 +18,7 @@ npm start        # serve the production build
 | `/` | Home |
 | `/services` | Services overview |
 | `/services/website-development` · `/services/meta-ads` · `/services/google-ads` · `/services/seo` · `/services/content-creation` | Service detail pages (statically generated) |
-| `/work` | Illustrative growth scenarios |
+| `/work` | Selected projects and representative growth scenarios |
 | `/about` | About |
 | `/contact` | Contact + inquiry form |
 
@@ -27,12 +27,12 @@ npm start        # serve the production build
 - **`lib/`** — site content as typed data: `services.ts`, `case-studies.ts`, and `site.ts` (nav, qualitative value statements, contact info, process, FAQs). Edit copy here without touching components.
 - **`components/`** — shared UI (header with services dropdown + mobile drawer, footer, cards, FAQ accordion, scroll-reveal wrapper, and contact form).
 - **`app/`** — routes, `sitemap.ts`, `robots.ts`, and the design tokens in `globals.css` (brand palette + fonts).
-- **Contact form** — opens a prefilled email draft to `hello@adverli.com`; it does not claim server-side delivery.
+- **Contact form** — opens a prefilled draft to the public email configured in `lib/site.ts`; it does not claim server-side delivery.
 
 ## Visuals
 
 - **Charts** — `components/charts/LineChart.tsx` (interactive: crosshair tooltip, draw-in animation, accessible data table) and `Sparkline.tsx` (decorative). Chart marks use the `--color-chart` token, a deeper lime validated for contrast on the dark surface.
-- **Photography** — `public/images/` holds photos sourced from Unsplash (Unsplash License: free for commercial use, no attribution required). Replace with your own brand photography before launch if desired.
+- **Photography** — `public/images/` holds the current site photography. Maintain asset-level source and license records before launch, and replace with owned brand photography where appropriate.
 - **Motion** — scroll reveals, hero aurora drift, floating context chips, and chart draw-ins; all respect `prefers-reduced-motion`.
 
 ## Brand tokens

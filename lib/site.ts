@@ -1,12 +1,25 @@
+const tagline = {
+  lead: "Growth,",
+  accent: "engineered.",
+} as const;
+
+const domain = "adverli.com";
+const email = "hello@adverli.com";
+const phone = "816-793-8577";
+
 export const site = {
   name: "Adverli",
-  tagline: "Growth, engineered.",
+  tagline: `${tagline.lead} ${tagline.accent}`,
+  taglineParts: tagline,
+  positioning:
+    "A digital growth agency helping ambitious businesses build, market, and scale across global markets.",
   description:
-    "Adverli connects website development, paid media, SEO, and content around one commercial goal: sustainable growth.",
-  url: "https://adverli.com",
-  email: "hello@adverli.com",
-  emailHref: "mailto:hello@adverli.com",
-  phone: "816-793-8577",
+    "Adverli helps ambitious businesses build, market, and scale across global markets through website development, paid media, SEO, and content.",
+  domain,
+  url: `https://${domain}`,
+  email,
+  emailHref: `mailto:${email}`,
+  phone,
   phoneHref: "tel:+18167938577",
 };
 
@@ -78,7 +91,7 @@ export const generalFaqs = [
   },
   {
     q: "Do you work on retainers or projects?",
-    a: "Both. Website builds and focused audits are usually scoped as projects. Ongoing paid media, SEO, and content work is structured around a defined operating cadence and agreed priorities.",
+    a: "Engagements are tailored to scope, goals, market, growth stage, complexity, and channel mix. Work may be structured as a focused project or an ongoing engagement based on what the situation requires.",
   },
   {
     q: "How quickly will we see results?",

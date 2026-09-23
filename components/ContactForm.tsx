@@ -4,11 +4,11 @@ import { useState, type FormEvent } from "react";
 import { services } from "@/lib/services";
 import { site } from "@/lib/site";
 
-const budgets = [
-  "Under $10k / month",
-  "$10k – $50k / month",
-  "$50k – $150k / month",
-  "$150k+ / month",
+const engagementScopes = [
+  "Focused project",
+  "Ongoing growth support",
+  "Multi-channel engagement",
+  "Not sure yet",
 ];
 
 const inputStyles =
@@ -30,7 +30,9 @@ export default function ContactForm() {
     const name = String(data.get("name") ?? "");
     const email = String(data.get("email") ?? "");
     const company = String(data.get("company") ?? "");
-    const budget = String(data.get("budget") ?? "Not provided");
+    const engagementScope = String(
+      data.get("engagementScope") ?? "Not provided"
+    );
     const message = String(data.get("message") ?? "");
     const serviceList = selectedServices.length
       ? selectedServices.join(", ")
@@ -40,7 +42,7 @@ export default function ContactForm() {
       `Name: ${name}`,
       `Work email: ${email}`,
       `Company: ${company}`,
-      `Monthly marketing budget: ${budget || "Not provided"}`,
+      `Engagement scope: ${engagementScope || "Not provided"}`,
       `Services: ${serviceList}`,
       "",
       "Goals:",
@@ -95,14 +97,21 @@ export default function ContactForm() {
           />
         </div>
         <div>
-          <label htmlFor="budget" className="mb-2 block text-sm text-muted">
-            Monthly marketing budget
+          <label
+            htmlFor="engagementScope"
+            className="mb-2 block text-sm text-muted"
+          >
+            Engagement scope
           </label>
-          <select id="budget" name="budget" className={inputStyles}>
-            <option value="">Select a range</option>
-            {budgets.map((b) => (
-              <option key={b} value={b}>
-                {b}
+          <select
+            id="engagementScope"
+            name="engagementScope"
+            className={inputStyles}
+          >
+            <option value="">Select an option</option>
+            {engagementScopes.map((scope) => (
+              <option key={scope} value={scope}>
+                {scope}
               </option>
             ))}
           </select>
@@ -153,7 +162,7 @@ export default function ContactForm() {
         type="submit"
         className="w-full rounded-full bg-lime px-6 py-4 font-display text-sm font-medium text-ink transition-colors hover:bg-lime-dim sm:w-auto"
       >
-        Draft email to Adverli →
+        Draft email to {site.name} →
       </button>
 
       <p className="text-sm leading-relaxed text-faint">

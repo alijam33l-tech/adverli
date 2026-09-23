@@ -28,12 +28,12 @@ export const services: Service[] = [
       {
         title: "Conversion-first UX & design",
         description:
-          "Every page architected around a job: qualify, persuade, convert. Wireframes are validated against analytics and session data before a pixel is polished.",
+          "Pages are architected around a clear job: qualify, persuade, or convert. When analytics and session data are available, they inform the journey before visual design is finalized.",
       },
       {
         title: "Modern engineering",
         description:
-          "Next.js and headless architectures with clean, documented codebases your internal team can own. No page-builder lock-in, no plugin debt.",
+          "Next.js and headless architectures with clean, documented codebases your internal team can own, without page-builder lock-in or unnecessary plugin debt.",
       },
       {
         title: "Core Web Vitals performance",
@@ -48,7 +48,7 @@ export const services: Service[] = [
       {
         title: "Analytics & tracking foundation",
         description:
-          "Server-side tagging, clean event schemas, and consent-compliant measurement wired in from day one, so every later channel decision runs on real data.",
+          "Server-side tagging, clean event schemas, and consent-aware measurement create a stronger data foundation for later channel decisions.",
       },
       {
         title: "Security & compliance",
@@ -73,7 +73,7 @@ export const services: Service[] = [
         step: "03",
         title: "Build & QA",
         description:
-          "Component-driven development in weekly sprints, with performance budgets and accessibility checks enforced in CI.",
+          "Component-driven development in a clear delivery cadence, with performance and accessibility checks built into QA.",
       },
       {
         step: "04",
@@ -103,7 +103,7 @@ export const services: Service[] = [
       },
       {
         q: "Can our internal team maintain the site afterward?",
-        a: "That's the goal. You get documented code, a component library, CMS training, and an optional support retainer. No agency lock-in by design.",
+        a: "That's the goal. You get documented code, a component library, CMS training, and optional ongoing support. No agency lock-in by design.",
       },
     ],
   },
@@ -113,7 +113,7 @@ export const services: Service[] = [
     title: "Meta Ads",
     shortTitle: "Meta Ads",
     tagline:
-      "Full-funnel Facebook and Instagram programs powered by creative testing at volume and clean signal.",
+      "Full-funnel Facebook and Instagram programs built around structured creative testing and clean signal.",
     heroHeadline: "Meta ads that scale on creative, not luck.",
     heroLede:
       "As Meta automates more targeting, creative quality and conversion signal matter even more. We connect testing, campaign structure, landing pages, and measurement so budget decisions rest on useful evidence.",
@@ -126,7 +126,7 @@ export const services: Service[] = [
       {
         title: "Structured creative testing",
         description:
-          "A weekly test-learn-scale cadence isolating hooks, formats, and angles, so winners are identified by evidence instead of opinion.",
+          "A structured test-learn-scale cadence isolating hooks, formats, and angles, so winners are identified by evidence instead of opinion.",
       },
       {
         title: "Conversions API & signal quality",
@@ -146,7 +146,7 @@ export const services: Service[] = [
       {
         title: "Incrementality & MMM-aware reporting",
         description:
-          "Reporting that separates platform-claimed revenue from actual lift, so scaling decisions are made on truth.",
+          "Reporting that compares platform-claimed revenue with broader business evidence, giving scaling decisions a more complete measurement view.",
       },
     ],
     approach: [
@@ -188,11 +188,11 @@ export const services: Service[] = [
       },
       {
         q: "Do you produce the ad creative or just run media?",
-        a: "Both, and we believe splitting them is a mistake. Media buying tells us what to make next; creative determines whether media can scale. One pod owns the whole loop.",
+        a: "Both. Media buying informs what to make next, while creative determines whether media can scale. Creative and media stay connected in one operating loop.",
       },
       {
         q: "How do you handle iOS-era measurement?",
-        a: "Server-side Conversions API, first-party data enrichment, and triangulation between platform metrics, MER, and incrementality checks. We optimize to blended truth, not to what Ads Manager claims.",
+        a: "Server-side Conversions API, first-party data enrichment, and triangulation between platform metrics, MER, and incrementality checks provide a more complete basis for optimization than platform reporting alone.",
       },
       {
         q: "How fast can Meta campaigns scale?",
@@ -209,7 +209,7 @@ export const services: Service[] = [
       "Search, Shopping, Performance Max, and YouTube programs built around intent, value, and spend control.",
     heroHeadline: "Own the moment of intent.",
     heroLede:
-      "Google is where demand goes to convert. We build full-account architectures across Search, Performance Max, Shopping, and YouTube — engineered around value-based bidding and clean conversion data, so every dollar chases profit rather than clicks.",
+      "Google is where demand goes to convert. We build full-account architectures across Search, Performance Max, Shopping, and YouTube — aligned around value-based bidding and clean conversion data rather than click volume alone.",
     deliverables: [
       {
         title: "Account architecture & restructure",
@@ -265,7 +265,7 @@ export const services: Service[] = [
         step: "04",
         title: "Optimize & expand",
         description:
-          "Weekly optimization cycles, then expansion into new campaign types, markets, and audiences as efficiency targets hold.",
+          "Regular optimization cycles, then expansion into new campaign types, markets, and audiences as efficiency targets hold.",
       },
     ],
     outcomes: [
@@ -285,7 +285,7 @@ export const services: Service[] = [
       },
       {
         q: "Do you work with B2B lead-gen accounts?",
-        a: "Yes — it's a specialty. We import CRM stages back into Google as offline conversions, so bidding optimizes toward qualified pipeline and closed revenue instead of raw form fills.",
+        a: "Yes. We can import CRM stages back into Google as offline conversions, so bidding can optimize toward qualified pipeline and closed revenue instead of raw form fills.",
       },
       {
         q: "Will performance dip during a restructure?",
@@ -300,12 +300,12 @@ export const services: Service[] = [
     shortTitle: "SEO",
     tagline:
       "Technical, content, and authority programs that compound into durable organic revenue — including AI search.",
-    heroHeadline: "Organic growth that compounds while you sleep.",
+    heroHeadline: "Organic growth built to compound over time.",
     heroLede:
       "Paid media stops when investment stops; useful search visibility can keep working. We connect technical foundations, content, and authority for traditional search and AI-assisted discovery.",
     deliverables: [
       {
-        title: "Technical SEO at scale",
+        title: "Technical SEO foundations",
         description:
           "Crawl efficiency, index management, rendering, site speed, and structured data sized to the complexity of the site.",
       },
@@ -315,19 +315,19 @@ export const services: Service[] = [
           "Entity-based topic architecture mapped to revenue intent — not keyword lists. Every brief specifies what winning the query requires.",
       },
       {
-        title: "Digital PR & authority",
+        title: "On-page SEO & authority",
         description:
-          "Earned links and citations from publications that matter, built on data stories and expert commentary — never bought placements.",
+          "Internal linking, expert input, and well-sourced content strengthen topical authority and make important pages easier to understand and discover.",
       },
       {
         title: "AI search optimization",
         description:
-          "Structured, well-sourced content and clear entity signals that support visibility across traditional search and AI-assisted discovery.",
+          "AEO and GEO practices, structured content, and clear entity signals that support visibility across traditional search and AI-assisted discovery.",
       },
       {
         title: "Migration & platform support",
         description:
-          "SEO ownership through replatforms, redesigns, and internationalization — the moments where organic revenue is usually lost.",
+          "SEO ownership through replatforms, redesigns, migrations, and multi-market expansion — the moments where organic visibility is most exposed.",
       },
       {
         title: "Revenue-tied reporting",
@@ -352,7 +352,7 @@ export const services: Service[] = [
         step: "03",
         title: "Content & authority engine",
         description:
-          "A publishing and digital-PR cadence targeting the topic clusters with the shortest path to revenue.",
+          "A publishing and optimization cadence focused on the topic clusters with the clearest commercial relevance.",
       },
       {
         step: "04",
@@ -378,7 +378,7 @@ export const services: Service[] = [
       },
       {
         q: "Do you write the content or just the strategy?",
-        a: "Both, together with our content team. Briefs, production, expert review, and optimization run as one pipeline — strategy without execution is a PDF, and we don't sell PDFs.",
+        a: "Both. Briefs, production, expert review, and optimization can run as one connected workflow, keeping strategy close to execution.",
       },
       {
         q: "Can you work alongside our in-house SEO team?",
@@ -395,7 +395,7 @@ export const services: Service[] = [
       "Editorial, video, and design systems that turn expertise into useful work for every channel.",
     heroHeadline: "Content as a system, not a scramble.",
     heroLede:
-      "Every channel you run is fed by content — ads need creative, SEO needs authority, sales needs assets. We build editorial and production systems that turn your expertise into a compounding content engine, at the quality your brand demands and the volume growth requires.",
+      "Content supports paid media, search, sales, and social. We build editorial and production systems that turn your expertise into useful work at the quality your brand demands and a cadence the growth plan can sustain.",
     deliverables: [
       {
         title: "Content strategy & messaging",
@@ -405,7 +405,7 @@ export const services: Service[] = [
       {
         title: "Long-form editorial",
         description:
-          "Research reports, thought leadership, and expert-driven articles that earn links, rankings, and citations — written with your subject-matter experts, not scraped from page one.",
+          "Research reports, thought leadership, and expert-driven articles designed to support discovery, authority, and citations — developed with your subject-matter experts, not scraped from page one.",
       },
       {
         title: "Video & motion production",
@@ -420,12 +420,12 @@ export const services: Service[] = [
       {
         title: "Design & brand systems",
         description:
-          "Templates, guidelines, and asset libraries that keep output on-brand at volume — whether it ships from our team or yours.",
+          "Templates, guidelines, and asset libraries that keep output on-brand at a consistent standard — whether it ships from our team or yours.",
       },
       {
         title: "Distribution & atomization",
         description:
-          "Every flagship asset atomized into channel-native derivatives — social, email, sales enablement — so nothing is published once and forgotten.",
+          "Flagship assets can be adapted into channel-native derivatives across social, email, and sales enablement, extending the value of the original work.",
       },
     ],
     approach: [
@@ -433,7 +433,7 @@ export const services: Service[] = [
         step: "01",
         title: "Message architecture",
         description:
-          "We extract what your smartest people know and shape it into a narrative competitors can't copy.",
+          "We extract what your subject-matter experts know and shape it into a narrative grounded in the business's distinct perspective.",
       },
       {
         step: "02",
@@ -445,7 +445,7 @@ export const services: Service[] = [
         step: "03",
         title: "Production at cadence",
         description:
-          "Dedicated editorial and creative pods ship against the calendar, with senior review on every asset before it reaches you.",
+          "Editorial and creative specialists work to an agreed calendar, with senior review at the stages that matter most.",
       },
       {
         step: "04",

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { nav } from "@/lib/site";
+import { nav, site } from "@/lib/site";
 import { services } from "@/lib/services";
 
 function Wordmark() {
@@ -12,7 +12,7 @@ function Wordmark() {
       href="/"
       className="font-display text-xl font-semibold tracking-tight text-cream"
     >
-      Adverli<span className="text-lime">.</span>
+      {site.name}<span className="text-lime">.</span>
     </Link>
   );
 }

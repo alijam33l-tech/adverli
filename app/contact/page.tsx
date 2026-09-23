@@ -5,8 +5,7 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description:
-    "Contact Adverli to discuss website development, paid media, SEO, or content priorities.",
+  description: `Contact ${site.name} to discuss website development, paid media, SEO, or content priorities.`,
 };
 
 const nextSteps = [

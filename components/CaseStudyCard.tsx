@@ -4,7 +4,7 @@ import Sparkline from "./charts/Sparkline";
 export default function CaseStudyCard({ study }: { study: CaseStudy }) {
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-surface transition-colors duration-300 hover:border-lime/40">
-      {/* Abstract visual header for the illustrative scenario */}
+      {/* Abstract visual header for the representative scenario */}
       <div
         className={`relative flex h-52 items-end bg-gradient-to-br ${study.gradient} p-6`}
       >
@@ -19,7 +19,7 @@ export default function CaseStudyCard({ study }: { study: CaseStudy }) {
       </div>
       <div className="flex flex-1 flex-col p-6">
         <p className="text-xs font-medium uppercase tracking-[0.15em] text-lime">
-          Example Growth Scenario
+          Growth Scenario
         </p>
         <div className="mt-4 flex flex-wrap items-center gap-2 text-xs">
           <span className="rounded-full border border-line px-3 py-1 text-muted">

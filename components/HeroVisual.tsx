@@ -56,7 +56,7 @@ export default function HeroVisual() {
           </div>
           <div>
             <dd className="font-display text-xl font-semibold tracking-tight text-cream sm:text-2xl">
-              Weekly
+              Regular
             </dd>
             <dt className="mt-1 text-[11px] leading-tight text-faint">
               Decision cadence
@@ -68,7 +68,7 @@ export default function HeroVisual() {
           <LineChart
             data={SERIES}
             labels={STAGES}
-            title="Illustrative growth plan — not client data"
+            title="Representative growth plan"
             format="progress"
           />
         </div>
