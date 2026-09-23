@@ -1,0 +1,415 @@
+.system {
+  position: relative;
+  isolation: isolate;
+  border-top: 1px solid rgba(255, 255, 255, 0.11);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.11);
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.018), transparent 34%),
+    #0e0e10;
+}
+
+.system::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: min(20rem, 38%);
+  height: 1px;
+  background: linear-gradient(90deg, #c8f542, rgba(200, 245, 66, 0));
+  opacity: 0.58;
+}
+
+.system::after {
+  content: "";
+  position: absolute;
+  top: -0.2rem;
+  left: 0;
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 50%;
+  background: #c8f542;
+  box-shadow: 0 0 10px rgba(200, 245, 66, 0.34);
+}
+
+.grid {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.58;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.023) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.023) 1px, transparent 1px);
+  background-size: 2.5rem 2.5rem;
+  mask-image: radial-gradient(ellipse 82% 95% at 50% 45%, #000, transparent 86%);
+}
+
+.stages {
+  display: grid;
+  list-style: none;
+}
+
+.stageItem {
+  --line-scale: 0;
+  position: relative;
+  min-width: 0;
+}
+
+.stageItem::before,
+.stageItem::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.stageItem::before {
+  background: rgba(255, 255, 255, 0.13);
+}
+
+.stageItem::after {
+  background: linear-gradient(90deg, rgba(200, 245, 66, 0.38), #c8f542);
+  transform-origin: left;
+  transition: transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.stageItem:last-child::before,
+.stageItem:last-child::after {
+  display: none;
+}
+
+.system:has(.stageItem:nth-child(2) .stage:is(:hover, :focus-visible))
+  .stageItem:nth-child(1),
+.system:has(.stageItem:nth-child(3) .stage:is(:hover, :focus-visible))
+  .stageItem:nth-child(-n + 2),
+.system:has(.stageItem:nth-child(4) .stage:is(:hover, :focus-visible))
+  .stageItem:nth-child(-n + 3) {
+  --line-scale: 1;
+}
+
+.stage {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  min-width: 0;
+  outline: none;
+  transition:
+    background-color 280ms ease,
+    box-shadow 280ms ease;
+}
+
+.stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 18%, rgba(200, 245, 66, 0.07), transparent 42%);
+  opacity: 0;
+  transition: opacity 280ms ease;
+}
+
+.stage:hover::before,
+.stage:focus-visible::before {
+  opacity: 1;
+}
+
+.stage:focus-visible {
+  box-shadow: inset 0 0 0 2px rgba(200, 245, 66, 0.78);
+}
+
+.marker {
+  position: relative;
+  min-width: 0;
+}
+
+.number {
+  color: #74747c;
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: 0.67rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  transition:
+    color 240ms ease,
+    text-shadow 240ms ease;
+}
+
+.point {
+  position: relative;
+  z-index: 3;
+  display: grid;
+  width: 0.92rem;
+  height: 0.92rem;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 50%;
+  background: #0e0e10;
+  transition:
+    border-color 260ms ease,
+    background-color 260ms ease,
+    box-shadow 260ms ease,
+    transform 360ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.point span {
+  width: 0.28rem;
+  height: 0.28rem;
+  border-radius: 50%;
+  background: #606067;
+  transition: background-color 260ms ease;
+}
+
+.stageItem:first-child .number {
+  color: #c8f542;
+}
+
+.stageItem:first-child .point {
+  border-color: rgba(200, 245, 66, 0.7);
+  box-shadow: 0 0 0 4px rgba(200, 245, 66, 0.06), 0 0 14px rgba(200, 245, 66, 0.13);
+}
+
+.stageItem:first-child .point span {
+  background: #c8f542;
+}
+
+.system:has(.stage:is(:hover, :focus-visible)) .stageItem:first-child .number {
+  color: #74747c;
+  text-shadow: none;
+}
+
+.system:has(.stage:is(:hover, :focus-visible)) .stageItem:first-child .point {
+  border-color: rgba(255, 255, 255, 0.24);
+  box-shadow: none;
+}
+
+.system:has(.stage:is(:hover, :focus-visible)) .stageItem:first-child .point span {
+  background: #606067;
+}
+
+.stage:hover .number,
+.stage:focus-visible .number {
+  color: #c8f542;
+  text-shadow: 0 0 12px rgba(200, 245, 66, 0.16);
+}
+
+.stage:hover .point,
+.stage:focus-visible .point {
+  border-color: #c8f542;
+  background: rgba(200, 245, 66, 0.08);
+  box-shadow: 0 0 0 4px rgba(200, 245, 66, 0.07), 0 0 16px rgba(200, 245, 66, 0.18);
+  transform: scale(1.08);
+}
+
+.stage:hover .point span,
+.stage:focus-visible .point span {
+  background: #c8f542;
+}
+
+.copy {
+  min-width: 0;
+  transition: opacity 260ms ease;
+}
+
+.system:has(.stage:is(:hover, :focus-visible))
+  .stage:not(:is(:hover, :focus-visible))
+  .copy {
+  opacity: 0.62;
+}
+
+.lead,
+.description {
+  min-width: 0;
+}
+
+.lead h3 {
+  color: #f5f5f2;
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: clamp(1.35rem, 2vw, 1.7rem);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+}
+
+.signal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.65rem;
+  color: #8c8c93;
+  font-size: 0.61rem;
+  line-height: 1.35;
+}
+
+.signal span {
+  color: #c8f542;
+  font-size: 0.54rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.signal span::after {
+  content: "/";
+  margin-left: 0.35rem;
+  color: rgba(200, 245, 66, 0.42);
+}
+
+.description {
+  color: #929299;
+  font-size: 0.82rem;
+  line-height: 1.65;
+}
+
+@media (min-width: 1024px) {
+  .stages {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .stageItem::before,
+  .stageItem::after {
+    top: 4.55rem;
+    right: calc(-50% + 0.46rem);
+    left: calc(50% + 0.46rem);
+    height: 1px;
+  }
+
+  .stageItem::after {
+    transform: scaleX(var(--line-scale));
+  }
+
+  .stage {
+    display: flex;
+    min-height: 20.5rem;
+    flex-direction: column;
+    padding: 1.8rem clamp(1.35rem, 2.1vw, 2rem) 2rem;
+  }
+
+  .marker {
+    height: 3.7rem;
+  }
+
+  .point {
+    position: absolute;
+    top: 2.28rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .stage:hover .point,
+  .stage:focus-visible .point {
+    transform: translateX(-50%) scale(1.08);
+  }
+
+  .copy {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    margin-top: 2.05rem;
+  }
+
+  .description {
+    margin-top: 1.05rem;
+  }
+}
+
+@media (max-width: 1023px) {
+  .stages {
+    grid-template-rows: repeat(4, minmax(0, 1fr));
+  }
+
+  .stageItem::before,
+  .stageItem::after {
+    top: 3.65rem;
+    bottom: -3.65rem;
+    left: 3.72rem;
+    width: 1px;
+  }
+
+  .stageItem::after {
+    background: linear-gradient(rgba(200, 245, 66, 0.38), #c8f542);
+    transform: scaleY(var(--line-scale));
+    transform-origin: top;
+  }
+
+  .stage {
+    display: grid;
+    min-height: 9.4rem;
+    grid-template-columns: 4rem minmax(0, 1fr);
+    gap: 1.45rem;
+    padding: 1.5rem 1.75rem;
+  }
+
+  .marker {
+    height: 4rem;
+  }
+
+  .point {
+    margin-top: 1.05rem;
+    margin-left: 1.5rem;
+  }
+
+  .copy {
+    display: grid;
+    grid-template-columns: minmax(11.5rem, 0.72fr) minmax(0, 1fr);
+    align-items: start;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 639px) {
+  .stageItem::before,
+  .stageItem::after {
+    top: 3.48rem;
+    bottom: -3.48rem;
+    left: 2.42rem;
+  }
+
+  .stage {
+    min-height: 12.5rem;
+    grid-template-columns: 2.8rem minmax(0, 1fr);
+    gap: 0.85rem;
+    padding: 1.35rem 1rem 1.5rem;
+  }
+
+  .point {
+    margin-top: 0.95rem;
+    margin-left: 0.95rem;
+  }
+
+  .copy {
+    display: block;
+  }
+
+  .lead h3 {
+    font-size: 1.38rem;
+  }
+
+  .description {
+    margin-top: 0.9rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stageItem::after,
+  .stage,
+  .stage::before,
+  .number,
+  .point,
+  .point span,
+  .copy {
+    transition: none;
+  }
+
+  .stage:hover .point,
+  .stage:focus-visible .point {
+    transform: none;
+  }
+}
+
+@media (min-width: 1024px) and (prefers-reduced-motion: reduce) {
+  .stage:hover .point,
+  .stage:focus-visible .point {
+    transform: translateX(-50%);
+  }
+}
