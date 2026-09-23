@@ -1,0 +1,907 @@
+.card {
+  position: relative;
+  display: flex;
+  height: 100%;
+  min-width: 0;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #101012;
+  clip-path: polygon(0 0, calc(100% - 1.1rem) 0, 100% 1.1rem, 100% 100%, 0 100%);
+  outline: none;
+  transition:
+    border-color 280ms ease,
+    background-color 280ms ease,
+    transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 420ms ease;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 0.42rem;
+  height: 0.42rem;
+  border: 1px solid rgba(200, 245, 66, 0.44);
+  border-radius: 50%;
+  background: #101012;
+  transition:
+    background-color 280ms ease,
+    box-shadow 280ms ease;
+}
+
+.card:hover,
+.card:focus-visible {
+  border-color: rgba(200, 245, 66, 0.34);
+  background: #111114;
+  transform: translateY(-0.2rem);
+  box-shadow: 0 20px 54px rgba(0, 0, 0, 0.24);
+}
+
+.card:focus-visible {
+  outline: 2px solid #c8f542;
+  outline-offset: 4px;
+  box-shadow:
+    inset 0 0 0 1px rgba(200, 245, 66, 0.78),
+    0 20px 54px rgba(0, 0, 0, 0.24);
+}
+
+.card:hover::after,
+.card:focus-visible::after {
+  background: #c8f542;
+  box-shadow: 0 0 12px rgba(200, 245, 66, 0.35);
+}
+
+.visual {
+  position: relative;
+  isolation: isolate;
+  min-height: 14rem;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.075);
+  padding: 1.25rem 1.25rem 1rem;
+  background:
+    radial-gradient(circle at 76% 38%, rgba(200, 245, 66, 0.065), transparent 31%),
+    #0d0d0f;
+}
+
+.visual::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 3.5rem;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(transparent, rgba(16, 16, 18, 0.78));
+}
+
+.visualGrid {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.58;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.032) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.032) 1px, transparent 1px);
+  background-size: 1.75rem 1.75rem;
+  mask-image: linear-gradient(90deg, transparent, #000 18%, #000 84%, transparent);
+}
+
+.visualHeader {
+  position: relative;
+  z-index: 4;
+  display: flex;
+  min-width: 0;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.scenarioLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #77777f;
+  font-size: 0.57rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.scenarioLabel span {
+  color: #c8f542;
+  font-family: var(--font-space-grotesk), sans-serif;
+}
+
+.scenarioLabel span::after {
+  content: "";
+  display: inline-block;
+  width: 1rem;
+  height: 1px;
+  margin-left: 0.5rem;
+  vertical-align: middle;
+  background: rgba(200, 245, 66, 0.44);
+}
+
+.scenarioWord {
+  color: #f5f5f2;
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: clamp(1.8rem, 3vw, 2.35rem);
+  font-weight: 500;
+  letter-spacing: -0.055em;
+  line-height: 0.9;
+}
+
+.diagram {
+  position: relative;
+  height: 9.3rem;
+  margin-top: 0.75rem;
+  transform: translateY(0);
+  transition: transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.card:hover .diagram,
+.card:focus-visible .diagram {
+  transform: translateY(-0.12rem);
+}
+
+.pathLayer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 7rem;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.basePath,
+.signalPath {
+  fill: none;
+  stroke-width: 1.2;
+  vector-effect: non-scaling-stroke;
+}
+
+.basePath {
+  stroke: rgba(255, 255, 255, 0.13);
+}
+
+.signalPath {
+  stroke: #c8f542;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0.78;
+  opacity: 0.42;
+}
+
+.card:hover .signalPath,
+.card:focus-visible .signalPath {
+  animation: scenario-path 760ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.flowSteps {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  height: 100%;
+  align-items: start;
+}
+
+.threeSteps {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.fourSteps {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.flowStep {
+  --step: 0;
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.7rem;
+  padding-top: 1.05rem;
+}
+
+.flowStep:nth-child(even) {
+  padding-top: 2.15rem;
+}
+
+.stepLabel {
+  max-width: 5rem;
+  color: #85858d;
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: 0.61rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 1.25;
+  text-align: center;
+  transition: color 240ms ease calc(var(--step) * 85ms);
+}
+
+.card:hover .stepLabel,
+.card:focus-visible .stepLabel {
+  color: #d9d9d5;
+}
+
+.nodeFrame,
+.systemNode {
+  position: relative;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(16, 16, 18, 0.94);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
+  transition:
+    border-color 300ms ease calc(var(--step) * 85ms),
+    transform 420ms cubic-bezier(0.22, 1, 0.36, 1) calc(var(--step) * 70ms),
+    box-shadow 300ms ease calc(var(--step) * 85ms);
+}
+
+.card:hover .nodeFrame,
+.card:hover .systemNode,
+.card:focus-visible .nodeFrame,
+.card:focus-visible .systemNode {
+  border-color: rgba(200, 245, 66, 0.58);
+  transform: translateY(-0.16rem);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25), 0 0 12px rgba(200, 245, 66, 0.055);
+}
+
+.nodeFrame {
+  width: 4.25rem;
+  height: 3.35rem;
+}
+
+.creativeNode {
+  display: grid;
+  grid-template-columns: 1.5rem 1fr;
+  grid-template-rows: 1fr auto;
+  gap: 0.35rem;
+  padding: 0.45rem;
+}
+
+.creativeImage {
+  width: 1.5rem;
+  height: 1.5rem;
+  grid-row: 1 / 3;
+  background:
+    linear-gradient(135deg, rgba(200, 245, 66, 0.32), transparent 72%),
+    #1a1a1d;
+}
+
+.creativeLine,
+.creativeAction,
+.browserBar,
+.browserHero,
+.browserCopy,
+.browserAction {
+  display: block;
+  justify-self: start;
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.creativeLine {
+  width: 1.3rem;
+  height: 0.18rem;
+  align-self: end;
+}
+
+.creativeAction {
+  width: 0.9rem;
+  height: 0.22rem;
+  background: rgba(200, 245, 66, 0.6);
+}
+
+.browserNode {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0.38rem 0.42rem;
+}
+
+.browserBar {
+  width: 100%;
+  height: 0.2rem;
+  margin-bottom: 0.35rem;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.browserHero {
+  width: 72%;
+  height: 0.65rem;
+  margin-bottom: 0.28rem;
+  background: rgba(200, 245, 66, 0.14);
+}
+
+.browserCopy {
+  width: 58%;
+  height: 0.16rem;
+}
+
+.browserAction {
+  width: 1rem;
+  height: 0.24rem;
+  margin-top: 0.34rem;
+  background: rgba(200, 245, 66, 0.58);
+}
+
+.bookingNode {
+  border-radius: 50%;
+}
+
+.bookingRing {
+  position: relative;
+  display: grid;
+  width: 1.85rem;
+  height: 1.85rem;
+  place-items: center;
+  border: 1px solid rgba(200, 245, 66, 0.34);
+  border-radius: 50%;
+}
+
+.bookingRing::before,
+.bookingRing::after {
+  content: "";
+  position: absolute;
+  background: rgba(200, 245, 66, 0.48);
+}
+
+.bookingRing::before {
+  width: 0.55rem;
+  height: 1px;
+  transform: translate(-0.13rem, 0.08rem) rotate(45deg);
+}
+
+.bookingRing::after {
+  width: 0.86rem;
+  height: 1px;
+  transform: translate(0.24rem, -0.08rem) rotate(-48deg);
+}
+
+.bookingRing span {
+  width: 0.28rem;
+  height: 0.28rem;
+  border-radius: 50%;
+  background: #c8f542;
+  box-shadow: 0 0 10px rgba(200, 245, 66, 0.35);
+  opacity: 0;
+  transition: opacity 240ms ease 280ms;
+}
+
+.card:hover .bookingRing span,
+.card:focus-visible .bookingRing span {
+  opacity: 1;
+}
+
+.systemNode {
+  width: 3.1rem;
+  height: 3.1rem;
+}
+
+.architecturePlane {
+  position: absolute;
+  top: 0.25rem;
+  left: 50%;
+  display: grid;
+  width: 5.4rem;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.28rem;
+  opacity: 0.25;
+  transform: translateX(-50%) perspective(100px) rotateX(55deg);
+}
+
+.architecturePlane span {
+  height: 2.2rem;
+  border: 1px solid rgba(200, 245, 66, 0.22);
+}
+
+.architectureNode span {
+  position: absolute;
+  width: 0.38rem;
+  height: 0.38rem;
+  border: 1px solid rgba(200, 245, 66, 0.48);
+  background: #101012;
+}
+
+.architectureNode span:first-child {
+  top: 0.58rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.architectureNode span:nth-child(2) {
+  right: 0.55rem;
+  bottom: 0.55rem;
+}
+
+.architectureNode span:last-child {
+  bottom: 0.55rem;
+  left: 0.55rem;
+}
+
+.architectureNode::before,
+.architectureNode::after {
+  content: "";
+  position: absolute;
+  top: 1.35rem;
+  width: 1px;
+  height: 0.85rem;
+  background: rgba(255, 255, 255, 0.18);
+  transform-origin: top;
+}
+
+.architectureNode::before {
+  left: 1.43rem;
+  transform: rotate(48deg);
+}
+
+.architectureNode::after {
+  right: 1.43rem;
+  transform: rotate(-48deg);
+}
+
+.uxNode {
+  display: grid;
+  grid-template-columns: 0.65rem 1fr;
+  grid-template-rows: 0.5rem 1fr;
+  gap: 0.2rem;
+  padding: 0.48rem;
+}
+
+.uxNode span {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.uxNode span:first-child {
+  grid-column: 1 / 3;
+}
+
+.uxNode span:nth-child(2) {
+  background: rgba(200, 245, 66, 0.18);
+}
+
+.performanceNode {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 0.23rem;
+  padding-bottom: 0.65rem;
+}
+
+.performanceNode span {
+  width: 0.28rem;
+  background: rgba(200, 245, 66, 0.4);
+}
+
+.performanceNode span:first-child {
+  height: 0.55rem;
+}
+
+.performanceNode span:nth-child(2) {
+  height: 0.9rem;
+}
+
+.performanceNode span:last-child {
+  height: 1.35rem;
+  background: #c8f542;
+}
+
+.conversionNode {
+  border-radius: 50%;
+}
+
+.conversionNode::before,
+.conversionNode::after,
+.conversionNode span {
+  position: absolute;
+  border: 1px solid rgba(200, 245, 66, 0.36);
+  border-radius: 50%;
+  content: "";
+}
+
+.conversionNode::before {
+  inset: 0.5rem;
+}
+
+.conversionNode::after {
+  inset: 0.95rem;
+  border-color: #c8f542;
+  background: rgba(200, 245, 66, 0.15);
+}
+
+.conversionNode span {
+  inset: 1.3rem;
+  border: 0;
+  background: #c8f542;
+}
+
+.searchField {
+  position: absolute;
+  top: 0.15rem;
+  left: 50%;
+  z-index: 3;
+  display: flex;
+  width: min(72%, 14rem);
+  height: 1.7rem;
+  align-items: center;
+  gap: 0.45rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  padding: 0 0.65rem;
+  background: rgba(16, 16, 18, 0.94);
+  transform: translateX(-50%);
+}
+
+.searchIcon {
+  position: relative;
+  width: 0.5rem;
+  height: 0.5rem;
+  flex: 0 0 auto;
+  border: 1px solid rgba(200, 245, 66, 0.65);
+  border-radius: 50%;
+}
+
+.searchIcon::after {
+  content: "";
+  position: absolute;
+  right: -0.22rem;
+  bottom: -0.15rem;
+  width: 0.3rem;
+  height: 1px;
+  background: rgba(200, 245, 66, 0.65);
+  transform: rotate(45deg);
+}
+
+.queryLine {
+  width: 58%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.searchCursor {
+  width: 1px;
+  height: 0.65rem;
+  background: #c8f542;
+  opacity: 0.45;
+  transition: opacity 220ms ease;
+}
+
+.card:hover .searchCursor,
+.card:focus-visible .searchCursor {
+  opacity: 1;
+}
+
+.findDiagram .flowStep {
+  padding-top: 2.65rem;
+}
+
+.findDiagram .flowStep:nth-child(even) {
+  padding-top: 3.25rem;
+}
+
+.intentNode {
+  border-radius: 50%;
+}
+
+.intentNode span {
+  width: 0.72rem;
+  height: 0.72rem;
+  border: 1px solid rgba(200, 245, 66, 0.55);
+  border-radius: 50%;
+}
+
+.intentNode span::after {
+  content: "";
+  position: absolute;
+  width: 0.45rem;
+  height: 1px;
+  background: rgba(200, 245, 66, 0.55);
+  transform: translate(0.5rem, 0.58rem) rotate(45deg);
+}
+
+.contentNode {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.28rem;
+  padding: 0.65rem;
+}
+
+.contentNode span {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.24);
+}
+
+.contentNode span:first-child {
+  width: 85%;
+  background: rgba(200, 245, 66, 0.55);
+}
+
+.contentNode span:nth-child(2) {
+  width: 66%;
+}
+
+.contentNode span:last-child {
+  width: 76%;
+}
+
+.authorityNode span {
+  position: absolute;
+  width: 0.3rem;
+  height: 0.3rem;
+  border: 1px solid rgba(200, 245, 66, 0.48);
+  border-radius: 50%;
+  background: #101012;
+}
+
+.authorityNode span:first-child {
+  top: 50%;
+  left: 50%;
+  background: #c8f542;
+  transform: translate(-50%, -50%);
+}
+
+.authorityNode span:nth-child(2) {
+  top: 0.5rem;
+  left: 0.55rem;
+}
+
+.authorityNode span:nth-child(3) {
+  top: 0.62rem;
+  right: 0.48rem;
+}
+
+.authorityNode span:last-child {
+  right: 0.68rem;
+  bottom: 0.45rem;
+}
+
+.authorityNode::before,
+.authorityNode::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1.4rem;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.16);
+  transform-origin: left;
+}
+
+.authorityNode::before {
+  transform: rotate(-135deg);
+}
+
+.authorityNode::after {
+  transform: rotate(-34deg);
+}
+
+.discoveryNode {
+  border-radius: 50%;
+}
+
+.discoveryNode::before,
+.discoveryNode::after {
+  content: "";
+  position: absolute;
+  inset: 0.48rem;
+  border: 1px solid rgba(200, 245, 66, 0.28);
+  border-radius: 50%;
+}
+
+.discoveryNode::after {
+  inset: 0.98rem;
+  border-color: #c8f542;
+  background: rgba(200, 245, 66, 0.16);
+}
+
+.discoveryNode span {
+  width: 0.26rem;
+  height: 0.26rem;
+  border-radius: 50%;
+  background: #c8f542;
+  box-shadow: 0 0 10px rgba(200, 245, 66, 0.35);
+}
+
+.content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 1.35rem 1.4rem 1.45rem;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0;
+  color: #77777f;
+  font-size: 0.63rem;
+  line-height: 1.3;
+}
+
+.tags span {
+  display: inline-flex;
+  align-items: center;
+}
+
+.tags span:not(:last-child)::after {
+  content: "/";
+  margin: 0 0.45rem;
+  color: rgba(200, 245, 66, 0.48);
+}
+
+.title {
+  margin-top: 1rem;
+  color: #f5f5f2;
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: 1.16rem;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+}
+
+.headline {
+  margin-top: 0.42rem;
+  color: #c8f542;
+  font-size: 0.79rem;
+  line-height: 1.55;
+}
+
+.summary {
+  margin-top: 0.8rem;
+  color: #929299;
+  font-size: 0.79rem;
+  line-height: 1.62;
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem;
+  margin-top: auto;
+  border-top: 1px solid rgba(255, 255, 255, 0.075);
+  padding-top: 1.1rem;
+}
+
+.metrics div {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+}
+
+.metrics dt {
+  order: 2;
+  margin-top: 0.22rem;
+  color: #68686f;
+  font-size: 0.58rem;
+  line-height: 1.25;
+}
+
+.metrics dd {
+  order: 1;
+  color: #d9d9d5;
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+
+.direct .visual {
+  background:
+    radial-gradient(circle at 74% 38%, rgba(200, 245, 66, 0.075), transparent 31%),
+    #0d0d0f;
+}
+
+.fast .visual {
+  background:
+    linear-gradient(135deg, rgba(102, 134, 150, 0.055), transparent 48%),
+    radial-gradient(circle at 53% 48%, rgba(200, 245, 66, 0.055), transparent 28%),
+    #0d0d0f;
+}
+
+.find .visual {
+  background:
+    radial-gradient(circle at 50% 28%, rgba(200, 245, 66, 0.065), transparent 27%),
+    linear-gradient(145deg, rgba(80, 120, 110, 0.045), transparent 52%),
+    #0d0d0f;
+}
+
+@media (max-width: 1023px) {
+  .card {
+    max-width: 48rem;
+  }
+
+  .visual {
+    min-height: 13.5rem;
+  }
+
+  .diagram {
+    max-width: 34rem;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
+@media (max-width: 639px) {
+  .visual {
+    min-height: 13rem;
+    padding: 1.1rem 1rem 0.8rem;
+  }
+
+  .scenarioWord {
+    font-size: 1.8rem;
+  }
+
+  .diagram {
+    height: 8.8rem;
+    margin-top: 0.55rem;
+  }
+
+  .nodeFrame {
+    width: 3.7rem;
+    height: 3rem;
+  }
+
+  .systemNode {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+
+  .stepLabel {
+    max-width: 4.25rem;
+    font-size: 0.56rem;
+  }
+
+  .content {
+    padding: 1.25rem 1.15rem 1.35rem;
+  }
+
+  .metrics {
+    gap: 0.55rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .card::after,
+  .diagram,
+  .nodeFrame,
+  .systemNode,
+  .stepLabel,
+  .bookingRing span,
+  .searchCursor {
+    transition: none;
+  }
+
+  .card:hover,
+  .card:focus-visible,
+  .card:hover .diagram,
+  .card:focus-visible .diagram,
+  .card:hover .nodeFrame,
+  .card:hover .systemNode,
+  .card:focus-visible .nodeFrame,
+  .card:focus-visible .systemNode {
+    transform: none;
+  }
+
+  .card:hover .signalPath,
+  .card:focus-visible .signalPath {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes scenario-path {
+  from {
+    stroke-dashoffset: 0.78;
+    opacity: 0.42;
+  }
+  to {
+    stroke-dashoffset: 0;
+    opacity: 0.9;
+  }
+}

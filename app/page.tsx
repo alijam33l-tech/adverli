@@ -1,6 +1,6 @@
 import Button from "@/components/Button";
-import CaseStudyCard from "@/components/CaseStudyCard";
 import CTASection from "@/components/CTASection";
+import GrowthScenarioCard from "@/components/GrowthScenarioCard";
 import LogoMarquee from "@/components/LogoMarquee";
 import ProcessSteps from "@/components/ProcessSteps";
 import Reveal from "@/components/Reveal";
@@ -139,7 +139,7 @@ export default function HomePage() {
         <div className="mt-14 grid gap-5 lg:grid-cols-3">
           {featured.map((c, i) => (
             <Reveal key={c.slug} delay={i * 100}>
-              <CaseStudyCard study={c} />
+              <GrowthScenarioCard study={c} position={i + 1} />
             </Reveal>
           ))}
         </div>
