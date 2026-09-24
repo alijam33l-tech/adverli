@@ -1,9 +1,11 @@
+import type { Metadata } from "next";
+
 const tagline = {
   lead: "Growth,",
   accent: "engineered.",
 } as const;
 
-const domain = "adverli.com";
+const domain = "www.adverli.com";
 const email = "hello@adverli.com";
 const phone = "816-793-8577";
 
@@ -22,6 +24,41 @@ export const site = {
   phone,
   phoneHref: "tel:+18167938577",
 };
+
+export function absoluteUrl(path = "/") {
+  return new URL(path, `${site.url}/`).toString();
+}
+
+export function createPageMetadata({
+  title,
+  description,
+  path,
+}: {
+  title: string;
+  description: string;
+  path: string;
+}): Metadata {
+  const canonical = absoluteUrl(path);
+  const socialTitle = `${title} — ${site.name}`;
+
+  return {
+    title,
+    description,
+    alternates: { canonical },
+    openGraph: {
+      type: "website",
+      siteName: site.name,
+      title: socialTitle,
+      description,
+      url: canonical,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: socialTitle,
+      description,
+    },
+  };
+}
 
 export const nav = [
   { label: "Services", href: "/services" },

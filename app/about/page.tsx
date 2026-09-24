@@ -12,12 +12,13 @@ import {
 import CTASection from "@/components/CTASection";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
-import { site } from "@/lib/site";
+import { createPageMetadata, site } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "About",
   description: `${site.name} connects strategy and execution across website development, paid media, SEO, and content.`,
-};
+  path: "/about",
+});
 
 const values = [
   {

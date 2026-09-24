@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import ContactForm from "@/components/ContactForm";
 import Reveal from "@/components/Reveal";
-import { site } from "@/lib/site";
+import { createPageMetadata, site } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Contact",
   description: `Contact ${site.name} to discuss website development, paid media, SEO, or content priorities.`,
-};
+  path: "/contact",
+});
 
 const nextSteps = [
   {

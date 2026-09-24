@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { site } from "@/lib/site";
+import { absoluteUrl, site } from "@/lib/site";
 import "./globals.css";
 
 const inter = Inter({
@@ -22,12 +22,15 @@ export const metadata: Metadata = {
     template: `%s — ${site.name}`,
   },
   description: site.description,
+  alternates: {
+    canonical: absoluteUrl("/"),
+  },
   openGraph: {
     type: "website",
     siteName: site.name,
     title: `${site.name} — ${site.tagline}`,
     description: site.description,
-    url: site.url,
+    url: absoluteUrl("/"),
   },
   twitter: {
     card: "summary_large_image",

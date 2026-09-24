@@ -10,6 +10,7 @@ import ServiceHeroVisual from "@/components/ServiceHeroVisual";
 import SectionHeading from "@/components/SectionHeading";
 import { getCaseStudy } from "@/lib/case-studies";
 import { getService, services } from "@/lib/services";
+import { createPageMetadata } from "@/lib/site";
 
 export function generateStaticParams() {
   return services.map((s) => ({ slug: s.slug }));
@@ -21,10 +22,11 @@ export async function generateMetadata({
   const { slug } = await params;
   const service = getService(slug);
   if (!service) return {};
-  return {
+  return createPageMetadata({
     title: service.title,
     description: service.tagline,
-  };
+    path: `/services/${service.slug}`,
+  });
 }
 
 export default async function ServicePage({

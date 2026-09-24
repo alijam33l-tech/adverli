@@ -5,14 +5,15 @@ import GrowthScenarioCard from "@/components/GrowthScenarioCard";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import { caseStudies } from "@/lib/case-studies";
-import { site } from "@/lib/site";
+import { createPageMetadata, site } from "@/lib/site";
 import skyline from "@/public/images/skyline.jpg";
 import styles from "./work.module.css";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Work",
   description: `Representative ${site.name} growth scenarios across paid media, SEO, website development, and content.`,
-};
+  path: "/work",
+});
 
 export default function WorkPage() {
   return (

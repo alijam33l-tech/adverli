@@ -8,13 +8,14 @@ import FAQ from "@/components/FAQ";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import { services } from "@/lib/services";
-import { generalFaqs } from "@/lib/site";
+import { createPageMetadata, generalFaqs } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Services",
   description:
     "Website development, Meta ads, Google ads, SEO, and content creation connected around clear commercial goals.",
-};
+  path: "/services",
+});
 
 export default function ServicesPage() {
   return (
