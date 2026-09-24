@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import {
+  AboutOperatingView,
+  StrategyExecutionView,
+} from "@/components/AboutSystems";
 import CTASection from "@/components/CTASection";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import StatsBar from "@/components/StatsBar";
 import { site } from "@/lib/site";
-import officeHalls from "@/public/images/office-halls.jpg";
 import boardroom from "@/public/images/boardroom.jpg";
 
 export const metadata: Metadata = {
@@ -79,19 +82,24 @@ export default function AboutPage() {
       <section className="relative overflow-hidden border-b border-line">
         <div className="dot-grid absolute inset-0 opacity-30" aria-hidden />
         <div className="relative mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
-          <Reveal>
-            <p className="flex items-center gap-2 text-xs font-medium uppercase tracking-[0.2em] text-muted">
-              <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-lime" />
-              About {site.name}
-            </p>
-            <h1 className="mt-6 max-w-4xl font-display text-5xl font-semibold leading-tight tracking-tight text-cream sm:text-6xl">
-              Marketing should be
-              <span className="text-lime"> accountable.</span>
-            </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">
-              {site.positioning}
-            </p>
-          </Reveal>
+          <div className="grid min-w-0 items-center gap-14 lg:grid-cols-12 lg:gap-12 xl:gap-16">
+            <Reveal className="min-w-0 lg:col-span-6">
+              <p className="flex items-center gap-2 text-xs font-medium uppercase tracking-[0.2em] text-muted">
+                <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-lime" />
+                About {site.name}
+              </p>
+              <h1 className="mt-6 max-w-4xl font-display text-5xl font-semibold leading-tight tracking-tight text-cream sm:text-6xl">
+                Marketing should be
+                <span className="text-lime"> accountable.</span>
+              </h1>
+              <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">
+                {site.positioning}
+              </p>
+            </Reveal>
+            <Reveal delay={120} className="min-w-0 lg:col-span-6">
+              <AboutOperatingView />
+            </Reveal>
+          </div>
         </div>
       </section>
 
@@ -103,16 +111,8 @@ export default function AboutPage() {
               eyebrow="Our approach"
               title="Strategy stays close to execution."
             />
-            <Reveal delay={150} className="mt-10 hidden lg:block">
-              <figure className="overflow-hidden rounded-2xl border border-line">
-                <Image
-                  src={officeHalls}
-                  alt="Modern office corridor"
-                  placeholder="blur"
-                  sizes="(min-width: 1024px) 38vw, 0px"
-                  className="object-cover"
-                />
-              </figure>
+            <Reveal delay={150} className="mt-10">
+              <StrategyExecutionView />
             </Reveal>
           </div>
           <Reveal className="space-y-6 text-base leading-relaxed text-muted lg:col-span-7 lg:text-lg">
