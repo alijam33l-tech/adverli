@@ -197,6 +197,10 @@
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
+.fiveSteps {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
 .flowStep {
   --step: 0;
   display: flex;
@@ -708,6 +712,360 @@
   box-shadow: 0 0 10px rgba(200, 245, 66, 0.35);
 }
 
+.intentDiagram .flowStep {
+  padding-top: 1.55rem;
+}
+
+.intentDiagram .flowStep:nth-child(even) {
+  padding-top: 2.35rem;
+}
+
+.controlRail {
+  position: absolute;
+  top: 0.15rem;
+  left: 50%;
+  display: grid;
+  width: min(68%, 13rem);
+  gap: 0.25rem;
+  opacity: 0.55;
+  transform: translateX(-50%);
+}
+
+.controlRail span {
+  display: block;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.18), transparent);
+}
+
+.controlRail span:nth-child(2) {
+  width: 78%;
+  justify-self: center;
+}
+
+.controlRail span:last-child {
+  width: 52%;
+  justify-self: center;
+  background: linear-gradient(90deg, transparent, rgba(200, 245, 66, 0.32), transparent);
+}
+
+.searchIntentNode {
+  border-radius: 50%;
+}
+
+.searchIntentNode span {
+  position: relative;
+  width: 0.82rem;
+  height: 0.82rem;
+  border: 1px solid rgba(200, 245, 66, 0.58);
+  border-radius: 50%;
+}
+
+.searchIntentNode span::after {
+  position: absolute;
+  right: -0.34rem;
+  bottom: -0.2rem;
+  width: 0.48rem;
+  height: 1px;
+  background: rgba(200, 245, 66, 0.62);
+  content: "";
+  transform: rotate(45deg);
+}
+
+.campaignNode {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 0.22rem;
+  padding-bottom: 0.62rem;
+}
+
+.campaignNode span {
+  position: relative;
+  width: 0.48rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.campaignNode span:first-child {
+  height: 0.72rem;
+}
+
+.campaignNode span:nth-child(2) {
+  height: 1.3rem;
+  border-color: rgba(200, 245, 66, 0.45);
+  background: rgba(200, 245, 66, 0.08);
+}
+
+.campaignNode span:last-child {
+  height: 0.95rem;
+}
+
+.qualifiedNode {
+  border-radius: 50%;
+}
+
+.qualifiedNode::before,
+.qualifiedNode::after {
+  position: absolute;
+  border: 1px solid rgba(200, 245, 66, 0.3);
+  border-radius: 50%;
+  content: "";
+}
+
+.qualifiedNode::before {
+  inset: 0.48rem;
+}
+
+.qualifiedNode::after {
+  inset: 0.94rem;
+  border-color: rgba(200, 245, 66, 0.65);
+}
+
+.qualifiedNode span {
+  width: 0.32rem;
+  height: 0.32rem;
+  border-radius: 50%;
+  background: #c8f542;
+  box-shadow: 0 0 10px rgba(200, 245, 66, 0.3);
+}
+
+.controlNode {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.42rem;
+}
+
+.controlNode span {
+  position: relative;
+  width: 1.65rem;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.controlNode span::after {
+  position: absolute;
+  top: 50%;
+  width: 0.34rem;
+  height: 0.34rem;
+  border: 1px solid rgba(200, 245, 66, 0.58);
+  border-radius: 50%;
+  background: #101012;
+  content: "";
+  transform: translate(-50%, -50%);
+}
+
+.controlNode span:first-child::after {
+  left: 28%;
+}
+
+.controlNode span:nth-child(2)::after {
+  left: 68%;
+}
+
+.controlNode span:last-child::after {
+  left: 46%;
+}
+
+.messageDiagram .flowStep {
+  gap: 0.58rem;
+  padding-top: 1.5rem;
+}
+
+.messageDiagram .flowStep:nth-child(even) {
+  padding-top: 2.32rem;
+}
+
+.messageDiagram .systemNode {
+  width: 2.75rem;
+  height: 2.75rem;
+}
+
+.messageDiagram .stepLabel {
+  max-width: 4.1rem;
+  font-size: 0.56rem;
+}
+
+.editorialGuide {
+  position: absolute;
+  top: 0.1rem;
+  left: 50%;
+  display: grid;
+  width: 7.5rem;
+  grid-template-columns: 1fr 2.2rem;
+  gap: 0.35rem;
+  opacity: 0.5;
+  transform: translateX(-50%);
+}
+
+.editorialGuide span {
+  height: 0.24rem;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.editorialGuide span:last-child {
+  background: rgba(200, 245, 66, 0.22);
+}
+
+.expertiseNode {
+  border-radius: 50%;
+}
+
+.expertiseNode::before,
+.expertiseNode::after {
+  position: absolute;
+  width: 1.5rem;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.16);
+  content: "";
+}
+
+.expertiseNode::after {
+  transform: rotate(90deg);
+}
+
+.expertiseNode span {
+  z-index: 1;
+  width: 0.58rem;
+  height: 0.58rem;
+  border: 1px solid #c8f542;
+  border-radius: 50%;
+  background: rgba(200, 245, 66, 0.14);
+}
+
+.editorialNode {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.28rem;
+  padding: 0.58rem;
+}
+
+.editorialNode span {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.editorialNode span:first-child {
+  width: 82%;
+  background: rgba(200, 245, 66, 0.58);
+}
+
+.editorialNode span:nth-child(2) {
+  width: 62%;
+}
+
+.editorialNode span:last-child {
+  width: 74%;
+}
+
+.productionNode span {
+  position: absolute;
+  width: 1.18rem;
+  height: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: #101012;
+}
+
+.productionNode span:first-child {
+  transform: translate(-0.24rem, 0.18rem);
+}
+
+.productionNode span:last-child {
+  border-color: rgba(200, 245, 66, 0.48);
+  transform: translate(0.24rem, -0.18rem);
+}
+
+.productionNode span:last-child::after {
+  position: absolute;
+  right: 0.2rem;
+  bottom: 0.25rem;
+  left: 0.2rem;
+  height: 1px;
+  background: rgba(200, 245, 66, 0.55);
+  content: "";
+}
+
+.distributionNode span {
+  position: absolute;
+  width: 0.32rem;
+  height: 0.32rem;
+  border: 1px solid rgba(200, 245, 66, 0.5);
+  border-radius: 50%;
+  background: #101012;
+}
+
+.distributionNode span:first-child {
+  top: 50%;
+  left: 0.5rem;
+  background: #c8f542;
+  transform: translateY(-50%);
+}
+
+.distributionNode span:nth-child(2) {
+  top: 0.5rem;
+  right: 0.5rem;
+}
+
+.distributionNode span:last-child {
+  right: 0.5rem;
+  bottom: 0.5rem;
+}
+
+.distributionNode::before,
+.distributionNode::after {
+  position: absolute;
+  left: 0.92rem;
+  width: 1.25rem;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.18);
+  content: "";
+  transform-origin: left;
+}
+
+.distributionNode::before {
+  transform: rotate(-30deg);
+}
+
+.distributionNode::after {
+  transform: rotate(30deg);
+}
+
+.reuseNode {
+  border-radius: 50%;
+}
+
+.reuseNode::before {
+  position: absolute;
+  inset: 0.52rem;
+  border: 1px solid rgba(200, 245, 66, 0.48);
+  border-right-color: transparent;
+  border-radius: 50%;
+  content: "";
+  transform: rotate(-32deg);
+}
+
+.reuseNode::after {
+  position: absolute;
+  top: 0.56rem;
+  right: 0.48rem;
+  border-top: 0.18rem solid transparent;
+  border-bottom: 0.18rem solid transparent;
+  border-left: 0.3rem solid #c8f542;
+  content: "";
+  transform: rotate(-38deg);
+}
+
+.reuseNode span {
+  width: 0.28rem;
+  height: 0.28rem;
+  border-radius: 50%;
+  background: #c8f542;
+  box-shadow: 0 0 9px rgba(200, 245, 66, 0.3);
+}
+
 .content {
   display: flex;
   flex: 1;
@@ -810,6 +1168,20 @@
     #0d0d0f;
 }
 
+.intent .visual {
+  background:
+    radial-gradient(circle at 69% 40%, rgba(200, 245, 66, 0.06), transparent 28%),
+    linear-gradient(145deg, rgba(126, 111, 67, 0.045), transparent 50%),
+    #0d0d0f;
+}
+
+.message .visual {
+  background:
+    radial-gradient(circle at 42% 37%, rgba(200, 245, 66, 0.055), transparent 28%),
+    linear-gradient(135deg, rgba(117, 92, 133, 0.042), transparent 52%),
+    #0d0d0f;
+}
+
 @media (max-width: 1023px) {
   .card {
     max-width: 48rem;
@@ -849,6 +1221,16 @@
   .systemNode {
     width: 2.75rem;
     height: 2.75rem;
+  }
+
+  .messageDiagram .systemNode {
+    width: 2.35rem;
+    height: 2.35rem;
+  }
+
+  .messageDiagram .stepLabel {
+    max-width: 3.5rem;
+    font-size: 0.52rem;
   }
 
   .stepLabel {

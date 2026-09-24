@@ -19,6 +19,25 @@ const scenarioConfig = {
     variant: "find",
     steps: ["Search Intent", "Content", "Authority", "Discovery"],
   },
+  "paid-search-efficiency": {
+    variant: "intent",
+    steps: [
+      "Search Intent",
+      "Campaign Structure",
+      "Qualified Signal",
+      "Spend Control",
+    ],
+  },
+  "content-system": {
+    variant: "message",
+    steps: [
+      "Expertise",
+      "Editorial Focus",
+      "Production",
+      "Distribution",
+      "Reuse",
+    ],
+  },
 } as const;
 
 function DirectVisual({ steps }: { steps: readonly string[] }) {
@@ -168,6 +187,123 @@ function FindVisual({ steps }: { steps: readonly string[] }) {
   );
 }
 
+function IntentVisual({ steps }: { steps: readonly string[] }) {
+  return (
+    <div className={`${styles.diagram} ${styles.intentDiagram}`} aria-hidden="true">
+      <div className={styles.controlRail}>
+        <span />
+        <span />
+        <span />
+      </div>
+
+      <svg className={styles.pathLayer} viewBox="0 0 360 112" preserveAspectRatio="none">
+        <path className={styles.basePath} d="M38 57 H105 L126 44 H211 L235 60 H321" />
+        <path
+          className={styles.signalPath}
+          pathLength="1"
+          d="M38 57 H105 L126 44 H211 L235 60 H321"
+        />
+      </svg>
+
+      <div className={`${styles.flowSteps} ${styles.fourSteps}`}>
+        <div className={styles.flowStep} style={{ "--step": 0 } as React.CSSProperties}>
+          <div className={`${styles.systemNode} ${styles.searchIntentNode}`}>
+            <span />
+          </div>
+          <span className={styles.stepLabel}>{steps[0]}</span>
+        </div>
+
+        <div className={styles.flowStep} style={{ "--step": 1 } as React.CSSProperties}>
+          <div className={`${styles.systemNode} ${styles.campaignNode}`}>
+            <span />
+            <span />
+            <span />
+          </div>
+          <span className={styles.stepLabel}>{steps[1]}</span>
+        </div>
+
+        <div className={styles.flowStep} style={{ "--step": 2 } as React.CSSProperties}>
+          <div className={`${styles.systemNode} ${styles.qualifiedNode}`}>
+            <span />
+          </div>
+          <span className={styles.stepLabel}>{steps[2]}</span>
+        </div>
+
+        <div className={styles.flowStep} style={{ "--step": 3 } as React.CSSProperties}>
+          <div className={`${styles.systemNode} ${styles.controlNode}`}>
+            <span />
+            <span />
+            <span />
+          </div>
+          <span className={styles.stepLabel}>{steps[3]}</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function MessageVisual({ steps }: { steps: readonly string[] }) {
+  return (
+    <div className={`${styles.diagram} ${styles.messageDiagram}`} aria-hidden="true">
+      <div className={styles.editorialGuide}>
+        <span />
+        <span />
+      </div>
+
+      <svg className={styles.pathLayer} viewBox="0 0 360 112" preserveAspectRatio="none">
+        <path className={styles.basePath} d="M26 55 H88 L111 43 H180 L205 61 H273 L297 48 H335" />
+        <path
+          className={styles.signalPath}
+          pathLength="1"
+          d="M26 55 H88 L111 43 H180 L205 61 H273 L297 48 H335"
+        />
+      </svg>
+
+      <div className={`${styles.flowSteps} ${styles.fiveSteps}`}>
+        <div className={styles.flowStep} style={{ "--step": 0 } as React.CSSProperties}>
+          <div className={`${styles.systemNode} ${styles.expertiseNode}`}>
+            <span />
+          </div>
+          <span className={styles.stepLabel}>{steps[0]}</span>
+        </div>
+
+        <div className={styles.flowStep} style={{ "--step": 1 } as React.CSSProperties}>
+          <div className={`${styles.systemNode} ${styles.editorialNode}`}>
+            <span />
+            <span />
+            <span />
+          </div>
+          <span className={styles.stepLabel}>{steps[1]}</span>
+        </div>
+
+        <div className={styles.flowStep} style={{ "--step": 2 } as React.CSSProperties}>
+          <div className={`${styles.systemNode} ${styles.productionNode}`}>
+            <span />
+            <span />
+          </div>
+          <span className={styles.stepLabel}>{steps[2]}</span>
+        </div>
+
+        <div className={styles.flowStep} style={{ "--step": 3 } as React.CSSProperties}>
+          <div className={`${styles.systemNode} ${styles.distributionNode}`}>
+            <span />
+            <span />
+            <span />
+          </div>
+          <span className={styles.stepLabel}>{steps[3]}</span>
+        </div>
+
+        <div className={styles.flowStep} style={{ "--step": 4 } as React.CSSProperties}>
+          <div className={`${styles.systemNode} ${styles.reuseNode}`}>
+            <span />
+          </div>
+          <span className={styles.stepLabel}>{steps[4]}</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function GrowthScenarioCard({
   study,
   position,
@@ -198,6 +334,8 @@ export default function GrowthScenarioCard({
         {config.variant === "direct" && <DirectVisual steps={config.steps} />}
         {config.variant === "fast" && <FastVisual steps={config.steps} />}
         {config.variant === "find" && <FindVisual steps={config.steps} />}
+        {config.variant === "intent" && <IntentVisual steps={config.steps} />}
+        {config.variant === "message" && <MessageVisual steps={config.steps} />}
       </div>
 
       <div className={styles.content}>
