@@ -1,6 +1,7 @@
 import Button from "@/components/Button";
 import CTASection from "@/components/CTASection";
 import GrowthScenarioCard from "@/components/GrowthScenarioCard";
+import InsideWorkSequence from "@/components/InsideWorkSequence";
 import LogoMarquee from "@/components/LogoMarquee";
 import ProcessSteps from "@/components/ProcessSteps";
 import Reveal from "@/components/Reveal";
@@ -10,12 +11,8 @@ import StatsBar from "@/components/StatsBar";
 import { caseStudies } from "@/lib/case-studies";
 import { services } from "@/lib/services";
 import { site } from "@/lib/site";
-import Image from "next/image";
 import Link from "next/link";
 import HeroVisual from "@/components/HeroVisual";
-import strategySession from "@/public/images/strategy-session.jpg";
-import analyticsLaptop from "@/public/images/analytics-laptop.jpg";
-import openOffice from "@/public/images/open-office.jpg";
 import styles from "./home.module.css";
 
 export default function HomePage() {
@@ -166,46 +163,8 @@ export default function HomePage() {
           title="Where the numbers get made."
           lede="Focused working sessions, build cycles, and reporting reviews keep priorities visible and turn learning into the next decision."
         />
-        <div className="mt-14 grid gap-5 md:grid-cols-3">
-          {[
-            {
-              img: strategySession,
-              alt: "Team mapping campaign strategy on a wall of sticky notes",
-              caption: "Focused planning sessions",
-            },
-            {
-              img: analyticsLaptop,
-              alt: "Analytics dashboard with performance charts on a laptop",
-              caption: "Performance reviews",
-            },
-            {
-              img: openOffice,
-              alt: "Modern open-plan office with teams at work",
-              caption: "Connected delivery workflows",
-            },
-          ].map((item, i) => (
-            <Reveal key={item.caption} delay={i * 100}>
-              <figure className="group overflow-hidden rounded-2xl border border-line">
-                <div className="relative aspect-[4/3] overflow-hidden">
-                  <Image
-                    src={item.img}
-                    alt={item.alt}
-                    fill
-                    sizes="(min-width: 768px) 33vw, 100vw"
-                    placeholder="blur"
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                  />
-                  <div
-                    aria-hidden
-                    className="absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/10 to-transparent"
-                  />
-                  <figcaption className="absolute bottom-4 left-5 text-sm font-medium text-cream">
-                    {item.caption}
-                  </figcaption>
-                </div>
-              </figure>
-            </Reveal>
-          ))}
+        <div className="mt-14">
+          <InsideWorkSequence />
         </div>
       </section>
 
