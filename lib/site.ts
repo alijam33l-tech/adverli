@@ -29,6 +29,13 @@ export function absoluteUrl(path = "/") {
   return new URL(path, `${site.url}/`).toString();
 }
 
+export const defaultSocialImage = {
+  url: absoluteUrl("/images/adverli/og-default.png"),
+  width: 1731,
+  height: 909,
+  alt: `${site.name} — ${site.tagline}`,
+};
+
 export function createPageMetadata({
   title,
   description,
@@ -51,11 +58,13 @@ export function createPageMetadata({
       title: socialTitle,
       description,
       url: canonical,
+      images: [defaultSocialImage],
     },
     twitter: {
       card: "summary_large_image",
       title: socialTitle,
       description,
+      images: [defaultSocialImage],
     },
   };
 }

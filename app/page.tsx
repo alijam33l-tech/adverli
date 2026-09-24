@@ -13,6 +13,8 @@ import { services } from "@/lib/services";
 import { site } from "@/lib/site";
 import Link from "next/link";
 import HeroVisual from "@/components/HeroVisual";
+import JsonLd from "@/components/JsonLd";
+import { homeStructuredData } from "@/lib/structured-data";
 import styles from "./home.module.css";
 
 export default function HomePage() {
@@ -20,6 +22,8 @@ export default function HomePage() {
 
   return (
     <>
+      <JsonLd data={homeStructuredData} />
+
       {/* Hero */}
       <section className={styles.hero}>
         <div className={styles.ambientGlow} aria-hidden="true" />

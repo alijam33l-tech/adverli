@@ -5,12 +5,14 @@ import Button from "@/components/Button";
 import CTASection from "@/components/CTASection";
 import LineChart from "@/components/charts/LineChart";
 import FAQ from "@/components/FAQ";
+import JsonLd from "@/components/JsonLd";
 import Reveal from "@/components/Reveal";
 import ServiceHeroVisual from "@/components/ServiceHeroVisual";
 import SectionHeading from "@/components/SectionHeading";
 import { getCaseStudy } from "@/lib/case-studies";
 import { getService, services } from "@/lib/services";
 import { createPageMetadata } from "@/lib/site";
+import { createServiceStructuredData } from "@/lib/structured-data";
 
 export function generateStaticParams() {
   return services.map((s) => ({ slug: s.slug }));
@@ -38,9 +40,12 @@ export default async function ServicePage({
 
   const study = getCaseStudy(service.caseStudySlug);
   const others = services.filter((s) => s.slug !== service.slug);
+  const structuredData = createServiceStructuredData(service);
 
   return (
     <>
+      <JsonLd data={structuredData} />
+
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-line">
         <div className="dot-grid absolute inset-0 opacity-30" aria-hidden />
