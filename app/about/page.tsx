@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import {
+  ConnectedOperatingSystem,
+  DeliverySystem,
+  OperatingPrinciples,
+  ValueSpine,
+} from "@/components/AboutLowerSystems";
 import {
   AboutOperatingView,
   StrategyExecutionView,
@@ -7,9 +12,7 @@ import {
 import CTASection from "@/components/CTASection";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
-import StatsBar from "@/components/StatsBar";
 import { site } from "@/lib/site";
-import boardroom from "@/public/images/boardroom.jpg";
 
 export const metadata: Metadata = {
   title: "About",
@@ -135,7 +138,7 @@ export default function AboutPage() {
           </Reveal>
         </div>
         <Reveal className="mt-20">
-          <StatsBar />
+          <ValueSpine />
         </Reveal>
       </section>
 
@@ -146,78 +149,25 @@ export default function AboutPage() {
             eyebrow="Operating principles"
             title="How we operate."
           />
-          <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {values.map((v, i) => (
-              <Reveal key={v.title} delay={(i % 3) * 100}>
-                <div className="h-full rounded-2xl border border-line bg-surface p-8">
-                  <span
-                    aria-hidden
-                    className="block h-1.5 w-1.5 rounded-full bg-lime"
-                  />
-                  <h3 className="mt-6 font-display text-lg font-medium tracking-tight text-cream">
-                    {v.title}
-                  </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-muted">
-                    {v.description}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
+          <Reveal>
+            <OperatingPrinciples principles={values} />
+          </Reveal>
         </div>
       </section>
 
       {/* Delivery model */}
       <section className="mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
         <Reveal className="mb-20">
-          <figure className="relative overflow-hidden rounded-3xl border border-line">
-            <Image
-              src={boardroom}
-              alt="Glass-walled boardroom at golden hour"
-              placeholder="blur"
-              sizes="(min-width: 1280px) 1280px, 100vw"
-              className="max-h-[26rem] w-full object-cover"
-            />
-            <div
-              aria-hidden
-              className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/20 to-transparent"
-            />
-            <figcaption className="absolute bottom-6 left-8 max-w-md">
-              <p className="font-display text-2xl font-medium tracking-tight text-cream">
-                One team. One operating system.
-              </p>
-              <p className="mt-2 text-sm text-muted">
-                Engagements use a clear cadence, reporting standard, and
-                decision process shaped around the work.
-              </p>
-            </figcaption>
-          </figure>
+          <ConnectedOperatingSystem />
         </Reveal>
         <SectionHeading
           eyebrow="Delivery model"
           title="Multidisciplinary expertise around one brief."
           lede="The team and workflow adapt to scope, goals, market, growth stage, complexity, and channel mix while senior direction stays close to the work."
         />
-        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {deliveryModel.map((principle, i) => (
-            <Reveal key={principle.name} delay={(i % 3) * 100}>
-              <div className="flex items-center gap-5 rounded-2xl border border-line bg-surface p-6">
-                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-line-strong bg-surface-2 font-display text-base font-medium text-lime">
-                  {principle.name
-                    .split(" ")
-                    .map((n) => n[0])
-                    .join("")}
-                </div>
-                <div>
-                  <p className="font-display text-base font-medium tracking-tight text-cream">
-                    {principle.name}
-                  </p>
-                  <p className="mt-1 text-sm text-muted">{principle.role}</p>
-                </div>
-              </div>
-            </Reveal>
-          ))}
-        </div>
+        <Reveal>
+          <DeliverySystem principles={deliveryModel} />
+        </Reveal>
       </section>
 
       <CTASection />
