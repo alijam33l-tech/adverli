@@ -155,7 +155,7 @@ export default function ServicesGrowthSystem({
                 alt={activeImage.alt}
                 fill
                 placeholder="blur"
-                sizes="(max-width: 899px) calc(100vw - 5.5rem), (max-width: 1400px) 24vw, 19rem"
+                sizes="(max-width: 719px) calc(100vw - 5.5rem), (max-width: 899px) 40vw, (max-width: 1400px) 24vw, 23rem"
                 className={styles.servicePhoto}
                 style={{ objectPosition: activeImage.objectPosition }}
               />
