@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState, type FormEvent } from "react";
 import { services } from "@/lib/services";
 import { site } from "@/lib/site";
@@ -234,6 +235,18 @@ export default function ContactForm() {
           <span>{submission.message}</span>
         </div>
       )}
+
+      <p className="max-w-xl text-xs leading-relaxed text-faint">
+        By submitting this form, you agree that Adverli may use the information
+        provided to respond to your enquiry. See our{" "}
+        <Link
+          href="/privacy"
+          className="text-muted underline decoration-line-strong underline-offset-4 outline-none transition-colors hover:text-lime focus-visible:rounded-sm focus-visible:text-lime focus-visible:ring-2 focus-visible:ring-lime/60"
+        >
+          Privacy Policy
+        </Link>
+        .
+      </p>
 
       <button
         type="submit"

@@ -80,9 +80,17 @@ export default function Footer() {
           <p className="text-xs text-faint">
             © {new Date().getFullYear()} {site.name}. All rights reserved.
           </p>
-          <p className="text-xs text-faint">
-            {site.tagline}
-          </p>
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-3 text-xs text-faint">
+            <nav aria-label="Legal">
+              <Link
+                href="/privacy"
+                className="outline-none transition-colors hover:text-lime focus-visible:rounded-sm focus-visible:text-lime focus-visible:ring-2 focus-visible:ring-lime/60"
+              >
+                Privacy Policy
+              </Link>
+            </nav>
+            <p>{site.tagline}</p>
+          </div>
         </div>
       </div>
     </footer>
