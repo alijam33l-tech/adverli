@@ -55,7 +55,7 @@ export default async function ServicePage({
         />
         <div className="relative mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-28">
           <div className="grid items-center gap-14 lg:grid-cols-12 lg:gap-10 xl:gap-16">
-            <Reveal className="lg:col-span-7">
+            <Reveal initiallyVisible className="lg:col-span-7">
               <p className="flex items-center gap-2 text-xs font-medium uppercase tracking-[0.2em] text-muted">
                 <span className="font-display text-lime">{service.index}</span>
                 <span aria-hidden>/</span>
@@ -74,7 +74,11 @@ export default async function ServicePage({
                 </Button>
               </div>
             </Reveal>
-            <Reveal delay={160} className="min-w-0 lg:col-span-5">
+            <Reveal
+              initiallyVisible
+              delay={160}
+              className="min-w-0 lg:col-span-5"
+            >
               <ServiceHeroVisual
                 slug={service.slug}
                 index={service.index}

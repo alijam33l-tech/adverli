@@ -25,7 +25,7 @@ export default function ServicesPage() {
         <div className="dot-grid absolute inset-0 opacity-30" aria-hidden />
         <div className="relative mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
           <div className="grid items-center gap-12 lg:grid-cols-12">
-            <Reveal className="lg:col-span-7">
+            <Reveal initiallyVisible className="lg:col-span-7">
               <p className="flex items-center gap-2 text-xs font-medium uppercase tracking-[0.2em] text-muted">
                 <span
                   aria-hidden
@@ -44,12 +44,17 @@ export default function ServicesPage() {
                 ranks, and every discipline compounds the others.
               </p>
             </Reveal>
-            <Reveal delay={150} className="hidden lg:col-span-5 lg:block">
+            <Reveal
+              initiallyVisible
+              delay={150}
+              className="hidden lg:col-span-5 lg:block"
+            >
               <figure className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-line shadow-2xl shadow-black/40">
                 <Image
                   src={darkDashboard}
                   alt="Performance dashboards tracking load time, sessions, and conversion metrics"
                   fill
+                  fetchPriority="high"
                   placeholder="blur"
                   sizes="(min-width: 1024px) 40vw, 0px"
                   className="scale-[1.3] object-cover"

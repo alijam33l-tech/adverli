@@ -23,7 +23,7 @@ export default function WorkPage() {
           src={skyline}
           alt=""
           fill
-          priority
+          preload
           sizes="100vw"
           placeholder="blur"
           className="object-cover opacity-25"
@@ -34,7 +34,7 @@ export default function WorkPage() {
           className="absolute inset-0 bg-gradient-to-t from-ink via-ink/60 to-ink/30"
         />
         <div className="relative mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
-          <Reveal>
+          <Reveal initiallyVisible>
             <p className="flex items-center gap-2 text-xs font-medium uppercase tracking-[0.2em] text-muted">
               <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-lime" />
               Work and growth scenarios

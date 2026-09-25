@@ -87,7 +87,7 @@ export default function AboutPage() {
         <div className="dot-grid absolute inset-0 opacity-30" aria-hidden />
         <div className="relative mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
           <div className="grid min-w-0 items-center gap-14 lg:grid-cols-12 lg:gap-12 xl:gap-16">
-            <Reveal className="min-w-0 lg:col-span-6">
+            <Reveal initiallyVisible className="min-w-0 lg:col-span-6">
               <p className="flex items-center gap-2 text-xs font-medium uppercase tracking-[0.2em] text-muted">
                 <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-lime" />
                 About {site.name}
@@ -100,7 +100,11 @@ export default function AboutPage() {
                 {site.positioning}
               </p>
             </Reveal>
-            <Reveal delay={120} className="min-w-0 lg:col-span-6">
+            <Reveal
+              initiallyVisible
+              delay={120}
+              className="min-w-0 lg:col-span-6"
+            >
               <AboutOperatingView />
             </Reveal>
           </div>

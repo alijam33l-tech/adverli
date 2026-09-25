@@ -10,6 +10,7 @@ function Wordmark() {
   return (
     <Link
       href="/"
+      prefetch={false}
       className="inline-flex min-h-11 items-center font-display text-xl font-semibold tracking-tight text-cream"
     >
       {site.name}<span className="text-lime">.</span>
@@ -81,6 +82,7 @@ export default function Header() {
               <div key={item.href} className="group relative">
                 <Link
                   href={item.href}
+                  prefetch={false}
                   aria-current={pathname === item.href ? "page" : undefined}
                   className={`flex items-center gap-1 rounded-full px-4 py-2 text-sm transition-colors ${
                     pathname.startsWith("/services")
@@ -103,6 +105,7 @@ export default function Header() {
                       <Link
                         key={s.slug}
                         href={`/services/${s.slug}`}
+                        prefetch={false}
                         aria-current={
                           pathname === `/services/${s.slug}` ? "page" : undefined
                         }
@@ -117,6 +120,7 @@ export default function Header() {
                     <div className="mt-1 border-t border-line px-4 py-3">
                       <Link
                         href="/services"
+                        prefetch={false}
                         className="text-xs font-medium uppercase tracking-widest text-muted transition-colors hover:text-lime"
                       >
                         All services →
@@ -129,6 +133,7 @@ export default function Header() {
               <Link
                 key={item.href}
                 href={item.href}
+                prefetch={false}
                 aria-current={pathname === item.href ? "page" : undefined}
                 className={`rounded-full px-4 py-2 text-sm transition-colors ${
                   pathname === item.href
@@ -145,6 +150,7 @@ export default function Header() {
         <div className="hidden lg:block">
           <Link
             href="/contact"
+            prefetch={false}
             className="rounded-full bg-lime px-5 py-2.5 font-display text-sm font-medium text-ink transition-colors hover:bg-lime-dim"
           >
             Book a strategy call
@@ -194,6 +200,7 @@ export default function Header() {
                 <Link
                   key={s.slug}
                   href={`/services/${s.slug}`}
+                  prefetch={false}
                   aria-current={
                     pathname === `/services/${s.slug}` ? "page" : undefined
                   }
@@ -216,6 +223,7 @@ export default function Header() {
                   <Link
                     key={item.href}
                     href={item.href}
+                    prefetch={false}
                     aria-current={pathname === item.href ? "page" : undefined}
                     onClick={() => setOpenForPath(null)}
                     className="block py-2 font-display text-2xl text-cream"
@@ -226,6 +234,7 @@ export default function Header() {
             </div>
             <Link
               href="/contact"
+              prefetch={false}
               onClick={() => setOpenForPath(null)}
               className="mt-10 inline-flex rounded-full bg-lime px-6 py-3 font-display text-sm font-medium text-ink"
             >

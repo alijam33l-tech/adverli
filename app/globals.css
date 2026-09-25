@@ -60,6 +60,23 @@ body {
   transform: translateY(0);
 }
 
+.js .reveal.reveal-immediate {
+  opacity: 1;
+  transform: none;
+  transition: none;
+  animation: reveal-immediate 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--reveal-delay, 0ms);
+}
+
+@keyframes reveal-immediate {
+  from {
+    transform: translateY(14px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -78,6 +95,10 @@ body {
     opacity: 1;
     transform: none;
     transition: none;
+  }
+
+  .js .reveal.reveal-immediate {
+    animation: none;
   }
 }
 

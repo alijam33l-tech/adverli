@@ -395,6 +395,15 @@
   font-size: 0.54rem;
 }
 
+:global(.reveal:not(.is-visible)) .detailInner,
+:global(.reveal:not(.is-visible)) .serviceVisual,
+:global(.reveal:not(.is-visible)) .flowProgress,
+:global(.reveal:not(.is-visible)) .travelSignal,
+:global(.reveal:not(.is-visible)) .flowStep,
+:global(.reveal:not(.is-visible)) .flowNode {
+  animation-play-state: paused;
+}
+
 .flowLabel {
   color: #d5d5d1;
   font-family: var(--font-space-grotesk), sans-serif;

@@ -38,7 +38,7 @@ export default function ContactPage() {
         <div className="relative mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
           <div className="grid gap-16 lg:grid-cols-12">
             {/* Left: pitch + details */}
-            <Reveal className="lg:col-span-5">
+            <Reveal initiallyVisible className="lg:col-span-5">
               <p className="flex items-center gap-2 text-xs font-medium uppercase tracking-[0.2em] text-muted">
                 <span
                   aria-hidden
@@ -99,7 +99,7 @@ export default function ContactPage() {
             </Reveal>
 
             {/* Right: form */}
-            <Reveal delay={150} className="lg:col-span-7">
+            <Reveal initiallyVisible delay={150} className="lg:col-span-7">
               <div className="rounded-3xl border border-line bg-surface/60 p-8 backdrop-blur lg:p-10">
                 <ContactForm />
               </div>
