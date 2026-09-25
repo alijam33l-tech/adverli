@@ -13,7 +13,10 @@ const engagementScopes = [
 ];
 
 const inputStyles =
-  "w-full rounded-xl border border-line-strong bg-surface px-4 py-3 text-sm text-cream placeholder:text-faint outline-none transition-colors focus:border-lime focus-visible:ring-2 focus-visible:ring-lime/30 disabled:cursor-not-allowed disabled:opacity-60";
+  "w-full rounded-xl border border-[rgba(255,255,255,0.36)] bg-surface px-4 py-3 text-sm text-cream placeholder:text-faint outline-none transition-colors focus:border-lime focus-visible:ring-2 focus-visible:ring-lime/30 disabled:cursor-not-allowed disabled:opacity-60";
+
+type FieldName = "name" | "email" | "company" | "message";
+type FieldErrors = Partial<Record<FieldName, string>>;
 
 type SubmissionState = {
   status: "idle" | "pending" | "success" | "error";
@@ -22,6 +25,7 @@ type SubmissionState = {
 
 export default function ContactForm() {
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
+  const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
   const [submission, setSubmission] = useState<SubmissionState>({
     status: "idle",
     message: "",
@@ -34,6 +38,34 @@ export default function ContactForm() {
         : [...previous, title]
     );
 
+  const clearFieldError = (field: FieldName) => {
+    setFieldErrors((previous) => {
+      if (!previous[field]) return previous;
+      const next = { ...previous };
+      delete next[field];
+      return next;
+    });
+  };
+
+  function validate(formData: FormData): FieldErrors {
+    const errors: FieldErrors = {};
+    const name = String(formData.get("name") ?? "").trim();
+    const email = String(formData.get("email") ?? "").trim();
+    const company = String(formData.get("company") ?? "").trim();
+    const message = String(formData.get("message") ?? "").trim();
+
+    if (!name) errors.name = "Enter your full name.";
+    if (!email) {
+      errors.email = "Enter your work email.";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+      errors.email = "Enter a valid email address.";
+    }
+    if (!company) errors.company = "Enter your company name.";
+    if (!message) errors.message = "Tell us what you would like to achieve.";
+
+    return errors;
+  }
+
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
@@ -41,6 +73,21 @@ export default function ContactForm() {
 
     const form = event.currentTarget;
     const formData = new FormData(form);
+    const errors = validate(formData);
+
+    if (Object.keys(errors).length > 0) {
+      setFieldErrors(errors);
+      setSubmission({
+        status: "error",
+        message: "Please review the highlighted fields and try again.",
+      });
+      const firstInvalidField = Object.keys(errors)[0] as FieldName;
+      const firstInvalidControl = form.elements.namedItem(firstInvalidField);
+      if (firstInvalidControl instanceof HTMLElement) firstInvalidControl.focus();
+      return;
+    }
+
+    setFieldErrors({});
     setSubmission({ status: "pending", message: "Sending your enquiry…" });
 
     try {
@@ -89,13 +136,15 @@ export default function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit}
+      noValidate
       className="space-y-5"
       aria-busy={submission.status === "pending"}
     >
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <label htmlFor="name" className="mb-2 block text-sm text-muted">
-            Full name *
+            Full name <span aria-hidden="true">*</span>
+            <span className="sr-only"> (required)</span>
           </label>
           <input
             id="name"
@@ -104,12 +153,21 @@ export default function ContactForm() {
             maxLength={100}
             autoComplete="name"
             placeholder="Jordan Smith"
+            aria-invalid={Boolean(fieldErrors.name)}
+            aria-describedby={fieldErrors.name ? "name-error" : undefined}
+            onChange={() => clearFieldError("name")}
             className={inputStyles}
           />
+          {fieldErrors.name && (
+            <p id="name-error" className="mt-2 text-xs leading-relaxed text-red-300">
+              {fieldErrors.name}
+            </p>
+          )}
         </div>
         <div>
           <label htmlFor="email" className="mb-2 block text-sm text-muted">
-            Work email *
+            Work email <span aria-hidden="true">*</span>
+            <span className="sr-only"> (required)</span>
           </label>
           <input
             id="email"
@@ -119,15 +177,24 @@ export default function ContactForm() {
             maxLength={254}
             autoComplete="email"
             placeholder="jordan@company.com"
+            aria-invalid={Boolean(fieldErrors.email)}
+            aria-describedby={fieldErrors.email ? "email-error" : undefined}
+            onChange={() => clearFieldError("email")}
             className={inputStyles}
           />
+          {fieldErrors.email && (
+            <p id="email-error" className="mt-2 text-xs leading-relaxed text-red-300">
+              {fieldErrors.email}
+            </p>
+          )}
         </div>
       </div>
 
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <label htmlFor="company" className="mb-2 block text-sm text-muted">
-            Company *
+            Company <span aria-hidden="true">*</span>
+            <span className="sr-only"> (required)</span>
           </label>
           <input
             id="company"
@@ -136,8 +203,19 @@ export default function ContactForm() {
             maxLength={160}
             autoComplete="organization"
             placeholder="Company Inc."
+            aria-invalid={Boolean(fieldErrors.company)}
+            aria-describedby={fieldErrors.company ? "company-error" : undefined}
+            onChange={() => clearFieldError("company")}
             className={inputStyles}
           />
+          {fieldErrors.company && (
+            <p
+              id="company-error"
+              className="mt-2 text-xs leading-relaxed text-red-300"
+            >
+              {fieldErrors.company}
+            </p>
+          )}
         </div>
         <div>
           <label
@@ -174,7 +252,7 @@ export default function ContactForm() {
                 type="button"
                 onClick={() => toggleService(service.title)}
                 aria-pressed={active}
-                className={`rounded-full border px-4 py-2 text-sm outline-none transition-colors focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2 focus-visible:ring-offset-ink ${
+                className={`min-h-11 rounded-full border px-4 py-2 text-sm outline-none transition-colors focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2 focus-visible:ring-offset-ink ${
                   active
                     ? "border-lime bg-lime text-ink"
                     : "border-line-strong text-muted hover:border-lime hover:text-cream"
@@ -189,7 +267,8 @@ export default function ContactForm() {
 
       <div>
         <label htmlFor="message" className="mb-2 block text-sm text-muted">
-          Tell us about your goals *
+          Tell us about your goals <span aria-hidden="true">*</span>
+          <span className="sr-only"> (required)</span>
         </label>
         <textarea
           id="message"
@@ -198,8 +277,16 @@ export default function ContactForm() {
           maxLength={5000}
           rows={5}
           placeholder="What are you trying to achieve, and what's standing in the way?"
+          aria-invalid={Boolean(fieldErrors.message)}
+          aria-describedby={fieldErrors.message ? "message-error" : undefined}
+          onChange={() => clearFieldError("message")}
           className={inputStyles}
         />
+        {fieldErrors.message && (
+          <p id="message-error" className="mt-2 text-xs leading-relaxed text-red-300">
+            {fieldErrors.message}
+          </p>
+        )}
       </div>
 
       <div

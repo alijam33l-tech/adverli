@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { nav, site } from "@/lib/site";
 import { services } from "@/lib/services";
 
@@ -10,7 +10,7 @@ function Wordmark() {
   return (
     <Link
       href="/"
-      className="font-display text-xl font-semibold tracking-tight text-cream"
+      className="inline-flex min-h-11 items-center font-display text-xl font-semibold tracking-tight text-cream"
     >
       {site.name}<span className="text-lime">.</span>
     </Link>
@@ -21,12 +21,52 @@ export default function Header() {
   const pathname = usePathname();
   const [openForPath, setOpenForPath] = useState<string | null>(null);
   const mobileOpen = openForPath === pathname;
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const mobileDrawerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
+  }, [mobileOpen]);
+
+  useEffect(() => {
+    if (!mobileOpen) return;
+
+    const drawer = mobileDrawerRef.current;
+    const firstLink = drawer?.querySelector<HTMLElement>("a[href]");
+    firstLink?.focus();
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        setOpenForPath(null);
+        menuButtonRef.current?.focus();
+        return;
+      }
+
+      if (event.key !== "Tab" || !drawer) return;
+
+      const focusable = [
+        menuButtonRef.current,
+        ...drawer.querySelectorAll<HTMLElement>("a[href], button:not([disabled])"),
+      ].filter((element): element is HTMLElement => element !== null);
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last?.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first?.focus();
+      }
+    }
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
   }, [mobileOpen]);
 
   return (
@@ -41,6 +81,7 @@ export default function Header() {
               <div key={item.href} className="group relative">
                 <Link
                   href={item.href}
+                  aria-current={pathname === item.href ? "page" : undefined}
                   className={`flex items-center gap-1 rounded-full px-4 py-2 text-sm transition-colors ${
                     pathname.startsWith("/services")
                       ? "text-lime"
@@ -62,6 +103,9 @@ export default function Header() {
                       <Link
                         key={s.slug}
                         href={`/services/${s.slug}`}
+                        aria-current={
+                          pathname === `/services/${s.slug}` ? "page" : undefined
+                        }
                         className="flex items-baseline gap-3 rounded-xl px-4 py-3 transition-colors hover:bg-surface-2"
                       >
                         <span className="font-display text-xs text-lime">
@@ -85,6 +129,7 @@ export default function Header() {
               <Link
                 key={item.href}
                 href={item.href}
+                aria-current={pathname === item.href ? "page" : undefined}
                 className={`rounded-full px-4 py-2 text-sm transition-colors ${
                   pathname === item.href
                     ? "text-lime"
@@ -107,11 +152,13 @@ export default function Header() {
         </div>
 
         <button
+          ref={menuButtonRef}
           type="button"
           onClick={() => setOpenForPath(mobileOpen ? null : pathname)}
           aria-expanded={mobileOpen}
+          aria-controls="mobile-navigation"
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
-          className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 lg:hidden"
+          className="flex h-11 w-11 flex-col items-center justify-center gap-1.5 lg:hidden"
         >
           <span
             className={`h-px w-6 bg-cream transition-transform ${
@@ -130,7 +177,14 @@ export default function Header() {
       {/* Mobile drawer — sibling of the header: backdrop-blur up there creates a
          containing block that would trap this fixed element inside the 64px bar */}
       {mobileOpen && (
-        <div className="fixed inset-x-0 bottom-0 top-16 z-40 overflow-y-auto bg-ink lg:hidden">
+        <div
+          ref={mobileDrawerRef}
+          id="mobile-navigation"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Site navigation"
+          className="fixed inset-x-0 bottom-0 top-16 z-40 overflow-y-auto bg-ink lg:hidden"
+        >
           <nav aria-label="Mobile" className="px-6 py-8">
             <p className="text-xs font-medium uppercase tracking-[0.2em] text-faint">
               Services
@@ -140,6 +194,9 @@ export default function Header() {
                 <Link
                   key={s.slug}
                   href={`/services/${s.slug}`}
+                  aria-current={
+                    pathname === `/services/${s.slug}` ? "page" : undefined
+                  }
                   onClick={() => setOpenForPath(null)}
                   className="flex items-baseline gap-3 py-2"
                 >
@@ -159,6 +216,7 @@ export default function Header() {
                   <Link
                     key={item.href}
                     href={item.href}
+                    aria-current={pathname === item.href ? "page" : undefined}
                     onClick={() => setOpenForPath(null)}
                     className="block py-2 font-display text-2xl text-cream"
                   >

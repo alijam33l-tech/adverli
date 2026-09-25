@@ -234,7 +234,7 @@ export default async function ServicePage({
             <Link
               key={s.slug}
               href={`/services/${s.slug}`}
-              className="rounded-full border border-line-strong px-5 py-2.5 text-sm text-muted transition-colors hover:border-lime hover:text-lime"
+              className="inline-flex min-h-11 items-center rounded-full border border-line-strong px-5 py-2.5 text-sm text-muted transition-colors hover:border-lime hover:text-lime"
             >
               {s.title}
             </Link>

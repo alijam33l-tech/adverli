@@ -21,33 +21,32 @@ export default function Footer() {
             <p className="mt-3 max-w-sm text-sm leading-relaxed text-muted">
               {site.positioning}
             </p>
-            <p className="mt-6 text-sm text-muted">
+            <div className="mt-6 flex flex-col items-start text-sm text-muted">
               <a
                 href={site.emailHref}
-                className="text-cream transition-colors hover:text-lime"
+                className="inline-flex min-h-11 items-center text-cream transition-colors hover:text-lime"
               >
                 {site.email}
               </a>
-              <br />
               <a
                 href={site.phoneHref}
-                className="text-cream transition-colors hover:text-lime"
+                className="inline-flex min-h-11 items-center text-cream transition-colors hover:text-lime"
               >
                 {site.phone}
               </a>
-            </p>
+            </div>
           </div>
 
           <div className="lg:col-span-4">
             <p className="text-xs font-medium uppercase tracking-[0.2em] text-faint">
               Services
             </p>
-            <ul className="mt-4 space-y-3">
+            <ul className="mt-4 space-y-1">
               {services.map((s) => (
                 <li key={s.slug}>
                   <Link
                     href={`/services/${s.slug}`}
-                    className="text-sm text-muted transition-colors hover:text-lime"
+                    className="inline-flex min-h-11 min-w-11 items-center text-sm text-muted transition-colors hover:text-lime"
                   >
                     {s.title}
                   </Link>
@@ -60,12 +59,12 @@ export default function Footer() {
             <p className="text-xs font-medium uppercase tracking-[0.2em] text-faint">
               Company
             </p>
-            <ul className="mt-4 space-y-3">
+            <ul className="mt-4 space-y-1">
               {companyLinks.map((l) => (
                 <li key={l.href}>
                   <Link
                     href={l.href}
-                    className="text-sm text-muted transition-colors hover:text-lime"
+                    className="inline-flex min-h-11 min-w-11 items-center text-sm text-muted transition-colors hover:text-lime"
                   >
                     {l.label}
                   </Link>
@@ -84,7 +83,7 @@ export default function Footer() {
             <nav aria-label="Legal">
               <Link
                 href="/privacy"
-                className="outline-none transition-colors hover:text-lime focus-visible:rounded-sm focus-visible:text-lime focus-visible:ring-2 focus-visible:ring-lime/60"
+                className="inline-flex min-h-11 items-center outline-none transition-colors hover:text-lime focus-visible:rounded-sm focus-visible:text-lime focus-visible:ring-2 focus-visible:ring-lime/60"
               >
                 Privacy Policy
               </Link>

@@ -153,7 +153,7 @@
 
 .kpiLabel {
   margin-top: 0.24rem;
-  color: #6b6b72;
+  color: #85858c;
   font-size: 0.6rem;
   line-height: 1.25;
 }
@@ -189,7 +189,7 @@
 }
 
 .chartMode {
-  color: #5f5f66;
+  color: #85858c;
   font-size: 0.56rem;
   line-height: 1.35;
   text-align: right;
@@ -471,7 +471,7 @@
 
 .mobileInsights small {
   margin-top: 0.18rem;
-  color: #797980;
+  color: #85858c;
   font-size: 0.52rem;
   line-height: 1.35;
 }

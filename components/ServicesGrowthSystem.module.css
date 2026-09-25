@@ -90,7 +90,7 @@
 }
 
 .selectorIndex {
-  color: #707078;
+  color: #85858c;
   font-family: var(--font-space-grotesk), sans-serif;
   font-size: 0.68rem;
   transition: color 220ms ease;
@@ -140,7 +140,7 @@
 }
 
 .detailNumber {
-  color: #77777f;
+  color: #85858c;
   font-size: 0.62rem;
   font-weight: 600;
   letter-spacing: 0.13em;
@@ -168,6 +168,7 @@
 .serviceLink {
   display: inline-flex;
   width: fit-content;
+  min-height: 2.75rem;
   align-items: center;
   align-self: start;
   gap: 0.55rem;
@@ -296,7 +297,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  color: #77777f;
+  color: #85858c;
   font-size: 0.59rem;
   font-weight: 600;
   letter-spacing: 0.14em;
@@ -407,7 +408,7 @@
   align-items: center;
   gap: 0.55rem;
   margin-top: 0.55rem;
-  color: #7d7d85;
+  color: #85858c;
   font-size: 0.64rem;
 }
 

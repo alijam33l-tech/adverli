@@ -69,11 +69,15 @@ export default function ServicesGrowthSystem({
     setActiveIndex(index);
   }
 
+  function focusService(index: number) {
+    selectService(index);
+    document.getElementById(`${id}-service-${index}`)?.focus();
+  }
+
   function moveSelection(currentIndex: number, direction: -1 | 1) {
     const nextIndex =
       (currentIndex + direction + services.length) % services.length;
-    selectService(nextIndex);
-    document.getElementById(`${id}-service-${nextIndex}`)?.focus();
+    focusService(nextIndex);
   }
 
   return (
@@ -109,6 +113,14 @@ export default function ServicesGrowthSystem({
                 if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
                   event.preventDefault();
                   moveSelection(index, -1);
+                }
+                if (event.key === "Home") {
+                  event.preventDefault();
+                  focusService(0);
+                }
+                if (event.key === "End") {
+                  event.preventDefault();
+                  focusService(services.length - 1);
                 }
               }}
             >

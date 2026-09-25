@@ -64,7 +64,7 @@ export default function HomePage() {
                 <Link
                   key={s.slug}
                   href={`/services/${s.slug}`}
-                  className={`${styles.capabilityLink} flex items-baseline gap-2 text-sm text-muted transition-colors hover:text-lime focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-lime`}
+                  className={`${styles.capabilityLink} flex min-h-11 min-w-11 items-center gap-2 text-sm text-muted transition-colors hover:text-lime focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-lime`}
                 >
                   <span className="font-display text-xs text-lime">
                     {s.index}

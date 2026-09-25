@@ -313,14 +313,18 @@ export default function GrowthScenarioCard({
     scenarioConfig["paid-social-demand"];
   const titleId = `growth-scenario-${study.slug}`;
   const summaryId = `${titleId}-summary`;
+  const flowId = `${titleId}-flow`;
 
   return (
     <article
       className={`${styles.card} ${styles[config.variant]}`}
       tabIndex={0}
       aria-labelledby={titleId}
-      aria-describedby={summaryId}
+      aria-describedby={`${flowId} ${summaryId}`}
     >
+      <p id={flowId} className="sr-only">
+        Strategy flow: {config.steps.join(" to ")}.
+      </p>
       <div className={styles.visual}>
         <div className={styles.visualGrid} aria-hidden="true" />
         <div className={styles.visualHeader}>

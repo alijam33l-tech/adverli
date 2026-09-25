@@ -8,7 +8,7 @@
   --color-line-strong: rgba(255, 255, 255, 0.16);
   --color-cream: #f5f5f2;
   --color-muted: #9c9ca3;
-  --color-faint: #6b6b72;
+  --color-faint: #808087;
   --color-lime: #c8f542;
   --color-lime-dim: #a8d32f;
   /* Chart mark color — validated for the dark surface (OKLCH L band, ≥3:1
@@ -31,6 +31,19 @@ body {
   color: #0a0a0b;
 }
 
+:where(
+  a[href],
+  button,
+  input,
+  select,
+  textarea,
+  summary,
+  [tabindex]:not([tabindex="-1"])
+):focus-visible {
+  outline: 2px solid #c8f542;
+  outline-offset: 3px;
+}
+
 /* Scroll-reveal — .reveal elements fade/rise in when Reveal.tsx adds .is-visible.
    Hidden state only applies under .js so content stays visible without JavaScript. */
 .js .reveal {
@@ -48,6 +61,19 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
   .js .reveal {
     opacity: 1;
     transform: none;

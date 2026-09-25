@@ -61,7 +61,7 @@ export default function ContactPage() {
                 <p>
                   <a
                     href={site.emailHref}
-                    className="text-cream transition-colors hover:text-lime"
+                    className="inline-flex min-h-11 items-center text-cream transition-colors hover:text-lime"
                   >
                     {site.email}
                   </a>
@@ -69,7 +69,7 @@ export default function ContactPage() {
                 <p>
                   <a
                     href={site.phoneHref}
-                    className="text-cream transition-colors hover:text-lime"
+                    className="inline-flex min-h-11 items-center text-cream transition-colors hover:text-lime"
                   >
                     {site.phone}
                   </a>

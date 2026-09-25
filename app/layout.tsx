@@ -51,8 +51,16 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <noscript>
           <style>{`.js .reveal { opacity: 1; transform: none; }`}</style>
         </noscript>
+        <a
+          href="#main-content"
+          className="fixed left-4 top-4 z-[100] -translate-y-24 rounded-full bg-lime px-5 py-3 font-display text-sm font-medium text-ink shadow-xl transition-transform focus:translate-y-0"
+        >
+          Skip to main content
+        </a>
         <Header />
-        <main className="flex-1 pt-16">{children}</main>
+        <main id="main-content" tabIndex={-1} className="flex-1 pt-16">
+          {children}
+        </main>
         <Footer />
       </body>
     </html>

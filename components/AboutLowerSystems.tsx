@@ -77,7 +77,7 @@ export function ConnectedOperatingSystem() {
     >
       <figcaption className={styles.connectedIntro}>
         <p>Connected delivery</p>
-        <h3 id="connected-system-title">One team. One operating system.</h3>
+        <h2 id="connected-system-title">One team. One operating system.</h2>
         <p id="connected-system-description">
           Engagements use a clear cadence, reporting standard, and decision
           process shaped around the work.

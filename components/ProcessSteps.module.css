@@ -124,7 +124,7 @@
 }
 
 .number {
-  color: #74747c;
+  color: #85858c;
   font-family: var(--font-space-grotesk), sans-serif;
   font-size: 0.67rem;
   font-weight: 600;
@@ -173,7 +173,7 @@
 }
 
 .system:has(.stage:is(:hover, :focus-visible)) .stageItem:first-child .number {
-  color: #74747c;
+  color: #85858c;
   text-shadow: none;
 }
 
