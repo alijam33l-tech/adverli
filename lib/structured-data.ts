@@ -1,5 +1,6 @@
 import type { Service } from "@/lib/services";
-import { absoluteUrl, site } from "@/lib/site";
+import type { InsightArticle } from "@/lib/insights";
+import { absoluteUrl, defaultSocialImage, site } from "@/lib/site";
 
 const organizationId = `${site.url}/#organization`;
 const websiteId = `${site.url}/#website`;
@@ -70,6 +71,62 @@ export function createServiceStructuredData(service: Service) {
             position: 2,
             name: service.title,
             item: serviceUrl,
+          },
+        ],
+      },
+    ],
+  };
+}
+
+export function createArticleStructuredData(
+  article: InsightArticle,
+  wordCount: number,
+) {
+  const articleUrl = absoluteUrl(`/insights/${article.slug}`);
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "@id": `${articleUrl}#article`,
+        headline: article.title,
+        description: article.description,
+        articleSection: article.category,
+        datePublished: article.publishedAt,
+        dateModified: article.updatedAt,
+        inLanguage: "en",
+        url: articleUrl,
+        mainEntityOfPage: {
+          "@type": "WebPage",
+          "@id": articleUrl,
+        },
+        image: defaultSocialImage.url,
+        wordCount,
+        author: organizationReference,
+        publisher: organizationReference,
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${articleUrl}#breadcrumb`,
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: absoluteUrl("/"),
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Insights",
+            item: absoluteUrl("/insights"),
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: article.title,
+            item: articleUrl,
           },
         ],
       },

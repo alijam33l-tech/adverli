@@ -76,7 +76,7 @@ export default function Header() {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:px-8">
         <Wordmark />
 
-        <nav aria-label="Main" className="hidden items-center gap-1 lg:flex">
+        <nav aria-label="Main" className="hidden items-center gap-1 xl:flex">
           {nav.map((item) =>
             item.label === "Services" ? (
               <div key={item.href} className="group relative">
@@ -99,29 +99,29 @@ export default function Header() {
                   </span>
                 </Link>
                 {/* Dropdown — hover/focus-within keeps it open */}
-                <div className="invisible absolute left-1/2 top-full w-72 -translate-x-1/2 pt-3 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
-                  <div className="overflow-hidden rounded-2xl border border-line bg-surface p-2 shadow-2xl shadow-black/50">
-                    {services.map((s) => (
-                      <Link
-                        key={s.slug}
-                        href={`/services/${s.slug}`}
-                        prefetch={false}
-                        aria-current={
-                          pathname === `/services/${s.slug}` ? "page" : undefined
-                        }
-                        className="flex items-baseline gap-3 rounded-xl px-4 py-3 transition-colors hover:bg-surface-2"
-                      >
-                        <span className="font-display text-xs text-lime">
-                          {s.index}
-                        </span>
-                        <span className="text-sm text-cream">{s.title}</span>
-                      </Link>
-                    ))}
-                    <div className="mt-1 border-t border-line px-4 py-3">
+                <div className="invisible absolute left-1/2 top-full w-[48rem] -translate-x-1/2 pt-2 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+                  <div className="overflow-hidden rounded-2xl border border-line bg-surface shadow-2xl shadow-black/50">
+                    <div className="grid grid-cols-6 gap-1 p-1">
+                      {services.map((s) => (
+                        <Link
+                          key={s.slug}
+                          href={`/services/${s.slug}`}
+                          prefetch={false}
+                          aria-current={
+                            pathname === `/services/${s.slug}` ? "page" : undefined
+                          }
+                          className="flex items-baseline gap-3 rounded-xl px-3 py-1.5 transition-colors hover:bg-surface-2"
+                        >
+                          <span className="font-display text-xs text-lime">
+                            {s.index}
+                          </span>
+                          <span className="text-sm text-cream">{s.title}</span>
+                        </Link>
+                      ))}
                       <Link
                         href="/services"
                         prefetch={false}
-                        className="text-xs font-medium uppercase tracking-widest text-muted transition-colors hover:text-lime"
+                        className="flex items-center justify-center rounded-xl border-l border-line px-2 py-1.5 text-center text-xs font-medium uppercase tracking-widest text-muted transition-colors hover:bg-surface-2 hover:text-lime"
                       >
                         All services →
                       </Link>
@@ -147,7 +147,7 @@ export default function Header() {
           )}
         </nav>
 
-        <div className="hidden lg:block">
+        <div className="hidden xl:block">
           <Link
             href="/contact"
             prefetch={false}
@@ -164,7 +164,7 @@ export default function Header() {
           aria-expanded={mobileOpen}
           aria-controls="mobile-navigation"
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
-          className="flex h-11 w-11 flex-col items-center justify-center gap-1.5 lg:hidden"
+          className="flex h-11 w-11 flex-col items-center justify-center gap-1.5 xl:hidden"
         >
           <span
             className={`h-px w-6 bg-cream transition-transform ${
@@ -189,7 +189,7 @@ export default function Header() {
           role="dialog"
           aria-modal="true"
           aria-label="Site navigation"
-          className="fixed inset-x-0 bottom-0 top-16 z-40 overflow-y-auto bg-ink lg:hidden"
+          className="fixed inset-x-0 bottom-0 top-16 z-40 overflow-y-auto bg-ink xl:hidden"
         >
           <nav aria-label="Mobile" className="px-6 py-8">
             <p className="text-xs font-medium uppercase tracking-[0.2em] text-faint">

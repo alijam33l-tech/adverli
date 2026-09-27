@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { insights } from "@/lib/insights";
 import { services } from "@/lib/services";
 import { absoluteUrl } from "@/lib/site";
 
@@ -7,6 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "",
     "/services",
     "/work",
+    "/insights",
     "/about",
     "/contact",
     "/privacy",
@@ -24,5 +26,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   }));
 
-  return [...staticRoutes, ...serviceRoutes];
+  const insightRoutes = insights.map((article) => ({
+    url: absoluteUrl(`/insights/${article.slug}`),
+    lastModified: new Date(`${article.updatedAt}T00:00:00Z`),
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  }));
+
+  return [...staticRoutes, ...serviceRoutes, ...insightRoutes];
 }

@@ -5,6 +5,7 @@ import { services } from "@/lib/services";
 const companyLinks = [
   { label: "About", href: "/about" },
   { label: "Work", href: "/work" },
+  { label: "Insights", href: "/insights" },
   { label: "Services", href: "/services" },
   { label: "Contact", href: "/contact" },
 ];
