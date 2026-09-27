@@ -149,10 +149,19 @@ export default async function InsightArticlePage(
           <p className={styles.sectionLabel}>Continue reading</p>
           <h2 id="related-insights">Related insights</h2>
           {relatedInsights.length > 0 ? (
-            <div>
+            <div className={styles.relatedInsightList}>
               {relatedInsights.map((related) => (
-                <Link key={related.slug} href={`/insights/${related.slug}`}>
-                  {related.title}
+                <Link
+                  key={related.slug}
+                  href={`/insights/${related.slug}`}
+                  className={styles.relatedInsightLink}
+                >
+                  <span>
+                    {related.category} · {getInsightReadingTime(related)} min
+                    read
+                  </span>
+                  <strong>{related.title}</strong>
+                  <span aria-hidden>Read insight →</span>
                 </Link>
               ))}
             </div>

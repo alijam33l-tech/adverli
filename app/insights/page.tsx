@@ -17,7 +17,7 @@ export const metadata: Metadata = createPageMetadata({
 });
 
 export default function InsightsPage() {
-  const article = insights[0];
+  const [article, ...earlierArticles] = insights;
   const readingTime = getInsightReadingTime(article);
 
   return (
@@ -48,7 +48,9 @@ export default function InsightsPage() {
             <p className={styles.sectionLabel}>Published thinking</p>
             <h2 id="latest-insight">Latest insight</h2>
           </div>
-          <p className={styles.landingCount}>01 article</p>
+          <p className={styles.landingCount}>
+            {String(insights.length).padStart(2, "0")} articles
+          </p>
         </div>
 
         <Link href={`/insights/${article.slug}`} className={styles.feature}>
@@ -68,7 +70,7 @@ export default function InsightsPage() {
             <div className={styles.visualFrame}>
               <div className={styles.visualPrompt}>
                 <span>01 / Question</span>
-                <strong>What is AEO?</strong>
+                <strong>{article.shortTitle}</strong>
               </div>
               <div className={styles.visualPath}>
                 <i />
@@ -89,6 +91,36 @@ export default function InsightsPage() {
             </div>
           </div>
         </Link>
+
+        {earlierArticles.length > 0 && (
+          <div className={styles.articleList}>
+            {earlierArticles.map((earlierArticle, index) => (
+              <Link
+                key={earlierArticle.slug}
+                href={`/insights/${earlierArticle.slug}`}
+                className={styles.articleRow}
+              >
+                <span className={styles.articleIndex} aria-hidden="true">
+                  {String(index + 2).padStart(2, "0")}
+                </span>
+                <div>
+                  <div className={styles.featureMeta}>
+                    <span>{earlierArticle.category}</span>
+                    <span>{formatInsightDate(earlierArticle.publishedAt)}</span>
+                    <span>
+                      {getInsightReadingTime(earlierArticle)} min read
+                    </span>
+                  </div>
+                  <h3>{earlierArticle.title}</h3>
+                  <p>{earlierArticle.description}</p>
+                </div>
+                <span className={styles.articleRowAction}>
+                  Read <span aria-hidden>→</span>
+                </span>
+              </Link>
+            ))}
+          </div>
+        )}
       </section>
     </>
   );

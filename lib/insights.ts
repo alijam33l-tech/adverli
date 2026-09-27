@@ -95,7 +95,7 @@ const whatIsAeo: InsightArticle = {
   intro:
     "Answer Engine Optimization (AEO) is the practice of structuring and improving content so search engines and AI-powered answer systems can understand it, retrieve it, and use it when answering relevant questions. It combines clear writing, useful subject depth, sound technical foundations, and explicit context—without replacing the fundamentals of SEO.",
   publishedAt: "2026-09-25",
-  updatedAt: "2026-09-25",
+  updatedAt: "2026-09-26",
   sections: [
     {
       id: "what-aeo-means",
@@ -523,10 +523,550 @@ const whatIsAeo: InsightArticle = {
         "Create fast, accessible content architecture that makes important information clear to people and machines.",
     },
   ],
-  relatedInsightSlugs: [],
+  relatedInsightSlugs: ["what-is-geo"],
 };
 
-export const insights: readonly InsightArticle[] = [whatIsAeo];
+const whatIsGeo: InsightArticle = {
+  slug: "what-is-geo",
+  title: "What Is GEO? Generative Engine Optimization Explained",
+  shortTitle: "What is GEO?",
+  category: "AI Search",
+  description:
+    "A practical guide to Generative Engine Optimization, how GEO relates to SEO and AEO, and what businesses can realistically do to improve AI-search discoverability.",
+  intro:
+    "Generative Engine Optimization (GEO) is the practice of improving content, site structure, entity clarity, technical accessibility, and authority signals so generative search and AI systems can better understand and retrieve relevant information when producing answers. GEO can reduce ambiguity and improve a site's readiness for AI-led discovery, but it cannot force an AI system to cite, rank, recommend, or send traffic to a website.",
+  publishedAt: "2026-09-26",
+  updatedAt: "2026-09-26",
+  sections: [
+    {
+      id: "what-geo-means",
+      title: "What GEO means",
+      blocks: [
+        {
+          type: "paragraph",
+          content:
+            "GEO stands for Generative Engine Optimization. It describes work that helps a business's information become clearer, more accessible, and easier to place in context when a generative system retrieves sources or assembles an answer.",
+        },
+        {
+          type: "paragraph",
+          content:
+            "The practice extends beyond writing short answers. A system may need to understand what an organization is, how its services relate, which page is authoritative for a topic, whether the information is current, and whether the website can be accessed and interpreted reliably. Content quality, technical SEO, site architecture, internal links, structured data, and evidence can all contribute to that understanding.",
+        },
+        {
+          type: "paragraph",
+          content:
+            "GEO is therefore best treated as an operating lens rather than a trick or a separate publishing format. It asks whether useful information is explicit enough for people and machines to interpret, whether the site supports that information consistently, and whether the business has supplied credible reasons to trust it.",
+        },
+        {
+          type: "keyTakeaway",
+          title: "GEO improves clarity and retrieval readiness, not control over AI outputs.",
+          content:
+            "A business can strengthen the information and technical signals it publishes. It cannot dictate which sources a third-party AI system retrieves, cites, summarizes, or recommends.",
+        },
+      ],
+    },
+    {
+      id: "why-geo-has-become-important",
+      title: "Why GEO has become important",
+      blocks: [
+        {
+          type: "paragraph",
+          content:
+            "Discovery is spreading across more interfaces. People still use traditional search results, but they also ask conversational questions, request comparisons, and use AI assistants to summarize a subject or help frame a decision. In some experiences, the generated response appears before or alongside the familiar list of links.",
+        },
+        {
+          type: "paragraph",
+          content:
+            "This changes how businesses should think about visibility. A page may still need to rank and earn a click, but the individual facts, explanations, and relationships inside that page may also need to stand on their own when retrieved as part of a generated answer. Vague positioning and disconnected content make that task harder for both prospective customers and machines.",
+        },
+        {
+          type: "paragraph",
+          content:
+            "GEO has become important because it gives businesses a practical way to examine this broader discovery environment. The useful response is not to chase every interface. It is to create a strong, maintainable source of truth that supports search visibility, AI retrieval, sales conversations, and customer understanding at the same time.",
+        },
+      ],
+    },
+    {
+      id: "generative-search-and-traditional-search",
+      title: "How generative search differs from traditional search",
+      blocks: [
+        {
+          type: "paragraph",
+          content:
+            "Traditional search usually presents a ranked set of pages, features, and other results in response to a query. The visitor evaluates those options and chooses where to go. Generative search may instead synthesize a response, present supporting sources, ask for clarification, or combine retrieval with a conversational interface.",
+        },
+        {
+          type: "paragraph",
+          content:
+            "That does not mean generative systems all work the same way. Products can use different indexes, retrieval systems, models, data partnerships, citation patterns, and freshness controls. The same question can produce different sources or wording across platforms, users, locations, and points in time.",
+        },
+        {
+          type: "paragraph",
+          content:
+            "The practical distinction is that a traditional result often asks a page to win attention, while a generated response may ask a passage or fact to contribute to an answer. Both still depend on relevance, access, clarity, and trust. GEO pays closer attention to whether those qualities remain intact when information is retrieved outside the full page experience.",
+        },
+      ],
+    },
+    {
+      id: "how-geo-relates-to-seo",
+      title: "How GEO relates to SEO",
+      blocks: [
+        {
+          type: "paragraph",
+          content: [
+            "GEO depends on the foundations of ",
+            { type: "link", text: "strong SEO", href: "/services/seo" },
+            ". Search and AI systems cannot make reliable use of a page they cannot access, render, index, or understand. Clear information architecture, relevant content, internal linking, technical health, and genuine authority remain essential.",
+          ],
+        },
+        {
+          type: "paragraph",
+          content:
+            "SEO commonly evaluates whether a page can earn qualified visibility for relevant searches. GEO adds another question: if a generative system is assembling a response, can it identify the right information, understand what the information refers to, and preserve the qualifications that make the answer accurate?",
+        },
+        {
+          type: "paragraph",
+          content:
+            "These are overlapping disciplines, not competing ones. GEO without SEO can produce well-written information that remains difficult to discover. SEO without clear, answer-ready information can produce visibility that does not fully communicate expertise. Businesses usually benefit from improving the shared foundation rather than creating separate content for each label.",
+        },
+      ],
+    },
+    {
+      id: "how-geo-relates-to-aeo",
+      title: "How GEO relates to AEO",
+      blocks: [
+        {
+          type: "paragraph",
+          content: [
+            "GEO and ",
+            {
+              type: "link",
+              text: "Answer Engine Optimization",
+              href: "/insights/what-is-aeo",
+            },
+            " share a focus on clear, retrievable information. Both encourage direct answers, explicit context, useful structure, and technical accessibility. Neither replaces SEO, and neither guarantees that a system will use a page.",
+          ],
+        },
+        {
+          type: "paragraph",
+          content:
+            "A practical distinction is one of scope. AEO often concentrates on how effectively content answers a specific question. GEO can be used more broadly to examine how a business, its entities, its topical authority, and its supporting evidence are represented across a site for generative retrieval and synthesis.",
+        },
+        {
+          type: "paragraph",
+          content:
+            "There is no single universally agreed industry boundary between the two terms. Some teams use them interchangeably; others define one as a subset of the other. The labels matter less than the work: publish accurate information, make relationships explicit, maintain technical access, and help a real audience make a better decision.",
+        },
+      ],
+    },
+    {
+      id: "elements-of-strong-geo",
+      title: "The main elements of strong GEO",
+      blocks: [
+        {
+          type: "paragraph",
+          content:
+            "Strong GEO comes from several connected fundamentals. None is a secret ranking factor, and no single item can guarantee visibility. Together, they make a business's information easier to discover, interpret, and evaluate.",
+        },
+        {
+          type: "subheading",
+          id: "clear-topical-focus",
+          title: "Clear topical focus",
+        },
+        {
+          type: "paragraph",
+          content:
+            "Give each important page a defined purpose. A focused page should make its subject, audience, and intended decision clear instead of mixing several unrelated themes under a broad marketing headline.",
+        },
+        {
+          type: "subheading",
+          id: "direct-useful-answers",
+          title: "Direct, useful answers",
+        },
+        {
+          type: "paragraph",
+          content:
+            "Answer the central question near the point where it is introduced, then add the qualifications, examples, and detail needed to make that answer dependable. Direct language should improve comprehension, not remove necessary nuance.",
+        },
+        {
+          type: "subheading",
+          id: "geo-entity-clarity",
+          title: "Entity clarity",
+        },
+        {
+          type: "paragraph",
+          content:
+            "Use consistent names for the organization, services, products, people, places, and concepts discussed. Explain how they relate. Clear entity relationships reduce the risk that a reader or system confuses a service with a methodology, product, or separate company.",
+        },
+        {
+          type: "subheading",
+          id: "strong-site-architecture",
+          title: "Strong site architecture",
+        },
+        {
+          type: "paragraph",
+          content:
+            "Organize important subjects into stable, purposeful pages. A coherent hierarchy helps visitors understand where they are and helps retrieval systems locate the most relevant source instead of choosing between several overlapping pages.",
+        },
+        {
+          type: "subheading",
+          id: "geo-internal-linking",
+          title: "Contextual internal linking",
+        },
+        {
+          type: "paragraph",
+          content:
+            "Use descriptive links to connect definitions, supporting evidence, services, and next steps. Internal links communicate relationships across the site and help readers continue from an explanation to the page that resolves their next question.",
+        },
+        {
+          type: "subheading",
+          id: "geo-technical-accessibility",
+          title: "Technical accessibility and indexability",
+        },
+        {
+          type: "paragraph",
+          content: [
+            "Important content should have stable URLs, render reliably, work across devices, and avoid accidental crawling or indexing barriers. Good ",
+            {
+              type: "link",
+              text: "website development",
+              href: "/services/website-development",
+            },
+            " gives content a fast, semantic, and accessible technical foundation.",
+          ],
+        },
+        {
+          type: "subheading",
+          id: "geo-structured-data",
+          title: "Structured data where appropriate",
+        },
+        {
+          type: "paragraph",
+          content:
+            "Valid structured data can identify an article, organization, service, breadcrumb trail, or other supported entity in a machine-readable format. It should match visible content and established facts. Markup is context, not a guarantee of a result or citation.",
+        },
+        {
+          type: "subheading",
+          id: "trust-and-evidence",
+          title: "Trust and evidence",
+        },
+        {
+          type: "paragraph",
+          content:
+            "Make claims specific enough to evaluate and support important factual statements with appropriate evidence. Identify the responsible organization, distinguish fact from opinion, and avoid inflated certainty. Trust grows from consistency and verifiability rather than confident wording alone.",
+        },
+        {
+          type: "subheading",
+          id: "freshness-where-relevant",
+          title: "Freshness where relevant",
+        },
+        {
+          type: "paragraph",
+          content:
+            "Review information that can change, including product details, processes, regulations, availability, and platform behavior. Not every evergreen page needs frequent rewriting, but time-sensitive claims should not remain published without a clear maintenance process.",
+        },
+        {
+          type: "subheading",
+          id: "original-useful-information",
+          title: "Original, useful information",
+        },
+        {
+          type: "paragraph",
+          content:
+            "Publish information the business is genuinely positioned to provide: a clear method, a first-hand explanation, a useful framework, product documentation, expert analysis, or appropriately supported findings. Repeating a generic summary gives systems and buyers little reason to prefer one source over another.",
+        },
+      ],
+    },
+    {
+      id: "geo-vs-traditional-seo",
+      title: "GEO vs traditional SEO",
+      blocks: [
+        {
+          type: "paragraph",
+          content:
+            "GEO and traditional SEO share more foundations than they separate. The comparison below describes their typical emphasis, not a rigid division between two independent programs.",
+        },
+        {
+          type: "table",
+          caption: "A practical comparison of traditional SEO and GEO",
+          columns: ["Dimension", "Traditional SEO", "GEO"],
+          rows: [
+            [
+              "Primary emphasis",
+              "Earning relevant organic visibility for pages",
+              "Improving readiness for generative retrieval and synthesis",
+            ],
+            [
+              "Typical experience",
+              "A results page that helps a user choose a destination",
+              "A generated response that may summarize and cite sources",
+            ],
+            [
+              "Content focus",
+              "Search intent, relevance, quality, authority, and usefulness",
+              "The same qualities, with extra attention to explicit context and retrievable facts",
+            ],
+            [
+              "Site foundation",
+              "Crawlability, indexability, performance, and architecture",
+              "The same foundation, plus consistent entity and source relationships",
+            ],
+            [
+              "Useful measurement",
+              "Qualified visibility, visits, engagement, and business outcomes",
+              "Observable AI visibility and referrals alongside the same business outcomes",
+            ],
+            [
+              "Guarantee",
+              "No guaranteed ranking",
+              "No guaranteed inclusion, citation, recommendation, or traffic",
+            ],
+          ],
+        },
+        {
+          type: "paragraph",
+          content:
+            "A strong page can support both disciplines. It can earn a traditional result, contribute a useful passage to a generated response, help a buyer evaluate the business, and support a conversion after the visit. The commercial purpose should remain more important than the optimization label.",
+        },
+      ],
+    },
+    {
+      id: "geo-vs-aeo",
+      title: "GEO vs AEO",
+      blocks: [
+        {
+          type: "paragraph",
+          content:
+            "AEO commonly emphasizes the answer itself: whether content addresses a clear question in a form that people and answer systems can understand and retrieve. GEO commonly emphasizes the wider environment around that answer, including the source's topical coverage, entity relationships, evidence, technical access, and suitability for generative synthesis.",
+        },
+        {
+          type: "paragraph",
+          content:
+            "The overlap is substantial. A direct answer with no supporting context may be easy to extract but hard to trust. A technically strong and authoritative site with vague explanations may be discoverable but difficult to use in a precise response. Effective work connects answer clarity with source quality.",
+        },
+        {
+          type: "paragraph",
+          content:
+            "Because the terminology is still used differently across the industry, businesses should be cautious about rigid definitions. GEO, AEO, and SEO are not interchangeable, but they should not become isolated workstreams that produce duplicate pages or conflicting recommendations.",
+        },
+      ],
+    },
+    {
+      id: "practical-geo-example",
+      title: "A practical GEO example",
+      blocks: [
+        {
+          type: "paragraph",
+          content:
+            "Imagine a software company that offers a workflow automation platform. Its homepage promises to transform operations, while separate pages mention integrations, approvals, reporting, and security. The language sounds polished, but the site never clearly defines the product category, intended users, supported workflows, or relationship between its features.",
+        },
+        {
+          type: "editorialCallout",
+          label: "Before",
+          title: "A polished site with unclear entities and fragmented answers",
+          content:
+            "Important facts are scattered across broad marketing pages. Several pages target similar themes, internal links use vague labels, and product descriptions change from one page to another. A buyer—and a retrieval system—must infer too much.",
+        },
+        {
+          type: "paragraph",
+          content:
+            "A GEO-informed improvement would establish a consistent description of the company and product, assign a clear purpose to each core page, and connect supporting information through descriptive links. Product pages could answer common evaluation questions directly, while documentation and evidence would support claims about integrations, security, and implementation.",
+        },
+        {
+          type: "editorialCallout",
+          label: "After",
+          title: "A connected source of truth for buyers and retrieval systems",
+          content:
+            "The revised site explains what the platform is, who it serves, how its capabilities relate, and where supporting details live. It becomes easier to navigate and interpret without implying that any AI platform must cite or recommend it.",
+        },
+      ],
+    },
+    {
+      id: "how-businesses-should-approach-geo",
+      title: "How businesses should approach GEO",
+      blocks: [
+        {
+          type: "paragraph",
+          content:
+            "GEO should start with customer questions and business priorities, not a request to mention the brand more often. Focus first on subjects where the organization has useful knowledge and where clearer discovery can support a meaningful decision.",
+        },
+        {
+          type: "list",
+          ordered: true,
+          items: [
+            [
+              { type: "strong", text: "Choose commercially relevant topics. " },
+              "Identify the questions, comparisons, and decisions that matter to customers and that the business can answer credibly.",
+            ],
+            [
+              { type: "strong", text: "Audit the current source of truth. " },
+              "Check whether the website clearly explains the organization, its services or products, and the relationships between core topics.",
+            ],
+            [
+              { type: "strong", text: "Resolve ambiguity before adding volume. " },
+              "Consolidate overlapping pages, define key terms, align descriptions, and close important information gaps before publishing more content.",
+            ],
+            [
+              { type: "strong", text: "Improve the technical and linking system. " },
+              "Strengthen access, indexability, page performance, semantic markup, internal links, and structured data where those changes clarify real content.",
+            ],
+            [
+              { type: "strong", text: "Publish useful original information. " },
+              "Add first-hand explanations, documentation, examples, or evidence when the organization can support them accurately.",
+            ],
+            [
+              { type: "strong", text: "Measure discovery and business value together. " },
+              "Monitor observable AI mentions or referrals alongside organic visibility, engagement, enquiries, assisted conversions, and sales feedback.",
+            ],
+            [
+              { type: "strong", text: "Maintain the knowledge base. " },
+              "Review time-sensitive facts and update important pages as the offer, market, and discovery environment change.",
+            ],
+          ],
+        },
+        {
+          type: "paragraph",
+          content:
+            "This creates a durable program rather than a one-time GEO project. The same improvements can make the site more useful for customers, traditional search, AI retrieval, sales teams, and future content development.",
+        },
+      ],
+    },
+    {
+      id: "what-geo-cannot-guarantee",
+      title: "What GEO cannot guarantee",
+      blocks: [
+        {
+          type: "paragraph",
+          content:
+            "GEO can improve the quality, clarity, and technical readiness of the information a business publishes. It cannot control a third-party model, index, interface, or response. Responsible planning should keep that boundary explicit.",
+        },
+        {
+          type: "list",
+          items: [
+            [
+              { type: "strong", text: "Inclusion in AI answers. " },
+              "A relevant page may still be omitted from a generated response.",
+            ],
+            [
+              { type: "strong", text: "Citations. " },
+              "A platform may answer without citations or select a different source.",
+            ],
+            [
+              { type: "strong", text: "Rankings. " },
+              "GEO does not secure a traditional or generative ranking position.",
+            ],
+            [
+              { type: "strong", text: "Recommendations. " },
+              "No optimization can require an independent system to recommend a business.",
+            ],
+            [
+              { type: "strong", text: "Traffic. " },
+              "Visibility inside an answer may not produce a visit, and referral behavior can vary by platform and query.",
+            ],
+          ],
+        },
+        {
+          type: "editorialCallout",
+          label: "Reality check",
+          title: "Optimization improves the source, not control over the answer",
+          content:
+            "Treat promises of guaranteed citations or recommendations with caution. The defensible objective is to make accurate information more useful and discoverable while measuring the business outcomes that can actually be observed.",
+        },
+      ],
+    },
+    {
+      id: "geo-and-ai-search-platforms",
+      title: "GEO and AI search platforms",
+      blocks: [
+        {
+          type: "paragraph",
+          content:
+            "AI search platforms can draw on different combinations of web indexes, retrieval systems, licensed sources, model knowledge, and contextual signals. Some show citations consistently, some show them selectively, and some provide limited visibility into why a source appeared. These behaviors can change as products evolve.",
+        },
+        {
+          type: "paragraph",
+          content:
+            "Businesses should avoid claims about secret ranking systems unless a platform has documented them. Public technical guidance, crawler access, referral data, source observations, and controlled testing can inform decisions, but they do not reveal every factor used to produce an answer.",
+        },
+        {
+          type: "paragraph",
+          content:
+            "The practical response is to maintain a strong primary website, publish facts the organization can defend, and monitor how important topics appear across relevant experiences. Platform-specific adjustments may be useful when supported by reliable guidance, but they should not fragment the site's core information or weaken the experience for people.",
+        },
+      ],
+    },
+    {
+      id: "frequently-asked-questions",
+      title: "Frequently asked questions",
+      blocks: [],
+    },
+    {
+      id: "final-takeaway",
+      title: "Final takeaway",
+      blocks: [
+        {
+          type: "paragraph",
+          content:
+            "Generative Engine Optimization is the work of making a business's useful information clearer, better connected, technically accessible, and easier to evaluate when generative systems retrieve sources or produce answers. It builds on SEO and overlaps with AEO, while adding attention to entity clarity, source relationships, evidence, and generative discovery.",
+        },
+        {
+          type: "paragraph",
+          content:
+            "The strongest GEO strategy is not a promise to manipulate an AI result. It is a commitment to becoming a more coherent and credible source for the subjects that matter to customers—and to connecting that discoverability with outcomes the business can measure.",
+        },
+      ],
+    },
+  ],
+  faqs: [
+    {
+      question: "Is GEO replacing SEO?",
+      answer:
+        "No. GEO depends on SEO fundamentals such as crawlability, indexability, relevance, site architecture, internal linking, performance, and authority. It adds attention to how clearly information and entity relationships can support generative retrieval and synthesis.",
+    },
+    {
+      question: "Is GEO the same as AEO?",
+      answer:
+        "Not exactly, although the terms overlap and are not defined consistently across the industry. AEO often emphasizes clear answers to specific questions, while GEO can be used more broadly for the source, entity, authority, and technical signals that support generative discovery.",
+    },
+    {
+      question: "Can GEO guarantee citations in AI answers?",
+      answer:
+        "No. A business cannot control which sources an AI system retrieves, cites, or uses at a particular time. GEO can improve clarity and readiness, but it cannot guarantee inclusion, citations, recommendations, rankings, or traffic.",
+    },
+    {
+      question: "Does schema markup guarantee AI visibility?",
+      answer:
+        "No. Valid structured data can clarify what a page and its entities represent, but it does not guarantee a ranking, citation, recommendation, or appearance in a generated answer. It should accurately describe content that visitors can see.",
+    },
+    {
+      question: "Does every business need GEO?",
+      answer:
+        "Not every business needs a separate program carrying the GEO label. Businesses that depend on digital discovery can still benefit from its fundamentals: clear information, coherent architecture, technical access, accurate entity relationships, useful evidence, and content maintenance.",
+    },
+    {
+      question: "How should GEO performance be measured?",
+      answer:
+        "Use a balanced view. Track observable AI citations, mentions, and referral traffic where available, but connect them to qualified visibility, engagement, enquiries, assisted conversions, and sales feedback. Measurement is incomplete, so no single GEO metric should stand in for business value.",
+    },
+  ],
+  relatedServices: [
+    {
+      title: "SEO",
+      href: "/services/seo",
+      description:
+        "Build the technical, content, and authority foundations behind sustainable organic and AI-search discovery.",
+    },
+    {
+      title: "Website Development",
+      href: "/services/website-development",
+      description:
+        "Create fast, accessible information architecture that makes important content clear to people and machines.",
+    },
+  ],
+  relatedInsightSlugs: ["what-is-aeo"],
+};
+
+export const insights: readonly InsightArticle[] = [whatIsGeo, whatIsAeo];
 
 export function getInsight(slug: string) {
   return insights.find((article) => article.slug === slug);
