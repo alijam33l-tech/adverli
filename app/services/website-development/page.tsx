@@ -280,21 +280,84 @@ export default function WebsiteDevelopmentPage() {
               </div>
               <div className={styles.showcaseFrame} aria-hidden="true">
                 <div className={styles.showcaseFrameBar}>
-                  <span />
+                  <div className={styles.showcaseFrameControls}>
+                    <span />
+                    <span />
+                    <span />
+                  </div>
                   <p>Responsive system</p>
-                  <small>DESKTOP / MOBILE</small>
+                  <small>DESKTOP / 12 COL</small>
                 </div>
                 <div className={styles.showcaseFrameBody}>
-                  <span />
-                  <span />
-                  <div><i /><i /><i /></div>
+                  <div className={styles.showcaseSiteNav}>
+                    <span className={styles.showcaseSiteMark}>●</span>
+                    <div>
+                      <span>Overview</span>
+                      <span>Capabilities</span>
+                      <span>Contact</span>
+                    </div>
+                  </div>
+                  <div className={styles.showcaseSiteHero}>
+                    <div>
+                      <span className={styles.showcaseComponentLabel}>
+                        Hero / 01
+                      </span>
+                      <strong>Built for clear decisions.</strong>
+                      <p>
+                        Responsive structure, focused journeys, and a system
+                        ready to evolve.
+                      </p>
+                      <span className={styles.showcaseSiteCta}>
+                        Start a project <i>→</i>
+                      </span>
+                    </div>
+                    <div className={styles.showcaseHeroGraphic}>
+                      <span />
+                      <span />
+                      <span />
+                    </div>
+                  </div>
+                  <div className={styles.showcaseFeatureGrid}>
+                    <div>
+                      <span className={styles.showcaseFeatureIcon}>01</span>
+                      <strong>Clear journeys</strong>
+                      <small>Structure</small>
+                    </div>
+                    <div>
+                      <span className={styles.showcaseFeatureIcon}>02</span>
+                      <strong>Reusable system</strong>
+                      <small>Components</small>
+                    </div>
+                    <div>
+                      <span className={styles.showcaseFeatureIcon}>03</span>
+                      <strong>Connected signal</strong>
+                      <small>Measurement</small>
+                    </div>
+                  </div>
+                  <div className={styles.showcaseStatusStrip}>
+                    <span>Responsive</span>
+                    <span>Accessible</span>
+                    <span>Measurable</span>
+                    <small>System / Ready</small>
+                  </div>
                 </div>
               </div>
               <div className={styles.showcaseMobile} aria-hidden="true">
-                <span />
-                <strong />
-                <strong />
-                <div><i /><i /></div>
+                <div className={styles.showcaseMobileTop}>
+                  <span>●</span>
+                  <i /><i />
+                </div>
+                <span className={styles.showcaseMobileLabel}>Hero / Stack</span>
+                <strong>Built for clear decisions.</strong>
+                <p>Focused journeys, shaped for every screen.</p>
+                <span className={styles.showcaseMobileCta}>Start <i>→</i></span>
+                <div className={styles.showcaseMobileCards}>
+                  <div><span>01</span><strong>Clear journeys</strong></div>
+                  <div><span>02</span><strong>Connected signal</strong></div>
+                </div>
+                <small className={styles.showcaseMobileStatus}>
+                  390 / Stack
+                </small>
               </div>
               <div className={styles.showcaseCaption}>
                 <p>From component logic to customer experience.</p>

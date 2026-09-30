@@ -417,21 +417,57 @@
 .showcasePhoto { object-fit: cover; object-position: center 67%; filter: brightness(0.55) saturate(0.68) contrast(1.13); transform: scale(1.025); transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1), filter 600ms ease; }
 .showcase:hover .showcasePhoto { filter: brightness(0.61) saturate(0.72) contrast(1.1); transform: scale(1.05); }
 .showcaseWash { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(10, 10, 11, 0.72), rgba(10, 10, 11, 0.05) 48%, rgba(10, 10, 11, 0.64)), linear-gradient(0deg, rgba(10, 10, 11, 0.78), transparent 42%); }
-.showcaseFrame { position: absolute; top: 12%; right: 0; width: 48%; min-height: 23rem; border: 1px solid rgba(200, 245, 66, 0.24); background: rgba(10, 10, 11, 0.86); box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.44); }
+.showcaseFrame { position: absolute; top: 8%; right: 0; width: 51%; min-height: 27rem; overflow: hidden; border: 1px solid rgba(200, 245, 66, 0.24); background: rgba(10, 10, 11, 0.9); box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.44); backdrop-filter: blur(10px); }
 .showcaseFrameBar { display: grid; grid-template-columns: auto 1fr auto; gap: 0.8rem; align-items: center; height: 2.5rem; padding-inline: 0.9rem; border-bottom: 1px solid rgba(255, 255, 255, 0.08); color: #85858c; font-size: 0.55rem; letter-spacing: 0.1em; text-transform: uppercase; }
-.showcaseFrameBar > span { width: 0.38rem; height: 0.38rem; border-radius: 50%; background: #c8f542; box-shadow: 0 0 10px rgba(200, 245, 66, 0.45); }
+.showcaseFrameControls { display: flex; gap: 0.28rem; }
+.showcaseFrameControls span { width: 0.32rem; height: 0.32rem; border-radius: 50%; background: rgba(255, 255, 255, 0.18); }
+.showcaseFrameControls span:first-child { background: #c8f542; box-shadow: 0 0 10px rgba(200, 245, 66, 0.4); }
 .showcaseFrameBar small { font-size: inherit; }
-.showcaseFrameBody { display: grid; gap: 1rem; padding: 2.4rem; }
-.showcaseFrameBody > span { display: block; width: 78%; height: 1.3rem; background: rgba(245, 245, 242, 0.84); }
-.showcaseFrameBody > span:nth-child(2) { width: 52%; }
-.showcaseFrameBody > div { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; margin-top: 2.2rem; }
-.showcaseFrameBody i { display: block; min-height: 8rem; border: 1px solid rgba(255, 255, 255, 0.09); background: rgba(255, 255, 255, 0.025); }
-.showcaseMobile { position: absolute; right: 8%; bottom: 4%; z-index: 2; width: 11rem; min-height: 21rem; padding: 2rem 1rem 1rem; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 1.4rem; background: #0c0c0e; box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.5); }
-.showcaseMobile > span { display: block; width: 2rem; height: 0.25rem; margin: -1rem auto 2.5rem; border-radius: 999px; background: rgba(255, 255, 255, 0.2); }
-.showcaseMobile strong { display: block; width: 85%; height: 0.6rem; margin-top: 0.55rem; background: rgba(245, 245, 242, 0.82); }
-.showcaseMobile strong:nth-child(3) { width: 58%; }
-.showcaseMobile div { display: grid; gap: 0.6rem; margin-top: 2rem; }
-.showcaseMobile i { display: block; min-height: 4.1rem; border: 1px solid rgba(200, 245, 66, 0.18); }
+.showcaseFrameBody { display: grid; grid-template-rows: auto 1fr auto auto; min-height: 24.5rem; padding: 0 1.4rem 1rem; background-image: linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px); background-size: 2.75rem 2.75rem; }
+.showcaseSiteNav { display: flex; align-items: center; justify-content: space-between; min-height: 3.15rem; border-bottom: 1px solid rgba(255, 255, 255, 0.07); }
+.showcaseSiteMark { color: #c8f542; font-size: 0.55rem; text-shadow: 0 0 10px rgba(200, 245, 66, 0.45); }
+.showcaseSiteNav > div { display: flex; gap: 1.15rem; color: #929298; font-size: 0.52rem; letter-spacing: 0.05em; }
+.showcaseSiteHero { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(6rem, 0.75fr); gap: 1rem; align-items: center; padding: 1.5rem 0; }
+.showcaseSiteHero > div:first-child { display: flex; flex-direction: column; align-items: flex-start; }
+.showcaseComponentLabel { color: #c8f542; font-size: 0.46rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; }
+.showcaseSiteHero strong { max-width: 10ch; margin-top: 0.55rem; color: #f5f5f2; font-family: var(--font-space-grotesk), sans-serif; font-size: clamp(1.1rem, 1.65vw, 1.55rem); font-weight: 500; line-height: 1.03; letter-spacing: -0.04em; }
+.showcaseSiteHero p { max-width: 17rem; margin-top: 0.55rem; color: #88888f; font-size: 0.54rem; line-height: 1.6; }
+.showcaseSiteCta { display: inline-flex; align-items: center; gap: 0.55rem; margin-top: 0.85rem; padding: 0.48rem 0.7rem; border-radius: 999px; background: #c8f542; color: #0a0a0b; font-size: 0.5rem; font-weight: 700; }
+.showcaseSiteCta i { font-style: normal; }
+.showcaseHeroGraphic { position: relative; display: grid; place-items: center; aspect-ratio: 1.2; border: 1px solid rgba(200, 245, 66, 0.18); background: radial-gradient(circle at center, rgba(200, 245, 66, 0.09), transparent 62%); }
+.showcaseHeroGraphic::before,
+.showcaseHeroGraphic::after { content: ""; position: absolute; border: 1px solid rgba(255, 255, 255, 0.08); }
+.showcaseHeroGraphic::before { inset: 18%; }
+.showcaseHeroGraphic::after { inset: 34%; border-color: rgba(200, 245, 66, 0.28); }
+.showcaseHeroGraphic span { position: absolute; z-index: 1; display: block; background: #c8f542; }
+.showcaseHeroGraphic span:first-child { width: 1.45rem; height: 1.45rem; transform: rotate(45deg); box-shadow: 0 0 22px rgba(200, 245, 66, 0.25); }
+.showcaseHeroGraphic span:nth-child(2),
+.showcaseHeroGraphic span:nth-child(3) { width: 0.28rem; height: 0.28rem; border-radius: 50%; }
+.showcaseHeroGraphic span:nth-child(2) { top: 16%; right: 14%; }
+.showcaseHeroGraphic span:nth-child(3) { bottom: 14%; left: 16%; opacity: 0.45; }
+.showcaseFeatureGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.55rem; }
+.showcaseFeatureGrid > div { min-height: 4.8rem; padding: 0.72rem; border: 1px solid rgba(255, 255, 255, 0.09); background: rgba(15, 15, 17, 0.72); }
+.showcaseFeatureIcon { display: grid; place-items: center; width: 1.1rem; height: 1.1rem; border: 1px solid rgba(200, 245, 66, 0.3); color: #c8f542; font-size: 0.38rem; }
+.showcaseFeatureGrid strong { display: block; margin-top: 0.65rem; color: #d9d9d5; font-family: var(--font-space-grotesk), sans-serif; font-size: 0.58rem; font-weight: 500; }
+.showcaseFeatureGrid small { display: block; margin-top: 0.25rem; color: #73737a; font-size: 0.42rem; letter-spacing: 0.08em; text-transform: uppercase; }
+.showcaseStatusStrip { display: flex; align-items: center; gap: 0.8rem; margin-top: 0.65rem; padding-top: 0.65rem; border-top: 1px solid rgba(255, 255, 255, 0.07); color: #85858c; font-size: 0.43rem; letter-spacing: 0.08em; text-transform: uppercase; }
+.showcaseStatusStrip > span { display: flex; align-items: center; gap: 0.3rem; }
+.showcaseStatusStrip > span::before { content: ""; width: 0.2rem; height: 0.2rem; border-radius: 50%; background: #c8f542; }
+.showcaseStatusStrip small { margin-left: auto; color: #c8f542; font-size: inherit; }
+.showcaseMobile { position: absolute; right: 8%; bottom: 2%; z-index: 2; width: 11rem; min-height: 22.5rem; padding: 1rem 0.85rem 0.75rem; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 1.4rem; background: rgba(12, 12, 14, 0.96); box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.5); }
+.showcaseMobileTop { display: grid; grid-template-columns: 1fr auto auto; gap: 0.24rem; align-items: center; padding-bottom: 0.65rem; border-bottom: 1px solid rgba(255, 255, 255, 0.07); }
+.showcaseMobileTop span { color: #c8f542; font-size: 0.45rem; }
+.showcaseMobileTop i { display: block; width: 0.7rem; height: 1px; background: rgba(255, 255, 255, 0.28); }
+.showcaseMobileLabel { display: block; margin-top: 1rem; color: #c8f542; font-size: 0.37rem; font-weight: 600; letter-spacing: 0.13em; text-transform: uppercase; }
+.showcaseMobile > strong { display: block; max-width: 8ch; margin-top: 0.45rem; color: #f5f5f2; font-family: var(--font-space-grotesk), sans-serif; font-size: 0.92rem; font-weight: 500; line-height: 1.04; letter-spacing: -0.04em; }
+.showcaseMobile > p { margin-top: 0.5rem; color: #85858c; font-size: 0.43rem; line-height: 1.5; }
+.showcaseMobileCta { display: inline-flex; gap: 0.35rem; align-items: center; margin-top: 0.7rem; padding: 0.38rem 0.55rem; border-radius: 999px; background: #c8f542; color: #0a0a0b; font-size: 0.42rem; font-weight: 700; }
+.showcaseMobileCta i { font-style: normal; }
+.showcaseMobileCards { display: grid; gap: 0.45rem; margin-top: 0.85rem; }
+.showcaseMobileCards > div { display: grid; grid-template-columns: auto 1fr; gap: 0.55rem; align-items: center; min-height: 2.6rem; padding: 0.45rem; border: 1px solid rgba(200, 245, 66, 0.16); background: rgba(255, 255, 255, 0.018); }
+.showcaseMobileCards span { color: #c8f542; font-size: 0.36rem; }
+.showcaseMobileCards strong { color: #c5c5c2; font-family: var(--font-space-grotesk), sans-serif; font-size: 0.48rem; font-weight: 500; }
+.showcaseMobileStatus { display: block; margin-top: 0.65rem; color: #68686f; font-size: 0.34rem; letter-spacing: 0.12em; text-transform: uppercase; }
 .showcaseCaption { position: absolute; bottom: 4rem; left: 4rem; z-index: 2; max-width: 28rem; }
 .showcaseCaption p { color: #f5f5f2; font-family: var(--font-space-grotesk), sans-serif; font-size: clamp(1.8rem, 3vw, 3rem); line-height: 1.08; letter-spacing: -0.04em; }
 .showcaseCaption span { display: block; max-width: 24rem; margin-top: 1rem; color: #a7a7ad; font-size: 0.82rem; line-height: 1.6; }
@@ -503,7 +539,7 @@
   .capabilityHeader > p:last-child { grid-column: auto; }
   .capabilityRow { grid-template-columns: 0.7fr 1.3fr; }
   .showcase { min-height: 40rem; }
-  .showcaseFrame { width: 55%; }
+  .showcaseFrame { width: 58%; }
   .showcaseCaption { bottom: 3rem; left: 2.5rem; }
   .outcomesHeading,
   .relatedHeader { grid-template-columns: 1fr; gap: 2rem; }
@@ -566,14 +602,34 @@
   .showcase { min-height: 35rem; }
   .showcaseImage { inset: 0; clip-path: polygon(0 0, 90% 0, 100% 9%, 100% 100%, 0 100%); }
   .showcasePhoto { object-position: 49% 68%; }
-  .showcaseFrame { top: 10%; right: -7%; width: 74%; min-height: 16rem; }
+  .showcaseFrame { top: 8%; right: 0; width: 78%; min-height: 18rem; }
   .showcaseFrameBar small { display: none; }
-  .showcaseFrameBody { padding: 1.4rem; }
-  .showcaseFrameBody > div { margin-top: 0.8rem; }
-  .showcaseFrameBody i { min-height: 4rem; }
-  .showcaseMobile { right: 5%; bottom: 18%; width: 7.5rem; min-height: 14rem; padding: 1.4rem 0.7rem 0.7rem; }
-  .showcaseMobile > span { margin-bottom: 1.5rem; }
-  .showcaseMobile i { min-height: 2.2rem; }
+  .showcaseFrameBody { min-height: 15.5rem; padding: 0 0.8rem 0.65rem; background-size: 1.8rem 1.8rem; }
+  .showcaseSiteNav { min-height: 2.3rem; }
+  .showcaseSiteNav > div { gap: 0.65rem; font-size: 0.37rem; }
+  .showcaseSiteHero { grid-template-columns: 1.2fr 0.8fr; gap: 0.55rem; padding: 0.8rem 0; }
+  .showcaseSiteHero strong { font-size: 0.92rem; }
+  .showcaseSiteHero p { max-width: 10rem; margin-top: 0.35rem; font-size: 0.4rem; }
+  .showcaseSiteCta { margin-top: 0.5rem; padding: 0.32rem 0.48rem; font-size: 0.36rem; }
+  .showcaseComponentLabel { font-size: 0.32rem; }
+  .showcaseHeroGraphic span:first-child { width: 0.85rem; height: 0.85rem; }
+  .showcaseFeatureGrid { gap: 0.3rem; }
+  .showcaseFeatureGrid > div { min-height: 3.3rem; padding: 0.38rem; }
+  .showcaseFeatureIcon { width: 0.75rem; height: 0.75rem; font-size: 0.28rem; }
+  .showcaseFeatureGrid strong { margin-top: 0.38rem; font-size: 0.39rem; }
+  .showcaseFeatureGrid small { display: none; }
+  .showcaseStatusStrip { gap: 0.38rem; margin-top: 0.4rem; padding-top: 0.42rem; font-size: 0.3rem; }
+  .showcaseStatusStrip > span:nth-child(2) { display: none; }
+  .showcaseMobile { right: 4%; bottom: 25%; width: 8.3rem; min-height: 15.5rem; padding: 0.7rem 0.62rem 0.55rem; border-radius: 1rem; }
+  .showcaseMobileTop { padding-bottom: 0.42rem; }
+  .showcaseMobileLabel { margin-top: 0.55rem; font-size: 0.27rem; }
+  .showcaseMobile > strong { margin-top: 0.3rem; font-size: 0.68rem; }
+  .showcaseMobile > p { margin-top: 0.32rem; font-size: 0.32rem; }
+  .showcaseMobileCta { margin-top: 0.42rem; padding: 0.26rem 0.4rem; font-size: 0.3rem; }
+  .showcaseMobileCards { gap: 0.3rem; margin-top: 0.5rem; }
+  .showcaseMobileCards > div { min-height: 1.8rem; padding: 0.3rem; }
+  .showcaseMobileCards strong { font-size: 0.34rem; }
+  .showcaseMobileStatus { margin-top: 0.4rem; font-size: 0.25rem; }
   .showcaseCaption { right: 1.25rem; bottom: 2rem; left: 1.25rem; }
   .showcaseCaption p { font-size: 1.65rem; }
   .outcomeList { margin-top: 3rem; }
