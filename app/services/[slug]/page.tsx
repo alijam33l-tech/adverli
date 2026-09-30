@@ -15,7 +15,9 @@ import { createPageMetadata } from "@/lib/site";
 import { createServiceStructuredData } from "@/lib/structured-data";
 
 export function generateStaticParams() {
-  return services.map((s) => ({ slug: s.slug }));
+  return services
+    .filter((service) => service.slug !== "website-development")
+    .map((service) => ({ slug: service.slug }));
 }
 
 export async function generateMetadata({
