@@ -16,7 +16,10 @@ import { createServiceStructuredData } from "@/lib/structured-data";
 
 export function generateStaticParams() {
   return services
-    .filter((service) => service.slug !== "website-development")
+    .filter(
+      (service) =>
+        service.slug !== "website-development" && service.slug !== "meta-ads",
+    )
     .map((service) => ({ slug: service.slug }));
 }
 
