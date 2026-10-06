@@ -18,7 +18,9 @@ export function generateStaticParams() {
   return services
     .filter(
       (service) =>
-        service.slug !== "website-development" && service.slug !== "meta-ads",
+        service.slug !== "website-development" &&
+        service.slug !== "meta-ads" &&
+        service.slug !== "google-ads",
     )
     .map((service) => ({ slug: service.slug }));
 }
