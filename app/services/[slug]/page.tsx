@@ -20,7 +20,8 @@ export function generateStaticParams() {
       (service) =>
         service.slug !== "website-development" &&
         service.slug !== "meta-ads" &&
-        service.slug !== "google-ads",
+        service.slug !== "google-ads" &&
+        service.slug !== "seo",
     )
     .map((service) => ({ slug: service.slug }));
 }
