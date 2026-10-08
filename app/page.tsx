@@ -1,13 +1,16 @@
 import Button from "@/components/Button";
 import CTASection from "@/components/CTASection";
 import GrowthScenarioCard from "@/components/GrowthScenarioCard";
+import {
+  HomeCredibilitySystem,
+  HomeGrowthBridge,
+  HomeMediaMoment,
+} from "@/components/HomeExperience";
 import InsideWorkSequence from "@/components/InsideWorkSequence";
-import LogoMarquee from "@/components/LogoMarquee";
 import ProcessSteps from "@/components/ProcessSteps";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import ServicesGrowthSystem from "@/components/ServicesGrowthSystem";
-import StatsBar from "@/components/StatsBar";
 import { caseStudies } from "@/lib/case-studies";
 import { services } from "@/lib/services";
 import { site } from "@/lib/site";
@@ -79,19 +82,8 @@ export default function HomePage() {
         <div className={styles.transitionLayer} aria-hidden="true" />
       </section>
 
-      <LogoMarquee />
-
-      {/* Stats */}
-      <section className="mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
-        <SectionHeading
-          eyebrow={`Why ${site.name}`}
-          title="Commercial clarity at every step."
-          lede="Strategy, execution, and reporting stay tied to the business outcome, with clear ownership and fewer handoffs between channels."
-        />
-        <Reveal className="mt-14">
-          <StatsBar />
-        </Reveal>
-      </section>
+      {/* Connected growth bridge */}
+      <HomeGrowthBridge />
 
       {/* Services */}
       <section
@@ -123,6 +115,9 @@ export default function HomePage() {
           </Reveal>
         </div>
       </section>
+
+      {/* Cinematic operating moment */}
+      <HomeMediaMoment />
 
       {/* Featured work */}
       <section className="mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
@@ -172,6 +167,9 @@ export default function HomePage() {
           <InsideWorkSequence />
         </div>
       </section>
+
+      {/* Credibility and global capability */}
+      <HomeCredibilitySystem />
 
       <CTASection />
     </>

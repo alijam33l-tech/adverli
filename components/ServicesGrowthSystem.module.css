@@ -449,13 +449,13 @@
   }
 
   .detailHead {
-    grid-template-columns: minmax(0, 1.08fr) minmax(14rem, 0.92fr);
+    grid-template-columns: minmax(0, 1.04fr) minmax(14rem, 0.96fr);
     align-items: center;
     gap: clamp(1.75rem, 2.6vw, 2.5rem);
   }
 
   .serviceVisual {
-    min-height: 14.5rem;
+    min-height: 15.5rem;
   }
 
   .detailTitle {
@@ -516,7 +516,7 @@
 
 @media (min-width: 1200px) {
   .serviceVisual {
-    min-height: 15rem;
+    min-height: 16rem;
     margin-right: -2.75rem;
   }
 }
