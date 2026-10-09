@@ -1,80 +1,13 @@
 import type { Metadata } from "next";
-import Image from "next/image";
-import CTASection from "@/components/CTASection";
-import GrowthScenarioCard from "@/components/GrowthScenarioCard";
-import Reveal from "@/components/Reveal";
-import SectionHeading from "@/components/SectionHeading";
-import { caseStudies } from "@/lib/case-studies";
+import WorkExperience from "@/components/WorkExperience";
 import { createPageMetadata, site } from "@/lib/site";
-import skyline from "@/public/images/skyline.jpg";
-import styles from "./work.module.css";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Work",
-  description: `Representative ${site.name} growth scenarios across paid media, SEO, website development, and content.`,
+  description: `Explore representative ${site.name} growth scenarios and see how website, media, search, content, and measurement connect around commercial problems.`,
   path: "/work",
 });
 
 export default function WorkPage() {
-  return (
-    <>
-      <section className="relative overflow-hidden border-b border-line">
-        <Image
-          src={skyline}
-          alt=""
-          fill
-          preload
-          sizes="100vw"
-          placeholder="blur"
-          className="object-cover opacity-25"
-          aria-hidden
-        />
-        <div
-          aria-hidden
-          className="absolute inset-0 bg-gradient-to-t from-ink via-ink/60 to-ink/30"
-        />
-        <div className="relative mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
-          <Reveal initiallyVisible>
-            <p className="flex items-center gap-2 text-xs font-medium uppercase tracking-[0.2em] text-muted">
-              <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-lime" />
-              Work and growth scenarios
-            </p>
-            <h1 className="mt-6 max-w-3xl font-display text-5xl font-semibold leading-tight tracking-tight text-cream sm:text-6xl">
-              See how the work and thinking
-              <br />
-              <span className="text-lime">come together.</span>
-            </h1>
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
-              Explore representative growth challenges that show how we
-              approach strategy, execution, and measurement.
-            </p>
-          </Reveal>
-        </div>
-      </section>
-
-      <section className="bg-surface/40">
-        <div className="mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
-          <SectionHeading
-            eyebrow="Growth scenarios"
-            title="How we solve growth problems."
-            lede={`Representative challenges that demonstrate ${site.name}'s strategic approach, methodology, and cross-channel capabilities.`}
-          />
-          <div className={styles.scenarioGrid}>
-            {caseStudies.map((c, i) => (
-              <Reveal key={c.slug} delay={(i % 3) * 100}>
-                <GrowthScenarioCard study={c} position={i + 1} />
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <CTASection
-        title="Want an approach built around your goals?"
-        lede="Start with a focused conversation about the outcome, the current constraint, and the evidence available."
-        secondaryHref="/services"
-        secondaryLabel="Explore services"
-      />
-    </>
-  );
+  return <WorkExperience />;
 }
