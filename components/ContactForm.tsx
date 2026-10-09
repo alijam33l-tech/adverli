@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState, type FormEvent } from "react";
 import { services } from "@/lib/services";
-import { site } from "@/lib/site";
+import styles from "./ContactForm.module.css";
 
 const engagementScopes = [
   "Focused project",
@@ -11,9 +11,6 @@ const engagementScopes = [
   "Multi-channel engagement",
   "Not sure yet",
 ];
-
-const inputStyles =
-  "w-full rounded-xl border border-[rgba(255,255,255,0.36)] bg-surface px-4 py-3 text-sm text-cream placeholder:text-faint outline-none transition-colors focus:border-lime focus-visible:ring-2 focus-visible:ring-lime/30 disabled:cursor-not-allowed disabled:opacity-60";
 
 type FieldName = "name" | "email" | "company" | "message";
 type FieldErrors = Partial<Record<FieldName, string>>;
@@ -35,7 +32,7 @@ export default function ContactForm() {
     setSelectedServices((previous) =>
       previous.includes(title)
         ? previous.filter((service) => service !== title)
-        : [...previous, title]
+        : [...previous, title],
     );
 
   const clearFieldError = (field: FieldName) => {
@@ -88,7 +85,7 @@ export default function ContactForm() {
     }
 
     setFieldErrors({});
-    setSubmission({ status: "pending", message: "Sending your enquiry…" });
+    setSubmission({ status: "pending", message: "Sending your inquiry…" });
 
     try {
       const response = await fetch("/api/contact", {
@@ -111,7 +108,7 @@ export default function ContactForm() {
 
       if (!response.ok) {
         throw new Error(
-          result?.message ?? "We could not send your enquiry. Please try again."
+          result?.message ?? "We could not send your inquiry. Please try again.",
         );
       }
 
@@ -120,7 +117,7 @@ export default function ContactForm() {
       setSubmission({
         status: "success",
         message:
-          "Enquiry sent. We’ll review the details and respond with a useful next step.",
+          "Inquiry sent. We’ll review the context and respond with a useful next step.",
       });
     } catch (error) {
       setSubmission({
@@ -128,21 +125,33 @@ export default function ContactForm() {
         message:
           error instanceof Error
             ? error.message
-            : "We could not send your enquiry. Please try again.",
+            : "We could not send your inquiry. Please try again.",
       });
     }
   }
+
+  const describedBy = (field: FieldName, helperId?: string) =>
+    [helperId, fieldErrors[field] ? `${field}-error` : null]
+      .filter(Boolean)
+      .join(" ") || undefined;
 
   return (
     <form
       onSubmit={handleSubmit}
       noValidate
-      className="space-y-5"
+      className={styles.form}
       aria-busy={submission.status === "pending"}
     >
-      <div className="grid gap-5 sm:grid-cols-2">
-        <div>
-          <label htmlFor="name" className="mb-2 block text-sm text-muted">
+      <div className={styles.formSectionLabel}>
+        <span>01</span>
+        <strong>Your details</strong>
+        <i aria-hidden="true" />
+        <span>Required fields marked *</span>
+      </div>
+
+      <div className={styles.fieldGrid}>
+        <div className={styles.field}>
+          <label htmlFor="name">
             Full name <span aria-hidden="true">*</span>
             <span className="sr-only"> (required)</span>
           </label>
@@ -154,18 +163,19 @@ export default function ContactForm() {
             autoComplete="name"
             placeholder="Jordan Smith"
             aria-invalid={Boolean(fieldErrors.name)}
-            aria-describedby={fieldErrors.name ? "name-error" : undefined}
+            aria-describedby={describedBy("name")}
             onChange={() => clearFieldError("name")}
-            className={inputStyles}
+            className={styles.control}
           />
           {fieldErrors.name && (
-            <p id="name-error" className="mt-2 text-xs leading-relaxed text-red-300">
+            <p id="name-error" className={styles.fieldError}>
               {fieldErrors.name}
             </p>
           )}
         </div>
-        <div>
-          <label htmlFor="email" className="mb-2 block text-sm text-muted">
+
+        <div className={styles.field}>
+          <label htmlFor="email">
             Work email <span aria-hidden="true">*</span>
             <span className="sr-only"> (required)</span>
           </label>
@@ -176,23 +186,22 @@ export default function ContactForm() {
             required
             maxLength={254}
             autoComplete="email"
+            inputMode="email"
             placeholder="jordan@company.com"
             aria-invalid={Boolean(fieldErrors.email)}
-            aria-describedby={fieldErrors.email ? "email-error" : undefined}
+            aria-describedby={describedBy("email")}
             onChange={() => clearFieldError("email")}
-            className={inputStyles}
+            className={styles.control}
           />
           {fieldErrors.email && (
-            <p id="email-error" className="mt-2 text-xs leading-relaxed text-red-300">
+            <p id="email-error" className={styles.fieldError}>
               {fieldErrors.email}
             </p>
           )}
         </div>
-      </div>
 
-      <div className="grid gap-5 sm:grid-cols-2">
-        <div>
-          <label htmlFor="company" className="mb-2 block text-sm text-muted">
+        <div className={styles.field}>
+          <label htmlFor="company">
             Company <span aria-hidden="true">*</span>
             <span className="sr-only"> (required)</span>
           </label>
@@ -202,32 +211,25 @@ export default function ContactForm() {
             required
             maxLength={160}
             autoComplete="organization"
-            placeholder="Company Inc."
+            placeholder="Company name"
             aria-invalid={Boolean(fieldErrors.company)}
-            aria-describedby={fieldErrors.company ? "company-error" : undefined}
+            aria-describedby={describedBy("company")}
             onChange={() => clearFieldError("company")}
-            className={inputStyles}
+            className={styles.control}
           />
           {fieldErrors.company && (
-            <p
-              id="company-error"
-              className="mt-2 text-xs leading-relaxed text-red-300"
-            >
+            <p id="company-error" className={styles.fieldError}>
               {fieldErrors.company}
             </p>
           )}
         </div>
-        <div>
-          <label
-            htmlFor="engagementScope"
-            className="mb-2 block text-sm text-muted"
-          >
-            Engagement scope
-          </label>
+
+        <div className={styles.field}>
+          <label htmlFor="engagementScope">Engagement scope</label>
           <select
             id="engagementScope"
             name="engagementScope"
-            className={inputStyles}
+            className={styles.control}
           >
             <option value="">Select an option</option>
             {engagementScopes.map((scope) => (
@@ -239,11 +241,10 @@ export default function ContactForm() {
         </div>
       </div>
 
-      <fieldset>
-        <legend className="mb-3 block text-sm text-muted">
-          What do you need help with?
-        </legend>
-        <div className="flex flex-wrap gap-2">
+      <fieldset className={styles.serviceFieldset}>
+        <legend>Primary need / service</legend>
+        <p id="services-help">Choose any disciplines that may be relevant.</p>
+        <div className={styles.serviceGrid} aria-describedby="services-help">
           {services.map((service) => {
             const active = selectedServices.includes(service.title);
             return (
@@ -252,47 +253,53 @@ export default function ContactForm() {
                 type="button"
                 onClick={() => toggleService(service.title)}
                 aria-pressed={active}
-                className={`min-h-11 rounded-full border px-4 py-2 text-sm outline-none transition-colors focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2 focus-visible:ring-offset-ink ${
-                  active
-                    ? "border-lime bg-lime text-ink"
-                    : "border-line-strong text-muted hover:border-lime hover:text-cream"
-                }`}
+                className={styles.serviceButton}
               >
+                <span aria-hidden="true">{service.index}</span>
                 {service.shortTitle}
+                <i aria-hidden="true" />
               </button>
             );
           })}
         </div>
       </fieldset>
 
-      <div>
-        <label htmlFor="message" className="mb-2 block text-sm text-muted">
-          Tell us about your goals <span aria-hidden="true">*</span>
+      <div className={styles.formSectionLabel}>
+        <span>02</span>
+        <strong>The brief</strong>
+        <i aria-hidden="true" />
+        <span>Useful context, not a perfect document</span>
+      </div>
+
+      <div className={styles.field}>
+        <label htmlFor="message">
+          Goal, current situation, and constraint <span aria-hidden="true">*</span>
           <span className="sr-only"> (required)</span>
         </label>
+        <p id="message-help" className={styles.fieldHelp}>
+          Include the market, what is already in place, what needs to improve,
+          and what is currently getting in the way.
+        </p>
         <textarea
           id="message"
           name="message"
           required
           maxLength={5000}
-          rows={5}
-          placeholder="What are you trying to achieve, and what's standing in the way?"
+          rows={7}
+          placeholder="We are trying to… Our current setup is… The main constraint is…"
           aria-invalid={Boolean(fieldErrors.message)}
-          aria-describedby={fieldErrors.message ? "message-error" : undefined}
+          aria-describedby={describedBy("message", "message-help")}
           onChange={() => clearFieldError("message")}
-          className={inputStyles}
+          className={`${styles.control} ${styles.textarea}`}
         />
         {fieldErrors.message && (
-          <p id="message-error" className="mt-2 text-xs leading-relaxed text-red-300">
+          <p id="message-error" className={styles.fieldError}>
             {fieldErrors.message}
           </p>
         )}
       </div>
 
-      <div
-        className="absolute -left-[10000px] top-auto h-px w-px overflow-hidden"
-        aria-hidden="true"
-      >
+      <div className={styles.honeypot} aria-hidden="true">
         <label htmlFor="website">Website</label>
         <input
           id="website"
@@ -303,55 +310,44 @@ export default function ContactForm() {
         />
       </div>
 
-      {submission.status !== "idle" && (
-        <div
-          role={submission.status === "error" ? "alert" : "status"}
-          aria-live="polite"
-          className={`flex items-start gap-3 border-l-2 px-4 py-3 text-sm leading-relaxed ${
-            submission.status === "error"
-              ? "border-red-400 bg-red-400/5 text-cream"
-              : "border-lime bg-lime/5 text-cream"
-          }`}
-        >
-          <span
-            aria-hidden="true"
-            className={`mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full ${
-              submission.status === "error" ? "bg-red-400" : "bg-lime"
-            }`}
-          />
-          <span>{submission.message}</span>
+      <div className={styles.submitArea}>
+        <div>
+          <strong>What to expect</strong>
+          <p>
+            We review the context first, then recommend the most useful next step.
+          </p>
         </div>
-      )}
+        <button
+          type="submit"
+          disabled={submission.status === "pending"}
+          className={styles.submitButton}
+        >
+          <span>
+            {submission.status === "pending" ? "Sending inquiry…" : "Send inquiry"}
+          </span>
+          <span aria-hidden="true">→</span>
+        </button>
+      </div>
 
-      <p className="max-w-xl text-xs leading-relaxed text-faint">
+      <div className={styles.statusSlot}>
+        {submission.status !== "idle" && (
+          <div
+            role={submission.status === "error" ? "alert" : "status"}
+            aria-live={submission.status === "error" ? "assertive" : "polite"}
+            className={`${styles.status} ${
+              submission.status === "error" ? styles.statusError : ""
+            }`}
+          >
+            <span aria-hidden="true" />
+            <p>{submission.message}</p>
+          </div>
+        )}
+      </div>
+
+      <p className={styles.privacyNotice}>
         By submitting this form, you agree that Adverli may use the information
-        provided to respond to your enquiry. See our{" "}
-        <Link
-          href="/privacy"
-          className="text-muted underline decoration-line-strong underline-offset-4 outline-none transition-colors hover:text-lime focus-visible:rounded-sm focus-visible:text-lime focus-visible:ring-2 focus-visible:ring-lime/60"
-        >
-          Privacy Policy
-        </Link>
-        .
-      </p>
-
-      <button
-        type="submit"
-        disabled={submission.status === "pending"}
-        className="w-full rounded-full bg-lime px-6 py-4 font-display text-sm font-medium text-ink outline-none transition-colors hover:bg-lime-dim focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2 focus-visible:ring-offset-ink disabled:cursor-wait disabled:bg-lime-dim sm:w-auto"
-      >
-        {submission.status === "pending" ? "Sending enquiry…" : "Send enquiry →"}
-      </button>
-
-      <p className="text-sm leading-relaxed text-faint">
-        Prefer email? Contact us directly at{" "}
-        <a
-          href={site.emailHref}
-          className="text-cream outline-none transition-colors hover:text-lime focus-visible:text-lime focus-visible:underline"
-        >
-          {site.email}
-        </a>
-        .
+        provided to respond to your inquiry. See our{" "}
+        <Link href="/privacy">Privacy Policy</Link>.
       </p>
     </form>
   );
