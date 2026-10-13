@@ -1,13 +1,13 @@
 import { Resend } from "resend";
 import { services } from "@/lib/services";
+import { checkContactRateLimit } from "@/lib/server/contact-rate-limit";
 
 export const runtime = "nodejs";
 
 const CONTACT_RECIPIENT = "hello@adverli.com";
 const CONTACT_SENDER = "Adverli Website <leads@adverli.com>";
 const MAX_BODY_BYTES = 20_000;
-const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
-const RATE_LIMIT_MAX_REQUESTS = 5;
+const ALLOWED_METHODS = "POST, OPTIONS";
 
 const engagementScopes = new Set([
   "Focused project",
@@ -16,9 +16,6 @@ const engagementScopes = new Set([
   "Not sure yet",
 ]);
 const serviceTitles = new Set(services.map((service) => service.title));
-
-type RateLimitEntry = { count: number; resetAt: number };
-const rateLimits = new Map<string, RateLimitEntry>();
 
 type ContactSubmission = {
   name: string;
@@ -41,37 +38,87 @@ function jsonResponse(body: object, status = 200, headers?: HeadersInit) {
   });
 }
 
-function getClientIdentifier(request: Request) {
-  const forwardedFor = request.headers.get("x-forwarded-for");
-  const address = forwardedFor?.split(",")[0]?.trim();
-  return address || request.headers.get("x-real-ip") || "unknown";
+function methodNotAllowedResponse() {
+  return new Response(null, {
+    status: 405,
+    headers: {
+      Allow: ALLOWED_METHODS,
+      "Cache-Control": "no-store",
+    },
+  });
 }
 
-function checkRateLimit(identifier: string) {
-  const now = Date.now();
+function parseContentLength(value: string | null) {
+  if (value === null) return { valid: true as const, length: null };
 
-  for (const [key, entry] of rateLimits) {
-    if (entry.resetAt <= now) rateLimits.delete(key);
+  const normalized = value.trim();
+  if (!/^\d+$/.test(normalized)) {
+    return { valid: false as const, length: null };
   }
 
-  const current = rateLimits.get(identifier);
-  if (!current || current.resetAt <= now) {
-    rateLimits.set(identifier, {
-      count: 1,
-      resetAt: now + RATE_LIMIT_WINDOW_MS,
-    });
-    return { allowed: true, retryAfter: 0 };
+  const length = Number(normalized);
+  if (!Number.isSafeInteger(length)) {
+    return { valid: true as const, length: Number.POSITIVE_INFINITY };
   }
 
-  if (current.count >= RATE_LIMIT_MAX_REQUESTS) {
-    return {
-      allowed: false,
-      retryAfter: Math.max(1, Math.ceil((current.resetAt - now) / 1000)),
-    };
-  }
+  return { valid: true as const, length };
+}
 
-  current.count += 1;
-  return { allowed: true, retryAfter: 0 };
+async function readBodyWithLimit(request: Request) {
+  if (!request.body) return { tooLarge: false as const, body: "" };
+
+  const reader = request.body.getReader();
+  const decoder = new TextDecoder();
+  let bytesRead = 0;
+  let body = "";
+
+  try {
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+
+      bytesRead += value.byteLength;
+      if (bytesRead > MAX_BODY_BYTES) {
+        await reader.cancel();
+        return { tooLarge: true as const, body: "" };
+      }
+
+      body += decoder.decode(value, { stream: true });
+    }
+
+    body += decoder.decode();
+    return { tooLarge: false as const, body };
+  } finally {
+    reader.releaseLock();
+  }
+}
+
+function safeProviderLogDetails(error: unknown) {
+  if (!error || typeof error !== "object") return {};
+
+  const record = error as Record<string, unknown>;
+  const statusCode =
+    typeof record.statusCode === "number" &&
+    Number.isInteger(record.statusCode) &&
+    record.statusCode >= 100 &&
+    record.statusCode <= 599
+      ? record.statusCode
+      : undefined;
+  const providerCode =
+    typeof record.name === "string" &&
+    /^[a-z0-9_-]{1,64}$/i.test(record.name)
+      ? record.name
+      : undefined;
+
+  return { statusCode, providerCode };
+}
+
+function logContactFailure(category: string, error?: unknown) {
+  console.error("Contact submission delivery failed.", {
+    category,
+    timestamp: new Date().toISOString(),
+    ...safeProviderLogDetails(error),
+  });
 }
 
 function cleanSingleLine(value: string) {
@@ -245,7 +292,7 @@ export async function POST(request: Request) {
     return jsonResponse({ message: "This request could not be accepted." }, 403);
   }
 
-  const rateLimit = checkRateLimit(getClientIdentifier(request));
+  const rateLimit = checkContactRateLimit(request);
   if (!rateLimit.allowed) {
     return jsonResponse(
       { message: "Too many enquiries were submitted. Please try again shortly." },
@@ -255,21 +302,27 @@ export async function POST(request: Request) {
   }
 
   const contentType = request.headers.get("content-type") ?? "";
-  const contentLength = Number(request.headers.get("content-length") ?? 0);
   if (!contentType.toLowerCase().startsWith("application/json")) {
     return jsonResponse({ message: "This request could not be accepted." }, 415);
   }
-  if (contentLength > MAX_BODY_BYTES) {
+
+  const contentLength = parseContentLength(
+    request.headers.get("content-length")
+  );
+  if (!contentLength.valid) {
+    return jsonResponse({ message: "This request could not be accepted." }, 400);
+  }
+  if (contentLength.length !== null && contentLength.length > MAX_BODY_BYTES) {
     return jsonResponse({ message: "The submitted message is too large." }, 413);
   }
 
   let payload: unknown;
   try {
-    const body = await request.text();
-    if (new TextEncoder().encode(body).length > MAX_BODY_BYTES) {
+    const result = await readBodyWithLimit(request);
+    if (result.tooLarge) {
       return jsonResponse({ message: "The submitted message is too large." }, 413);
     }
-    payload = JSON.parse(body);
+    payload = JSON.parse(result.body);
   } catch {
     return jsonResponse({ message: "Please check the form and try again." }, 400);
   }
@@ -285,7 +338,7 @@ export async function POST(request: Request) {
 
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
-    console.error("Contact submission failed: RESEND_API_KEY is not configured.");
+    logContactFailure("configuration");
     return jsonResponse(
       { message: "We could not send your enquiry right now. Please try again." },
       503
@@ -306,7 +359,7 @@ export async function POST(request: Request) {
     });
 
     if (error) {
-      console.error("Resend rejected a contact submission:", error);
+      logContactFailure("provider-rejection", error);
       return jsonResponse(
         { message: "We could not send your enquiry right now. Please try again." },
         502
@@ -315,10 +368,40 @@ export async function POST(request: Request) {
 
     return jsonResponse({ success: true });
   } catch (error) {
-    console.error("Contact submission could not be delivered:", error);
+    logContactFailure("provider-exception", error);
     return jsonResponse(
       { message: "We could not send your enquiry right now. Please try again." },
       502
     );
   }
+}
+
+export function OPTIONS() {
+  return new Response(null, {
+    status: 204,
+    headers: {
+      Allow: ALLOWED_METHODS,
+      "Cache-Control": "no-store",
+    },
+  });
+}
+
+export function GET() {
+  return methodNotAllowedResponse();
+}
+
+export function HEAD() {
+  return methodNotAllowedResponse();
+}
+
+export function PUT() {
+  return methodNotAllowedResponse();
+}
+
+export function PATCH() {
+  return methodNotAllowedResponse();
+}
+
+export function DELETE() {
+  return methodNotAllowedResponse();
 }
